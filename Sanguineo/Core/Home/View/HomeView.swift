@@ -9,10 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        //Tutorial 1
-        Rectangle()
-            .fill(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-        .frame(width: 360, height: 800)
+        TutorialView()
     }
 }
 
