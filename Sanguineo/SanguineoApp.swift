@@ -11,7 +11,7 @@ import SwiftUI
 struct SanguineoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FF7B2A05293C00C05261 /* SanguineoApp.swift */; };
-		B418FF7E2A05293C00C05261 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FF7D2A05293C00C05261 /* ContentView.swift */; };
+		B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FF7D2A05293C00C05261 /* HomeView.swift */; };
 		B418FF802A05293D00C05261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B418FF7F2A05293D00C05261 /* Assets.xcassets */; };
 		B418FF832A05293D00C05261 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B418FF822A05293D00C05261 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		B418FF782A05293C00C05261 /* Sanguineo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sanguineo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B418FF7B2A05293C00C05261 /* SanguineoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanguineoApp.swift; sourceTree = "<group>"; };
-		B418FF7D2A05293C00C05261 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B418FF7D2A05293C00C05261 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B418FF7F2A05293D00C05261 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B418FF822A05293D00C05261 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				B418FF7B2A05293C00C05261 /* SanguineoApp.swift */,
-				B418FF7D2A05293C00C05261 /* ContentView.swift */,
+				B418FF892A05297D00C05261 /* Core */,
 				B418FF7F2A05293D00C05261 /* Assets.xcassets */,
 				B418FF812A05293D00C05261 /* Preview Content */,
 			);
@@ -65,6 +65,38 @@
 				B418FF822A05293D00C05261 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B418FF892A05297D00C05261 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B418FF8A2A0529A400C05261 /* Home */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B418FF8A2A0529A400C05261 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B418FF8C2A0529B100C05261 /* ViewModel */,
+				B418FF8B2A0529AD00C05261 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B418FF8B2A0529AD00C05261 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B418FF7D2A05293C00C05261 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B418FF8C2A0529B100C05261 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B418FF7E2A05293C00C05261 /* ContentView.swift in Sources */,
+				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
