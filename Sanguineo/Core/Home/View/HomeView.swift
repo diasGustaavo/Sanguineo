@@ -11,7 +11,12 @@ struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
-        InitialLogView()
+        if homeViewModel.isTutorialActive {
+            TutorialView()
+                .environmentObject(homeViewModel)
+        } else {
+            InitialLogView()
+        }
     }
 }
 

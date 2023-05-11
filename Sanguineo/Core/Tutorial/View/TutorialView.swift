@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TutorialView: View {
     @State private var selection = 0
+    @EnvironmentObject var homeViewModel: HomeViewModel
     
     init() {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "AccentColor")!
@@ -30,6 +31,8 @@ struct TutorialView: View {
                     withAnimation {
                         selection += 1
                     }
+                } else {
+                    homeViewModel.isTutorialActive = false
                 }
             } label: {
                 if selection == 3 {
@@ -140,5 +143,6 @@ struct VamosLaView: View {
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
         TutorialView()
+            .environmentObject(HomeViewModel())
     }
 }

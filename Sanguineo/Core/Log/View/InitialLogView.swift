@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InitialLogView: View {
+    
     var body: some View {
         VStack {
             // HEADER
