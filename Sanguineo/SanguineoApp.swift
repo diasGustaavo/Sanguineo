@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SanguineoApp: App {
+    @StateObject var homeViewModel = HomeViewModel()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(homeViewModel)
         }
     }
 }

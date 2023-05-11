@@ -40,7 +40,7 @@ struct TutorialView: View {
                         .foregroundColor(.white)
                         .background(Color(UIColor(named: "AccentColor")!))
                         .cornerRadius(7)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 16)
                 } else {
                     Text("Próximo")
                         .bold()
@@ -49,7 +49,7 @@ struct TutorialView: View {
                         .foregroundColor(.white)
                         .background(Color(UIColor(named: "AccentColor")!))
                         .cornerRadius(7)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 16)
                 }
             }
             .buttonStyle(PlainButtonStyle())

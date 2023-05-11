@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
     var body: some View {
-        TutorialView()
+        InitialLogView()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(HomeViewModel())
     }
 }

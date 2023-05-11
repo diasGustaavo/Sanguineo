@@ -28,6 +28,8 @@
 		B418FFAF2A05366500C05261 /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FF9F2A05366500C05261 /* Nunito-LightItalic.ttf */; };
 		B418FFB02A05366500C05261 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA02A05366500C05261 /* Nunito-Italic.ttf */; };
 		B418FFB12A05366500C05261 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */; };
+		B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFB92A05499800C05261 /* InitialLogView.swift */; };
+		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		B418FFA02A05366500C05261 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
 		B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		B418FFB22A05368A00C05261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
+		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				B418FFB32A053A1C00C05261 /* Common */,
 				B418FF8D2A05320200C05261 /* Tutorial */,
 				B418FF8A2A0529A400C05261 /* Home */,
+				B418FFB62A0548CF00C05261 /* Log */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 		B418FF8C2A0529B100C05261 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B418FFBB2A054A5900C05261 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -182,6 +188,30 @@
 			children = (
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B418FFB62A0548CF00C05261 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				B418FFB82A05497D00C05261 /* ViewModel */,
+				B418FFB72A05497700C05261 /* View */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		B418FFB72A05497700C05261 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B418FFB92A05499800C05261 /* InitialLogView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B418FFB82A05497D00C05261 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +302,8 @@
 			files = (
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
+				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
+				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
