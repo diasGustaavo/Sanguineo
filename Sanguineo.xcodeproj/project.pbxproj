@@ -33,6 +33,7 @@
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */; };
+		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 		B418FFB82A05497D00C05261 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
+				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

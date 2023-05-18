@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var email: String
-    @State private var isChecked = false
+    @ObservedObject var loginModel: LoginViewModel
     
     var body: some View {
         VStack {
@@ -35,19 +34,19 @@ struct LoginView: View {
             
             // TEXTFIELDS
             Group {
-                CustomTextField(content: $email, placeholder: "Email")
+                CustomTextField(content: $loginModel.email, placeholder: "Email")
                     .padding(.horizontal)
                 
-                CustomTextField(content: $email, logo: "lock", placeholder: "Password")
+                CustomTextField(content: $loginModel.password, logo: "lock", placeholder: "Password")
                     .padding()
             }
             
             HStack {
                 Button(action: {
-                    isChecked.toggle()
+                    loginModel.isChecked.toggle()
                 }) {
                     HStack {
-                        Image(systemName: isChecked ? "checkmark.square" : "square")
+                        Image(systemName: loginModel.isChecked ? "checkmark.square" : "square")
                             .font(.system(size: 13))
                             .foregroundColor(.accentColor)
                         
@@ -60,7 +59,7 @@ struct LoginView: View {
                 }
                 
                 Button(action: {
-                    isChecked.toggle()
+                    // some action
                 }) {
                     HStack {
                         Text("Esqueceu a senha?")
@@ -112,6 +111,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(email: "")
+        LoginView(loginModel: LoginViewModel())
     }
 }

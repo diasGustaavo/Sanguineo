@@ -9,4 +9,5 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var isTutorialActive = true
+    @Published var isInitialLoginScreenActive = true
 }

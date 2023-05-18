@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InitialLogView: View {
+    @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
         VStack {
@@ -48,7 +49,7 @@ struct InitialLogView: View {
             
             HStack {
                 Button {
-                    // some action
+                    homeViewModel.isInitialLoginScreenActive = false
                 } label: {
                     Text("Entre")
                         .bold()
