@@ -30,6 +30,9 @@
 		B418FFB12A05366500C05261 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */; };
 		B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFB92A05499800C05261 /* InitialLogView.swift */; };
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
+		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
+		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
+		B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		B418FFB22A05368A00C05261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 		B418FF892A05297D00C05261 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B4DA24232A165302009C6DA0 /* Extensions */,
 				B418FFB32A053A1C00C05261 /* Common */,
 				B418FF8D2A05320200C05261 /* Tutorial */,
 				B418FF8A2A0529A400C05261 /* Home */,
@@ -186,6 +193,7 @@
 		B418FFB32A053A1C00C05261 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -203,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				B418FFB92A05499800C05261 /* InitialLogView.swift */,
+				B4DA24212A165173009C6DA0 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +221,14 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B4DA24232A165302009C6DA0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4DA24242A16531A009C6DA0 /* UIScreen.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,10 +317,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */,
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
+				B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
+				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
