@@ -19,7 +19,7 @@ struct HomeView: View {
             InitialLogView()
                 .environmentObject(homeViewModel)
         } else {
-            LoginView(loginModel: loginViewModel)
+            RegisterView()
         }
     }
 }

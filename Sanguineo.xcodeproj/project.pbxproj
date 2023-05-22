@@ -32,8 +32,11 @@
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
+		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */; };
 		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
+		B4FC5E712A1B99DC00CC2BBC /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = B4FC5E702A1B99DC00CC2BBC /* Introspect */; };
+		B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +67,10 @@
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4FC5E712A1B99DC00CC2BBC /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +220,7 @@
 			children = (
 				B418FFB92A05499800C05261 /* InitialLogView.swift */,
 				B4DA24212A165173009C6DA0 /* LoginView.swift */,
+				B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				B4DA24242A16531A009C6DA0 /* UIScreen.swift */,
+				B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +258,9 @@
 			dependencies = (
 			);
 			name = Sanguineo;
+			packageProductDependencies = (
+				B4FC5E702A1B99DC00CC2BBC /* Introspect */,
+			);
 			productName = Sanguineo;
 			productReference = B418FF782A05293C00C05261 /* Sanguineo.app */;
 			productType = "com.apple.product-type.application";
@@ -278,6 +289,9 @@
 				Base,
 			);
 			mainGroup = B418FF6F2A05293C00C05261;
+			packageReferences = (
+				B4FC5E6F2A1B99DC00CC2BBC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = B418FF792A05293C00C05261 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,11 +335,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */,
+				B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */,
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
 				B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
+				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
@@ -461,6 +477,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sanguineo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Nos precisamos acessar a sua camera para poder fotografar os documentos necessarios do seu cadastro.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -491,6 +508,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sanguineo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Nos precisamos acessar a sua camera para poder fotografar os documentos necessarios do seu cadastro.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -531,6 +549,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4FC5E6F2A1B99DC00CC2BBC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4FC5E702A1B99DC00CC2BBC /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4FC5E6F2A1B99DC00CC2BBC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B418FF702A05293C00C05261 /* Project object */;
 }
