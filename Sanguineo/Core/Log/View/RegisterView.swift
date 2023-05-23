@@ -10,8 +10,14 @@ import Introspect
 import AVFoundation
 
 struct RegisterView: View {
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    
     @State private var selectedTab = 0
     @State var name = ""
+    @State var email = ""
+    @State var password1 = ""
+    @State var password2 = ""
+    @State var phonenum = ""
     @State private var isCheckedForm = false
     @State private var isCheckedEmail = false
     @State private var isCameraAuthorized = false
@@ -32,11 +38,12 @@ struct RegisterView: View {
             .padding()
             
             TabView(selection: $selectedTab) {
-                PersonalInfo(name: $name, isChecked: $isCheckedForm, selectedTab: $selectedTab)
+                PersonalInfo(name: $name, email: $email, password1: $password1, password2: $password2, phonenum: $phonenum, isChecked: $isCheckedForm, selectedTab: $selectedTab)
                     .tag(0)
+                    .environmentObject(initialLogViewModel)
                 ConfirmationCodeView(selectedTab: $selectedTab, isChecked: $isCheckedEmail)
                     .tag(1)
-                DocumentRequestView()
+                DocumentRequestView(selectedTab: $selectedTab)
                     .tag(2)
                 // Add more tabs as needed
             }
@@ -59,106 +66,142 @@ struct RegisterView: View {
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
+            .environmentObject(InitialLogViewModel())
     }
 }
 
 struct PersonalInfo: View {
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    
     @Binding var name: String
+    @Binding var email: String
+    @Binding var password1: String
+    @Binding var password2: String
+    @Binding var phonenum: String
     @Binding var isChecked: Bool
     @Binding var selectedTab: Int
     
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                Text("Preencha suas informações pessoais")
-                    .multilineTextAlignment(.leading)
-                    .font(.custom("Nunito-SemiBold", size: 24))
-                
-                Spacer()
-                
-                // TEXTFIELDS
-                Group {
-                    CustomTextField(content: $name, logo: "person", placeholder: "Nome e sobrenome")
+            ScrollViewReader { scrollViewProxy in
+                VStack(alignment: .leading) {
+                    Text("Preencha suas informações pessoais")
+                        .multilineTextAlignment(.leading)
+                        .font(.custom("Nunito-SemiBold", size: 24))
                     
-                    Spacer()
-                        .frame(height: 20)
+                    Spacer().frame(height: 40)
                     
-                    CustomTextField(content: $name, placeholder: "E-mail")
-                    
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
-                    
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
-                    
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    CustomTextField(content: $name, logo: "iphone", placeholder: "Número do celular")
-                }
-                
-                Spacer()
-                
-                HStack {
-                    Button {
-                        isChecked.toggle()
-                    } label: {
-                        Image(systemName: isChecked ? "checkmark.square" : "square")
-                            .font(.system(size: 13))
-                            .foregroundColor(.accentColor)
+                    // TEXTFIELDS
+                    Group {
+                        ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name, logo: "person", placeholder: "Nome e sobrenome")
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail")
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        ResponsiveCustomTextField(id: 3, scrollViewProxy: scrollViewProxy, content: $password1, logo: "lock", placeholder: "Senha")
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        ResponsiveCustomTextField(id: 4, scrollViewProxy: scrollViewProxy, content: $password2, logo: "lock", placeholder: "Senha")
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        ResponsiveCustomTextField(id: 5, scrollViewProxy: scrollViewProxy, content: $phonenum, logo: "iphone", placeholder: "Número do celular")
                     }
                     
-                    Text("Ao preencher o formulário acima você concorda com os nossos termos de uso e nossa politica de privacidade. ")
-                        .font(.custom("Nunito-Light", size: 14))
+                    Spacer().frame(height: 40)
                     
-                    Spacer()
-                }
-                
-                
-                Spacer()
-                
-                HStack {
-                    Button {
-                        // some action
-                    } label: {
-                        Text("Voltar")
-                            .bold()
-                            .frame(height: 56)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(Color(UIColor(named: "AccentColor")!))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color.blue, lineWidth: 2)
-                            )
-                            .font(.custom("Nunito-SemiBold", size: 20))
-                    }
-                    
-                    Spacer()
-                        .frame(width: 15)
-                    
-                    Button {
-                        withAnimation {
-                            selectedTab += 1
+                    HStack {
+                        Button {
+                            isChecked.toggle()
+                        } label: {
+                            Image(systemName: isChecked ? "checkmark.square" : "square")
+                                .font(.system(size: 13))
+                                .foregroundColor(.accentColor)
                         }
-                    } label: {
-                        Text("Próximo")
-                            .bold()
-                            .frame(height: 56)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
-                            .background(Color(UIColor(named: "AccentColor")!))
-                            .cornerRadius(7)
-                            .font(.custom("Nunito-SemiBold", size: 20))
+                        
+                        Text("Ao preencher o formulário acima você concorda com os nossos termos de uso e nossa politica de privacidade. ")
+                            .font(.custom("Nunito-Light", size: 14))
+                        
+                        Spacer()
                     }
-                }
+                    
+                    Spacer().frame(height: 40)
+                    
+                    HStack {
+                        Button {
+                            initialLogViewModel.isRegisterViewActive = false
+                        } label: {
+                            Text("Voltar")
+                                .bold()
+                                .frame(height: 56)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(Color(UIColor(named: "AccentColor")!))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .stroke(Color.blue, lineWidth: 2)
+                                )
+                                .font(.custom("Nunito-SemiBold", size: 20))
+                        }
+                        
+                        Spacer()
+                            .frame(width: 15)
+                        
+                        Button {
+                            DispatchQueue.main.async {
+                                if name.isEmpty {
+                                    alertMessage = "Por favor digite o seu nome completo."
+                                    showAlert = true
+                                } else if email.isEmpty {
+                                    alertMessage = "Por favor digite o seu email."
+                                    showAlert = true
+                                } else if password1.isEmpty {
+                                    alertMessage = "Por favor digite a sua senha."
+                                    showAlert = true
+                                } else if (password1 != password2) {
+                                    alertMessage = "As senhas nao batem, redigite as senhas."
+                                    showAlert = true
+                                } else if phonenum.isEmpty {
+                                    alertMessage = "Por favor digite seu telefone."
+                                    showAlert = true
+                                } else if !isChecked {
+                                    alertMessage = "Aceite os nossos termos para avancar."
+                                    showAlert = true
+                                } else {
+                                    withAnimation {
+                                        selectedTab += 1
+                                    }
+                                }
+                            }
+                        } label: {
+                            Text("Próximo")
+                                .bold()
+                                .frame(height: 56)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(.white)
+                                .background(Color(UIColor(named: "AccentColor")!))
+                                .cornerRadius(7)
+                                .font(.custom("Nunito-SemiBold", size: 20))
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Código inválido"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                        }
+                    }
 
-                Spacer()
+                    Spacer()
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
         }
     }
 }
@@ -200,7 +243,10 @@ struct ConfirmationCodeView: View {
                 
                 HStack {
                     Button {
-                        // some action
+                        self.currentFocus = 5
+                        withAnimation {
+                            selectedTab -= 1
+                        }
                     } label: {
                         Text("Voltar")
                             .bold()
@@ -330,6 +376,7 @@ struct CodeInputField: View {
 struct DocumentRequestView: View {
     @State private var isShowingImagePicker = false
     @State private var selectedImage: UIImage? = UIImage(named: "carteiraIdentidade")
+    @Binding var selectedTab: Int
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -371,7 +418,9 @@ struct DocumentRequestView: View {
             
             HStack {
                 Button {
-                    // some action
+                    withAnimation {
+                        selectedTab -= 1
+                    }
                 } label: {
                     Text("Voltar")
                         .bold()

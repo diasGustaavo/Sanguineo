@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @StateObject var loginViewModel = LoginViewModel()
     
     var body: some View {
         if homeViewModel.isTutorialActive {
@@ -18,8 +17,6 @@ struct HomeView: View {
         } else if homeViewModel.isInitialLoginScreenActive {
             InitialLogView()
                 .environmentObject(homeViewModel)
-        } else {
-            RegisterView()
         }
     }
 }

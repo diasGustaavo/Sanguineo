@@ -9,6 +9,8 @@ import SwiftUI
 
 struct InitialLogView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
+    @ObservedObject var initialLogViewModel = InitialLogViewModel()
+    @StateObject var loginViewModel = LoginViewModel()
     
     var body: some View {
         VStack {
@@ -49,7 +51,7 @@ struct InitialLogView: View {
             
             HStack {
                 Button {
-                    homeViewModel.isInitialLoginScreenActive = false
+                    initialLogViewModel.isLoginViewActive = true
                 } label: {
                     Text("Entre")
                         .bold()
@@ -64,7 +66,7 @@ struct InitialLogView: View {
                     .frame(width: 15)
                 
                 Button {
-                    // some action
+                    initialLogViewModel.isRegisterViewActive = true
                 } label: {
                     Text("Cadastre-se")
                         .bold()
@@ -136,6 +138,14 @@ struct InitialLogView: View {
             }
             
             Spacer()
+        }
+        .fullScreenCover(isPresented: $initialLogViewModel.isLoginViewActive) {
+            LoginView(loginModel: loginViewModel)
+                .environmentObject(initialLogViewModel)
+        }
+        .fullScreenCover(isPresented: $initialLogViewModel.isRegisterViewActive) {
+            RegisterView()
+                .environmentObject(initialLogViewModel)
         }
     }
 }
