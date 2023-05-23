@@ -33,11 +33,11 @@ struct RegisterView: View {
             
             TabView(selection: $selectedTab) {
                 PersonalInfo(name: $name, isChecked: $isCheckedForm, selectedTab: $selectedTab)
-                    .tag(2)
+                    .tag(0)
                 ConfirmationCodeView(selectedTab: $selectedTab, isChecked: $isCheckedEmail)
                     .tag(1)
                 DocumentRequestView()
-                    .tag(0)
+                    .tag(2)
                 // Add more tabs as needed
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hide default tab indicators
@@ -68,96 +68,98 @@ struct PersonalInfo: View {
     @Binding var selectedTab: Int
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Preencha suas informações pessoais")
-                .multilineTextAlignment(.leading)
-                .font(.custom("Nunito-SemiBold", size: 24))
-            
-            Spacer()
-            
-            // TEXTFIELDS
-            Group {
-                CustomTextField(content: $name, logo: "person", placeholder: "Nome e sobrenome")
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Preencha suas informações pessoais")
+                    .multilineTextAlignment(.leading)
+                    .font(.custom("Nunito-SemiBold", size: 24))
                 
                 Spacer()
-                    .frame(height: 20)
                 
-                CustomTextField(content: $name, placeholder: "E-mail")
-                
-                Spacer()
-                    .frame(height: 20)
-                
-                CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
-                
-                Spacer()
-                    .frame(height: 20)
-                
-                CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
-                
-                Spacer()
-                    .frame(height: 20)
-                
-                CustomTextField(content: $name, logo: "iphone", placeholder: "Número do celular")
-            }
-            
-            Spacer()
-            
-            HStack {
-                Button {
-                    isChecked.toggle()
-                } label: {
-                    Image(systemName: isChecked ? "checkmark.square" : "square")
-                        .font(.system(size: 13))
-                        .foregroundColor(.accentColor)
-                }
-                
-                Text("Ao preencher o formulário acima você concorda com os nossos termos de uso e nossa politica de privacidade. ")
-                    .font(.custom("Nunito-Light", size: 14))
-                
-                Spacer()
-            }
-            
-            
-            Spacer()
-            
-            HStack {
-                Button {
-                    // some action
-                } label: {
-                    Text("Voltar")
-                        .bold()
-                        .frame(height: 56)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color(UIColor(named: "AccentColor")!))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 7)
-                                .stroke(Color.blue, lineWidth: 2)
-                        )
-                        .font(.custom("Nunito-SemiBold", size: 20))
+                // TEXTFIELDS
+                Group {
+                    CustomTextField(content: $name, logo: "person", placeholder: "Nome e sobrenome")
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    CustomTextField(content: $name, placeholder: "E-mail")
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    CustomTextField(content: $name, logo: "lock", placeholder: "Senha")
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    CustomTextField(content: $name, logo: "iphone", placeholder: "Número do celular")
                 }
                 
                 Spacer()
-                    .frame(width: 15)
                 
-                Button {
-                    withAnimation {
-                        selectedTab += 1
+                HStack {
+                    Button {
+                        isChecked.toggle()
+                    } label: {
+                        Image(systemName: isChecked ? "checkmark.square" : "square")
+                            .font(.system(size: 13))
+                            .foregroundColor(.accentColor)
                     }
-                } label: {
-                    Text("Próximo")
-                        .bold()
-                        .frame(height: 56)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .background(Color(UIColor(named: "AccentColor")!))
-                        .cornerRadius(7)
-                        .font(.custom("Nunito-SemiBold", size: 20))
+                    
+                    Text("Ao preencher o formulário acima você concorda com os nossos termos de uso e nossa politica de privacidade. ")
+                        .font(.custom("Nunito-Light", size: 14))
+                    
+                    Spacer()
                 }
-            }
+                
+                
+                Spacer()
+                
+                HStack {
+                    Button {
+                        // some action
+                    } label: {
+                        Text("Voltar")
+                            .bold()
+                            .frame(height: 56)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color(UIColor(named: "AccentColor")!))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 7)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
+                            .font(.custom("Nunito-SemiBold", size: 20))
+                    }
+                    
+                    Spacer()
+                        .frame(width: 15)
+                    
+                    Button {
+                        withAnimation {
+                            selectedTab += 1
+                        }
+                    } label: {
+                        Text("Próximo")
+                            .bold()
+                            .frame(height: 56)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .background(Color(UIColor(named: "AccentColor")!))
+                            .cornerRadius(7)
+                            .font(.custom("Nunito-SemiBold", size: 20))
+                    }
+                }
 
-            Spacer()
+                Spacer()
+            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 
@@ -170,112 +172,114 @@ struct ConfirmationCodeView: View {
     @Binding var isChecked: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Suas principais informações já foram coletadas.")
-                .multilineTextAlignment(.leading)
-                .font(.custom("Nunito-SemiBold", size: 24))
-            
-            Text("Um código foi enviado ao seu e-mail, use-o para autenticar sua conta.")
-                .multilineTextAlignment(.leading)
-                .font(.custom("Nunito-SemiBold", size: 24))
-            
-            Spacer()
-                .frame(height: 25)
-            
-            HStack {
-                Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Suas principais informações já foram coletadas.")
+                    .multilineTextAlignment(.leading)
+                    .font(.custom("Nunito-SemiBold", size: 24))
                 
-                ForEach(0..<4) { index in
-                    CodeInputField(text: $confirmationCode[index], index: index, confirmationCode: $confirmationCode, currentFocus: $currentFocus)
+                Text("Um código foi enviado ao seu e-mail, use-o para autenticar sua conta.")
+                    .multilineTextAlignment(.leading)
+                    .font(.custom("Nunito-SemiBold", size: 24))
+                
+                Spacer()
+                    .frame(height: 25)
+                
+                HStack {
+                    Spacer()
+                    
+                    ForEach(0..<4) { index in
+                        CodeInputField(text: $confirmationCode[index], index: index, confirmationCode: $confirmationCode, currentFocus: $currentFocus)
+                    }
+                    
+                    Spacer()
                 }
                 
                 Spacer()
-            }
-            
-            Spacer()
-                .frame(height: 25)
-            
-            HStack {
-                Button {
-                    // some action
-                } label: {
-                    Text("Voltar")
-                        .bold()
-                        .frame(height: 56)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color(UIColor(named: "AccentColor")!))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 7)
-                                .stroke(Color.blue, lineWidth: 2)
-                        )
-                        .font(.custom("Nunito-SemiBold", size: 20))
-                }
+                    .frame(height: 25)
                 
-                Button(action: {
-                    DispatchQueue.main.async {
-                        let code = confirmationCode.joined()
-                        if code.count < 4 {
-                            alertMessage = "Por favor digite o código completo enviado para o seu email"
-                            showAlert = true
-                        } else if !code.allSatisfy({ "0123456789".contains($0) }) {  // check if all characters are numbers
-                            alertMessage = "Por favor, use apenas números no código de confirmação"
-                            showAlert = true
-                        } else {
-                            self.currentFocus = 5
-                            withAnimation {
-                                selectedTab += 1
+                HStack {
+                    Button {
+                        // some action
+                    } label: {
+                        Text("Voltar")
+                            .bold()
+                            .frame(height: 56)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color(UIColor(named: "AccentColor")!))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 7)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
+                            .font(.custom("Nunito-SemiBold", size: 20))
+                    }
+                    
+                    Button(action: {
+                        DispatchQueue.main.async {
+                            let code = confirmationCode.joined()
+                            if code.count < 4 {
+                                alertMessage = "Por favor digite o código completo enviado para o seu email"
+                                showAlert = true
+                            } else if !code.allSatisfy({ "0123456789".contains($0) }) {  // check if all characters are numbers
+                                alertMessage = "Por favor, use apenas números no código de confirmação"
+                                showAlert = true
+                            } else {
+                                self.currentFocus = 5
+                                withAnimation {
+                                    selectedTab += 1
+                                }
                             }
                         }
+                    }) {
+                        Text("Próximo")
+                            .bold()
+                            .frame(height: 56)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .background(Color.accentColor)
+                            .cornerRadius(7)
+                            .font(.custom("Nunito-SemiBold", size: 20))
                     }
-                }) {
-                    Text("Próximo")
-                        .bold()
-                        .frame(height: 56)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .background(Color.accentColor)
-                        .cornerRadius(7)
-                        .font(.custom("Nunito-SemiBold", size: 20))
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Código inválido"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                }
-            }
-            
-            Spacer()
-                .frame(height: 25)
-            
-            HStack() {
-                Spacer()
-                
-                Button {
-                    // some action
-                } label: {
-                    Text("Reenviar Codigo ")
-                        .font(.custom("Nunito-Light", size: 14))
-                        .foregroundColor(.black)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Código inválido"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    }
                 }
                 
                 Spacer()
-            }
-            
-            HStack() {
-                Spacer()
+                    .frame(height: 25)
                 
-                Button {
-                    // some action
-                } label: {
-                    Text("Ajuda")
-                        .font(.custom("Nunito-Light", size: 14))
-                        .foregroundColor(.black)
+                HStack() {
+                    Spacer()
+                    
+                    Button {
+                        // some action
+                    } label: {
+                        Text("Reenviar Codigo ")
+                            .font(.custom("Nunito-Light", size: 14))
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer()
+                }
+                
+                HStack() {
+                    Spacer()
+                    
+                    Button {
+                        // some action
+                    } label: {
+                        Text("Ajuda")
+                            .font(.custom("Nunito-Light", size: 14))
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer()
                 }
                 
                 Spacer()
             }
-            
-            Spacer()
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -323,9 +327,10 @@ struct CodeInputField: View {
     }
 }
 
-
-
 struct DocumentRequestView: View {
+    @State private var isShowingImagePicker = false
+    @State private var selectedImage: UIImage? = UIImage(named: "carteiraIdentidade")
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Quase lá, agora precisamos do seu RG ou CNH")
@@ -336,12 +341,22 @@ struct DocumentRequestView: View {
             
             HStack {
                 Spacer()
-                
-                Image(uiImage: UIImage(named: "carteiraIdentidade")!)
+
+                Image(uiImage: selectedImage!)
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(10)
-                    .frame(height: UIScreen.screenHeight * 0.55)
+                    .frame(height: UIScreen.main.bounds.height * 0.55)
+                    .overlay(Button(action: {
+                        self.isShowingImagePicker = true
+                    }) {
+                        Image(systemName: "camera")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.black.opacity(0.7))
+                            .cornerRadius(10)
+                    })
                 
                 Spacer()
             }
@@ -371,7 +386,7 @@ struct DocumentRequestView: View {
                 }
                 
                 Button(action: {
-                    // some code
+                    // some action
                 }) {
                     Text("Enviar")
                         .bold()
@@ -387,5 +402,14 @@ struct DocumentRequestView: View {
             Spacer()
         }
         .padding(.horizontal)
+        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: $selectedImage, sourceType: .camera)
+        }
+    }
+    
+    func loadImage() {
+        guard let _ = selectedImage else { return }
+        // do something with the selected image
     }
 }
+

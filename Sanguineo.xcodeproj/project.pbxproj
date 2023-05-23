@@ -35,6 +35,7 @@
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */; };
 		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
+		B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC9EB62A1CE83200940B2F /* ImagePicker.swift */; };
 		B4FC5E712A1B99DC00CC2BBC /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = B4FC5E702A1B99DC00CC2BBC /* Introspect */; };
 		B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B4EC9EB62A1CE83200940B2F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E4BAED2A165E9F00F108C1 /* CustomTextField.swift */,
+				B4EC9EB62A1CE83200940B2F /* ImagePicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
+				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
 			);
