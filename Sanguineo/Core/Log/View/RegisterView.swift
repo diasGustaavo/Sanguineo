@@ -11,40 +11,34 @@ import AVFoundation
 
 struct RegisterView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
-    
-    @State private var selectedTab = 0
-    @State var name = ""
-    @State var email = ""
-    @State var password1 = ""
-    @State var password2 = ""
-    @State var phonenum = ""
-    @State private var isCheckedForm = false
-    @State private var isCheckedEmail = false
-    @State private var isCameraAuthorized = false
+    @ObservedObject var registerViewModel = RegisterViewModel()
     
     var body: some View {
         VStack {
             HStack {
                 ForEach(0..<3) { index in // Adjust the range for number of tabs
                     Rectangle()
-                        .fill(selectedTab == index ? .accentColor : Color.gray)
+                        .fill(registerViewModel.selectedTab == index ? .accentColor : Color.gray)
                         .frame(width: 80, height: 5)
                         .cornerRadius(3)
                         .onTapGesture {
-                            selectedTab = index
+                            registerViewModel.selectedTab = index
                         }
                 }
             }
             .padding()
             
-            TabView(selection: $selectedTab) {
-                PersonalInfo(name: $name, email: $email, password1: $password1, password2: $password2, phonenum: $phonenum, isChecked: $isCheckedForm, selectedTab: $selectedTab)
+            TabView(selection: $registerViewModel.selectedTab) {
+                PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab)
                     .tag(0)
                     .environmentObject(initialLogViewModel)
-                ConfirmationCodeView(selectedTab: $selectedTab, isChecked: $isCheckedEmail)
+                    .gesture(DragGesture())
+                ConfirmationCodeView(selectedTab: $registerViewModel.selectedTab, isChecked: $registerViewModel.isCheckedEmail)
                     .tag(1)
-                DocumentRequestView(selectedTab: $selectedTab)
+                    .gesture(DragGesture())
+                DocumentRequestView(selectedTab: $registerViewModel.selectedTab)
                     .tag(2)
+                    .gesture(DragGesture())
                 // Add more tabs as needed
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hide default tab indicators
@@ -57,11 +51,12 @@ struct RegisterView: View {
     private func requestCameraPermission() {
         AVCaptureDevice.requestAccess(for: .video) { granted in
             DispatchQueue.main.async {
-                isCameraAuthorized = granted
+                registerViewModel.isCameraAuthorized = granted
             }
         }
     }
 }
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

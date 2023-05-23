@@ -57,14 +57,16 @@ struct TutorialView: View {
             }
             .buttonStyle(PlainButtonStyle())
             
-            Button {
-                withAnimation {
-                    selection = 3
+            if selection != 3 {
+                Button {
+                    withAnimation {
+                        selection = 3
+                    }
+                } label: {
+                    Text("Pular")
+                        .foregroundColor(Color(UIColor(named: "AccentColor")!))
+                        .padding()
                 }
-            } label: {
-                Text("Pular")
-                    .foregroundColor(Color(UIColor(named: "AccentColor")!))
-                    .padding()
             }
             
             Spacer()
