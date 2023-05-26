@@ -5,7 +5,7 @@
 //  Created by Gustavo Dias on 23/05/23.
 //
 
-import Foundation
+import UIKit
 
 class RegisterViewModel: ObservableObject {
     @Published var selectedTab: Int
@@ -17,6 +17,7 @@ class RegisterViewModel: ObservableObject {
     @Published var isCheckedForm: Bool
     @Published var isCheckedEmail: Bool
     @Published var isCameraAuthorized: Bool
+    @Published var selectedImage: UIImage?
     
     init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false) {
         self.selectedTab = selectedTab

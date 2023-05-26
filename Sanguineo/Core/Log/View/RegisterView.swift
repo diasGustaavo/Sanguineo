@@ -372,10 +372,12 @@ struct CodeInputField: View {
 struct DocumentRequestView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @ObservedObject var registerViewModel: RegisterViewModel
-
-    @State private var isShowingImagePicker = false
-    @State private var selectedImage: UIImage? = UIImage(named: "carteiraIdentidade")
+    
     @Binding var selectedTab: Int
+    
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var isShowingImagePicker = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -388,7 +390,7 @@ struct DocumentRequestView: View {
             HStack {
                 Spacer()
 
-                Image(uiImage: selectedImage!)
+                Image(uiImage: registerViewModel.selectedImage ?? UIImage(named: "carteiraIdentidade")!)
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(10)
@@ -434,12 +436,20 @@ struct DocumentRequestView: View {
                 }
                 
                 Button(action: {
-                    initialLogViewModel.registerUser(
-                        fullname: registerViewModel.name,
-                        email: registerViewModel.email,
-                        password: registerViewModel.password1,
-                        phonenum: registerViewModel.phonenum
-                    )
+                    if let selectedImage = registerViewModel.selectedImage {
+                        initialLogViewModel.registerUser (
+                            fullname: registerViewModel.name,
+                            email: registerViewModel.email,
+                            password: registerViewModel.password1,
+                            phonenum: registerViewModel.phonenum,
+                            selectedImage: selectedImage
+                        )
+                    } else {
+                        DispatchQueue.main.async {
+                            alertMessage = "Por favor, insira a foto do seu documento oficial para prosseguir."
+                            showAlert = true
+                        }
+                    }
                 }) {
                     Text("Enviar")
                         .bold()
@@ -450,18 +460,16 @@ struct DocumentRequestView: View {
                         .cornerRadius(7)
                         .font(.custom("Nunito-SemiBold", size: 20))
                 }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Código inválido"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                }
             }
             
             Spacer()
         }
         .padding(.horizontal)
-        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage) {
-            ImagePicker(image: $selectedImage, sourceType: .camera)
+        .sheet(isPresented: $isShowingImagePicker) {
+            ImagePicker(image: $registerViewModel.selectedImage, sourceType: .camera)
         }
-    }
-    
-    func loadImage() {
-        guard let _ = selectedImage else { return }
-        // do something with the selected image
     }
 }

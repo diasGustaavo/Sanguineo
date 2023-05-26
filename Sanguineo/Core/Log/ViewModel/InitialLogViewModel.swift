@@ -6,9 +6,11 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestoreSwift
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 import Combine
+import UIKit
 
 class InitialLogViewModel: ObservableObject {
     @Published var isLoginViewActive: Bool = false
@@ -64,31 +66,55 @@ class InitialLogViewModel: ObservableObject {
         addressNumber: String = "",
         phonenum: String,
         bloodtype: String = "",
-        identityID: String = "",
-        age: String = ""
+        age: String = "",
+        selectedImage: UIImage
     ) {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let e = error {
                 print("DEBUG: Failed to sign up with error: \(e.localizedDescription)")
                 return
             }
-            
+
             guard let firebaseUser = result?.user else {
                 print("DEBUG: error getting firebase user")
                 return
             }
+
+            // Generate random identityID
+            let identityID = UUID().uuidString
+
+            // Upload the image to Firebase Storage
+            if let imageData = selectedImage.jpegData(compressionQuality: 0.9) {
+                let storageRef = Storage.storage().reference().child("IDs/\(identityID).jpg")
+                storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                    if let error = error {
+                        print("DEBUG: Error uploading image: \(error)")
+                        return
+                    }
+                    print("DEBUG: Image upload successful")
+                }
+            }
+
+            // Send the verification email.
+            firebaseUser.sendEmailVerification { (error) in
+                if let error = error {
+                    print("DEBUG: Error sending verification email: \(error.localizedDescription)")
+                    return
+                }
+
+                print("DEBUG: Verification email sent.")
+            }
+
             self.userSession = firebaseUser
             self.service.fetchUserAndDo {
                 self.fetchUser()
             }
-            
+
             let user = User(uid: firebaseUser.uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
             self.currentUser = user
-            
+
             do {
                 let encodedUser = try Firestore.Encoder().encode(user)
-                Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser)
-
                 Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser) { error in
                     if let error = error {
                         print("DEBUG: Error writing document: \(error)")
@@ -101,7 +127,8 @@ class InitialLogViewModel: ObservableObject {
             }
         }
     }
-    
+
+
     func signout() {
         do {
             try Auth.auth().signOut()
