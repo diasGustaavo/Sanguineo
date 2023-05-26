@@ -11,7 +11,7 @@ import AVFoundation
 
 struct RegisterView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
-    @ObservedObject var registerViewModel = RegisterViewModel()
+    @StateObject var registerViewModel = RegisterViewModel()
     
     var body: some View {
         VStack {
@@ -36,9 +36,10 @@ struct RegisterView: View {
                 ConfirmationCodeView(selectedTab: $registerViewModel.selectedTab, isChecked: $registerViewModel.isCheckedEmail)
                     .tag(1)
                     .gesture(DragGesture())
-                DocumentRequestView(selectedTab: $registerViewModel.selectedTab)
+                DocumentRequestView(registerViewModel: registerViewModel, selectedTab: $registerViewModel.selectedTab)
                     .tag(2)
                     .gesture(DragGesture())
+                    .environmentObject(initialLogViewModel)
                 // Add more tabs as needed
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hide default tab indicators
@@ -160,8 +161,8 @@ struct PersonalInfo: View {
                                 } else if email.isEmpty {
                                     alertMessage = "Por favor digite o seu email."
                                     showAlert = true
-                                } else if password1.isEmpty {
-                                    alertMessage = "Por favor digite a sua senha."
+                                } else if password1.count < 6 {
+                                    alertMessage = "Por favor digite a sua senha com 6 ou mais caracteres."
                                     showAlert = true
                                 } else if (password1 != password2) {
                                     alertMessage = "As senhas nao batem, redigite as senhas."
@@ -369,6 +370,9 @@ struct CodeInputField: View {
 }
 
 struct DocumentRequestView: View {
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @ObservedObject var registerViewModel: RegisterViewModel
+
     @State private var isShowingImagePicker = false
     @State private var selectedImage: UIImage? = UIImage(named: "carteiraIdentidade")
     @Binding var selectedTab: Int
@@ -380,7 +384,7 @@ struct DocumentRequestView: View {
                 .font(.custom("Nunito-SemiBold", size: 24))
             
             Spacer()
-            
+
             HStack {
                 Spacer()
 
@@ -430,7 +434,12 @@ struct DocumentRequestView: View {
                 }
                 
                 Button(action: {
-                    // some action
+                    initialLogViewModel.registerUser(
+                        fullname: registerViewModel.name,
+                        email: registerViewModel.email,
+                        password: registerViewModel.password1,
+                        phonenum: registerViewModel.phonenum
+                    )
                 }) {
                     Text("Enviar")
                         .bold()
@@ -456,4 +465,3 @@ struct DocumentRequestView: View {
         // do something with the selected image
     }
 }
-

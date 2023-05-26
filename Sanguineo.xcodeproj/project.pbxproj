@@ -35,6 +35,8 @@
 		B48452CA2A1D0CD4004097B7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B48452C92A1D0CD4004097B7 /* FirebaseFirestore */; };
 		B48452CC2A1D0CD4004097B7 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B48452CB2A1D0CD4004097B7 /* FirebaseFirestoreSwift */; };
 		B48452CE2A1D0CD4004097B7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B48452CD2A1D0CD4004097B7 /* FirebaseStorage */; };
+		B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03DE2A1F8A7E00DC04E2 /* User.swift */; };
+		B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03E12A1F8D5800DC04E2 /* UserService.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
@@ -75,6 +77,8 @@
 		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B48452C42A1D0BBC004097B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4CB03E12A1F8D5800DC04E2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				B418FFB22A05368A00C05261 /* Info.plist */,
 				B418FF7B2A05293C00C05261 /* SanguineoApp.swift */,
 				B418FF892A05297D00C05261 /* Core */,
+				B4CB03DD2A1F8A6B00DC04E2 /* Models */,
+				B4CB03E02A1F8D4600DC04E2 /* Services */,
 				B418FF7F2A05293D00C05261 /* Assets.xcassets */,
 				B418FF912A05364400C05261 /* Fonts */,
 				B418FF812A05293D00C05261 /* Preview Content */,
@@ -256,6 +262,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B4CB03DD2A1F8A6B00DC04E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB03DE2A1F8A7E00DC04E2 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4CB03E02A1F8D4600DC04E2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB03E12A1F8D5800DC04E2 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B4DA24232A165302009C6DA0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +389,9 @@
 				B4EC9EBD2A1CFF8E00940B2F /* RegisterViewModel.swift in Sources */,
 				B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */,
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
+				B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
+				B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
 				B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,

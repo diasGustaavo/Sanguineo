@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InitialLogView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @ObservedObject var initialLogViewModel = InitialLogViewModel()
+    @ObservedObject var initialLogViewModel: InitialLogViewModel
     @StateObject var loginViewModel = LoginViewModel()
     
     var body: some View {
@@ -152,6 +152,6 @@ struct InitialLogView: View {
 
 struct InitialLogView_Previews: PreviewProvider {
     static var previews: some View {
-        InitialLogView()
+        InitialLogView(initialLogViewModel: InitialLogViewModel())
     }
 }
