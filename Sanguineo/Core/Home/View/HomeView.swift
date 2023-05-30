@@ -12,16 +12,24 @@ struct HomeView: View {
     @StateObject var initialLogViewModel = InitialLogViewModel()
     
     var body: some View {
-        if homeViewModel.isTutorialActive {
-            TutorialView()
-                .environmentObject(homeViewModel)
-        } else if !initialLogViewModel.isLoggedIn {
-            InitialLogView(initialLogViewModel: initialLogViewModel)
-                .environmentObject(homeViewModel)
+        if !initialLogViewModel.isLoggedIn {
+            if homeViewModel.isTutorialActive {
+                TutorialView()
+                    .environmentObject(homeViewModel)
+            } else {
+                InitialLogView(initialLogViewModel: initialLogViewModel)
+                    .environmentObject(homeViewModel)
+            }
         } else {
-//            Text("App")
-            InitialLogView(initialLogViewModel: initialLogViewModel)
-                .environmentObject(homeViewModel)
+            Button {
+                withAnimation {
+                    initialLogViewModel.signout()
+                }
+            } label: {
+                Text("App")
+            }
+//            InitialLogView(initialLogViewModel: initialLogViewModel)
+//                .environmentObject(homeViewModel)
         }
     }
 }

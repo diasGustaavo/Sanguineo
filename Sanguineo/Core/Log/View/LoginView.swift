@@ -11,6 +11,9 @@ struct LoginView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @ObservedObject var loginModel: LoginViewModel
     
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
@@ -62,13 +65,19 @@ struct LoginView: View {
                         }
                         
                         Button(action: {
-                            // some action
+                            initialLogViewModel.resetPassword(withEmail: loginModel.email) { statusMessage in
+                                alertMessage = statusMessage
+                                showAlert = true
+                            }
                         }) {
                             HStack {
                                 Text("Esqueceu a senha?")
                                     .font(.custom("Nunito-Light", size: 13))
                                     .foregroundColor(.accentColor)
                             }
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Redefinicao de senha"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
                     }
                     .padding(.horizontal)
@@ -77,7 +86,7 @@ struct LoginView: View {
                         .frame(height: 100)
                     
                     Button {
-                        // some action
+                        initialLogViewModel.signIn(withEmail: loginModel.email, password: loginModel.password)
                     } label: {
                         Text("Entrar")
                             .bold()

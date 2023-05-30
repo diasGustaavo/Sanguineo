@@ -67,6 +67,8 @@ struct TutorialView: View {
                         .foregroundColor(Color(UIColor(named: "AccentColor")!))
                         .padding()
                 }
+            } else {
+                Spacer().frame(height: 60)
             }
             
             Spacer()

@@ -140,6 +140,18 @@ class InitialLogViewModel: ObservableObject {
         }
     }
     
+    func resetPassword(withEmail email: String, completion: @escaping (String) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                print("DEBUG: Failed to send reset password email with error: \(error.localizedDescription)")
+                completion("Failed to send reset password email: \(error.localizedDescription)")
+            } else {
+                print("DEBUG: Reset password email sent successfully.")
+                completion("Solicitacao de troca de senha efetuada. Verifique a sua caixa de entrada para efetuar a troca da sua senha.")
+            }
+        }
+    }
+    
     // FETCH USER FUNCTION W/O COMBINE
     
 //    func fetchUser() {
