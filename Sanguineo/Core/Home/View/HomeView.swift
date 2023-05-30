@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @StateObject var initialLogViewModel = InitialLogViewModel()
+    @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
         if !initialLogViewModel.isLoggedIn {
@@ -21,15 +22,14 @@ struct HomeView: View {
                     .environmentObject(homeViewModel)
             }
         } else {
-            Button {
-                withAnimation {
-                    initialLogViewModel.signout()
-                }
-            } label: {
-                Text("App")
-            }
-//            InitialLogView(initialLogViewModel: initialLogViewModel)
-//                .environmentObject(homeViewModel)
+//            Button {
+//                withAnimation {
+//                    initialLogViewModel.signout()
+//                }
+//            } label: {
+//                Text("App")
+//            }
+            NavigationBarView(viewModel: navigationBarViewModel)
         }
     }
 }

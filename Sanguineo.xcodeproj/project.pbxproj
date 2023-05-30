@@ -30,6 +30,11 @@
 		B418FFB12A05366500C05261 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */; };
 		B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFB92A05499800C05261 /* InitialLogView.swift */; };
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
+		B483BF372A262B400005746D /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF362A262B400005746D /* NavigationBarView.swift */; };
+		B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF382A262CA50005746D /* NavigationBarViewModel.swift */; };
+		B483BF442A262DEF0005746D /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF432A262DEF0005746D /* FeedView.swift */; };
+		B483BF462A262E050005746D /* AppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF452A262E050005746D /* AppointmentsView.swift */; };
+		B483BF492A262E120005746D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF482A262E120005746D /* ProfileView.swift */; };
 		B48452C52A1D0BBC004097B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B48452C42A1D0BBC004097B7 /* GoogleService-Info.plist */; };
 		B48452C82A1D0CD4004097B7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B48452C72A1D0CD4004097B7 /* FirebaseAuth */; };
 		B48452CA2A1D0CD4004097B7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B48452C92A1D0CD4004097B7 /* FirebaseFirestore */; };
@@ -76,6 +81,11 @@
 		B418FFB22A05368A00C05261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B483BF362A262B400005746D /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		B483BF382A262CA50005746D /* NavigationBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewModel.swift; sourceTree = "<group>"; };
+		B483BF432A262DEF0005746D /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		B483BF452A262E050005746D /* AppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsView.swift; sourceTree = "<group>"; };
+		B483BF482A262E120005746D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B48452C42A1D0BBC004097B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4CB03E12A1F8D5800DC04E2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -150,8 +160,12 @@
 		B418FF892A05297D00C05261 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B483BF3E2A262DC90005746D /* Profile */,
+				B483BF3D2A262DB90005746D /* Appointments */,
+				B483BF3A2A262D350005746D /* Feed */,
 				B4DA24232A165302009C6DA0 /* Extensions */,
 				B418FFB32A053A1C00C05261 /* Common */,
+				B483BF312A262AE30005746D /* NavigationBar */,
 				B418FF8D2A05320200C05261 /* Tutorial */,
 				B418FF8A2A0529A400C05261 /* Home */,
 				B418FFB62A0548CF00C05261 /* Log */,
@@ -258,6 +272,103 @@
 				B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */,
 				B4EC9EB82A1CECBF00940B2F /* InitialLogViewModel.swift */,
 				B4EC9EBC2A1CFF8E00940B2F /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B483BF312A262AE30005746D /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF322A262AF00005746D /* View */,
+				B483BF332A262AF40005746D /* ViewModel */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		B483BF322A262AF00005746D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF362A262B400005746D /* NavigationBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B483BF332A262AF40005746D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF382A262CA50005746D /* NavigationBarViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B483BF3A2A262D350005746D /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF3C2A262DB50005746D /* ViewModel */,
+				B483BF3B2A262DB00005746D /* View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		B483BF3B2A262DB00005746D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF432A262DEF0005746D /* FeedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B483BF3C2A262DB50005746D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B483BF3D2A262DB90005746D /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF422A262DDD0005746D /* ViewModel */,
+				B483BF412A262DDA0005746D /* View */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		B483BF3E2A262DC90005746D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF402A262DCE0005746D /* ViewModel */,
+				B483BF3F2A262DCB0005746D /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B483BF3F2A262DCB0005746D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF482A262E120005746D /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B483BF402A262DCE0005746D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B483BF412A262DDA0005746D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B483BF452A262E050005746D /* AppointmentsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B483BF422A262DDD0005746D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -385,22 +496,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B483BF442A262DEF0005746D /* FeedView.swift in Sources */,
 				B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */,
 				B4EC9EBD2A1CFF8E00940B2F /* RegisterViewModel.swift in Sources */,
 				B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */,
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */,
+				B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 				B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
+				B483BF372A262B400005746D /* NavigationBarView.swift in Sources */,
 				B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
 				B4EC9EB92A1CECBF00940B2F /* InitialLogViewModel.swift in Sources */,
+				B483BF462A262E050005746D /* AppointmentsView.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
+				B483BF492A262E120005746D /* ProfileView.swift in Sources */,
 				B4EC9EBB2A1CF37900940B2F /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
