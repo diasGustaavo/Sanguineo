@@ -30,6 +30,7 @@
 		B418FFB12A05366500C05261 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */; };
 		B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFB92A05499800C05261 /* InitialLogView.swift */; };
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
+		B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */; };
 		B483BF372A262B400005746D /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF362A262B400005746D /* NavigationBarView.swift */; };
 		B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF382A262CA50005746D /* NavigationBarViewModel.swift */; };
 		B483BF442A262DEF0005746D /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483BF432A262DEF0005746D /* FeedView.swift */; };
@@ -81,6 +82,7 @@
 		B418FFB22A05368A00C05261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePersonCellView.swift; sourceTree = "<group>"; };
 		B483BF362A262B400005746D /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		B483BF382A262CA50005746D /* NavigationBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewModel.swift; sourceTree = "<group>"; };
 		B483BF432A262DEF0005746D /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				B483BF432A262DEF0005746D /* FeedView.swift */,
+				B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				B483BF462A262E050005746D /* AppointmentsView.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
+				B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,

@@ -27,7 +27,7 @@ struct NavigationBarView: View {
                 
                 VStack {
                     if viewModel.selectedTab == .home {
-                        Rectangle().frame(width: 40, height: 2).foregroundColor(.accentColor)
+                        Rectangle().frame(width: 30, height: 2).foregroundColor(.accentColor)
                     }
                     
                     Spacer().frame(height: 10)
@@ -43,12 +43,13 @@ struct NavigationBarView: View {
                         }
                     }.foregroundColor(viewModel.selectedTab == .home ? .accentColor : .black)
                 }
+                .padding(.horizontal)
                 
                 Spacer()
                 
                 VStack {
                     if viewModel.selectedTab == .appointments {
-                        Rectangle().frame(width: 40, height: 2).foregroundColor(.accentColor)
+                        Rectangle().frame(width: 30, height: 2).foregroundColor(.accentColor)
                     }
                     
                     Spacer().frame(height: 10)
@@ -69,7 +70,7 @@ struct NavigationBarView: View {
                 
                 VStack {
                     if viewModel.selectedTab == .profile {
-                        Rectangle().frame(width: 40, height: 2).foregroundColor(.accentColor)
+                        Rectangle().frame(width: 30, height: 2).foregroundColor(.accentColor)
                     }
                     
                     Spacer().frame(height: 10)
@@ -85,6 +86,7 @@ struct NavigationBarView: View {
                         }
                     }.foregroundColor(viewModel.selectedTab == .profile ? .accentColor : .black)
                 }
+                .padding(.horizontal)
                 
                 Spacer().frame(width: 20)
             }
