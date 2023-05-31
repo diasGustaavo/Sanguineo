@@ -22,6 +22,7 @@ struct NavigationBarView: View {
             case .profile:
                 ProfileView()
             }
+            
             HStack {
                 Spacer().frame(width: 20)
                 
