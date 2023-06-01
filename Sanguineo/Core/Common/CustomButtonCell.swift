@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CustomButtonCell: View {
-    @Binding var leftSymbol: String
-    @Binding var buttonText: String
+    let leftSymbol: String
+    let buttonText: String
     let rightSymbol = "chevron.right"
     var action: () -> Void
     
@@ -28,7 +28,7 @@ struct CustomButtonCell: View {
                     Spacer()
                     
                     Image(systemName: rightSymbol)
-                        .fontWeight(.semibold)
+                        .fontWeight(.regular)
                         .foregroundColor(.accentColor)
                 }
                 .padding()
@@ -38,15 +38,15 @@ struct CustomButtonCell: View {
             
             Divider()
                 .frame(height: 1)
-                .background(Color.black)
+                .background(Color.gray)
         }
         .edgesIgnoringSafeArea(.horizontal)
     }
 }
 
-struct CustomButton_Previews: PreviewProvider {
+struct CustomButtonCell_Previews: PreviewProvider {
     static var previews: some View {
-        CustomButtonCell(leftSymbol: .constant("star.fill"), buttonText: .constant("Custom Button")){
+        CustomButtonCell(leftSymbol: "star.fill", buttonText: "Custom Button"){
             print("button pressed!")
         }
         .padding()

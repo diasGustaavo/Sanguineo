@@ -9,6 +9,12 @@ import SwiftUI
 
 struct NavigationBarView: View {
     @ObservedObject var viewModel: NavigationBarViewModel
+    @StateObject private var profileViewModel = ProfileViewModel(
+        image: Image("3davatar2"),
+        name: "John Doe",
+        bloodType: "A+",
+        age: 30
+    )
 
     var body: some View {
         VStack {
@@ -20,7 +26,7 @@ struct NavigationBarView: View {
             case .appointments:
                 AppointmentsView()
             case .profile:
-                ProfileView()
+                ProfileView(profile: profileViewModel)
             }
             
             HStack {

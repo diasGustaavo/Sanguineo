@@ -61,8 +61,8 @@ struct ReusableHospitalCellView: View {
             }
             .padding(.vertical)
             .padding(.horizontal, 8)
-            .frame(maxWidth: 240)
-            .background(Color.gray.opacity(0.1))
+                .frame(maxWidth: 240)
+                .background(Color.gray.opacity(0.1))
             .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct FeedView: View {
-    @State static var image = UIImage(named: "3d_avatar_28")!
-    @State static var name = "Luciano Araujo"
-    @State static var bloodtype = "O-"
-    @State static var age = 22
-    @State static var description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
+    @State var image = UIImage(named: "3d_avatar_28")!
+    @State var name = "Luciano Araujo"
+    @State var bloodtype = "O-"
+    @State var age = 22
+    @State var description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
     
-    @State static var imageHospital = UIImage(named: "3d_avatar_28_hospital")!
-    @State static var nameHospital = "Hemocentro"
-    @State static var bloodtypeHospital = "O-"
-    @State static var descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
+    @State var imageHospital = UIImage(named: "3d_avatar_28_hospital")!
+    @State var nameHospital = "Hemocentro"
+    @State var bloodtypeHospital = "O-"
+    @State var descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
     
     var body: some View {
         ScrollView {
@@ -128,7 +128,7 @@ struct FeedView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
                     ForEach(0..<3) { _ in
-                        ReusablePersonCellView(image: FeedView.$image, name: FeedView.$name, bloodtype: FeedView.$bloodtype, age: FeedView.$age, description: FeedView.$description) {
+                        ReusablePersonCellView(image: $image, name: $name, bloodtype: $bloodtype, age: $age, description: $description) {
                             print("Button pressed!")
                         }
                     }
@@ -159,7 +159,7 @@ struct FeedView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
                     ForEach(0..<3) { _ in
-                        ReusableHospitalCellView(image: FeedView.$imageHospital, name: FeedView.$nameHospital, bloodtype: FeedView.$bloodtypeHospital, description: FeedView.$descriptionHospital) {
+                        ReusableHospitalCellView(image: $imageHospital, name: $nameHospital, bloodtype: $bloodtypeHospital, description: $descriptionHospital) {
                             print("Button pressed!")
                         }
                     }
