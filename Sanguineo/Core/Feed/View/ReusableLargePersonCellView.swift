@@ -1,13 +1,13 @@
 //
-//  ReusableCellView.swift
+//  ReusableLargePersonCellView.swift
 //  Sanguineo
 //
-//  Created by Gustavo Dias on 31/05/23.
+//  Created by Gustavo Dias on 01/06/23.
 //
 
 import SwiftUI
 
-struct ReusablePersonCellView: View {
+struct ReusableLargePersonCellView: View {
     let image: UIImage
     let name: String
     let bloodtype: String
@@ -18,23 +18,24 @@ struct ReusablePersonCellView: View {
     var body: some View {
         VStack {
             VStack {
-                HStack {
+                HStack(spacing: 8) {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
-                    VStack(alignment: .leading) {
+                        .frame(width: 120, height: 120)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
                         Text(name)
                             .lineLimit(1)
-                            .font(.custom("Nunito-Light", size: 15))
+                            .font(.custom("Nunito-Light", size: 20))
                         
-                        HStack {
+                        HStack(spacing: 4) {
                             Image(uiImage: UIImage(named: "bloodtype")!)
                                 .resizable()
-                                .frame(width: 16, height: 16)
+                                .frame(width: 20, height: 20)
                             
                             Text(bloodtype)
-                                .font(.custom("Nunito-Light", size: 15))
+                                .font(.custom("Nunito-Light", size: 20))
                         }
                         
                         if let age = age {
@@ -42,44 +43,45 @@ struct ReusablePersonCellView: View {
                                 .font(.custom("Nunito-Light", size: 13))
                         }
                     }
+                    
                     Spacer()
                 }
-                .padding(.all, 8)
+                .padding(.horizontal, 12)
                 
                 VStack {
                     Text(description)
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
-                        .padding(.vertical, 8)
-                        .font(.custom("Nunito-Light", size: 13))
+                        .padding(.vertical, 12)
+                        .font(.custom("Nunito-Light", size: 22))
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Button(action: onButtonPress) {
                     Text("Agendar doação")
-                        .padding(.horizontal, 13)
+                        .padding(.horizontal, 20)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color(UIColor(named: "AccentColor")!))
-                        .cornerRadius(7)
+                        .cornerRadius(10)
                 }
-                .padding(.horizontal, 13)
+                .padding(.horizontal, 20)
             }
-            .padding(.vertical)
-            .padding(.horizontal, 8)
-            .frame(maxWidth: 240)
+            .padding(.vertical, 16)
+            .padding(.horizontal, 12)
+            .frame(maxWidth: UIScreen.screenWidth - 40)
             .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
+            .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.accentColor, lineWidth: 0.8)
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.accentColor, lineWidth: 1)
             )
         }
-        .frame(minHeight: 240)
+        .frame(minHeight: 360)
     }
 }
 
-struct ReusablePersonCellView_Previews: PreviewProvider {
+struct ReusableLargePersonCellView_Previews: PreviewProvider {
     static let image = UIImage(named: "3d_avatar_28")!
     static let name = "Luciano Araujo"
     static let bloodtype = "O-"
@@ -87,7 +89,7 @@ struct ReusablePersonCellView_Previews: PreviewProvider {
     static let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
 
     static var previews: some View {
-        ReusablePersonCellView(image: image, name: name, bloodtype: bloodtype, age: age, description: description) {
+        ReusableLargePersonCellView(image: image, name: name, bloodtype: bloodtype, age: age, description: description) {
             print("button pressed!")
         }
     }
