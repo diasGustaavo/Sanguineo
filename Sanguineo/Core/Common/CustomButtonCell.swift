@@ -17,18 +17,19 @@ struct CustomButtonCell: View {
         VStack {
             Button(action: action) {
                 HStack {
-                    Image(systemName: leftSymbol)
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .padding(.trailing, 6)
+                    HStack {
+                        Image(systemName: leftSymbol)
+                            .imageScale(.large)  // change this to adjust size
+                        Spacer()
+                    }
+                    .frame(width: 30) // Adjust this width based on your needs
                     
                     Text(buttonText)
                         .font(.custom("Nunito-SemiBold", size: 18))
-                    
-                    Spacer()
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Image(systemName: rightSymbol)
-                        .fontWeight(.regular)
+                        .imageScale(.large)  // change this to adjust size
                         .foregroundColor(.accentColor)
                 }
                 .padding()
@@ -43,6 +44,7 @@ struct CustomButtonCell: View {
         .edgesIgnoringSafeArea(.horizontal)
     }
 }
+
 
 struct CustomButtonCell_Previews: PreviewProvider {
     static var previews: some View {
