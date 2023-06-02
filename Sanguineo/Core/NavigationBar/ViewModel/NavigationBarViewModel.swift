@@ -13,6 +13,12 @@ enum NavigationTab: String {
     case profile = "Profile"
 }
 
+enum AppointmentsScreens: String {
+    case home = "Home"
+    case newAppointment = "newAppointment"
+}
+
 class NavigationBarViewModel: ObservableObject {
     @Published var selectedTab: NavigationTab = .home
+    @Published var selectedScreenAppointments: AppointmentsScreens = .home
 }

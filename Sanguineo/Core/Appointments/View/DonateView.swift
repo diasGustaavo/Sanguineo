@@ -19,12 +19,12 @@ struct DonateView: View {
     @State var selectedDate: Date = Date()
     @State private var selectedTime = Date()
     
+    @ObservedObject var navigationBarViewModel: NavigationBarViewModel
+    
     let earliestTime: Date
     let latestTime: Date
     
-    @Environment(\.presentationMode) var presentationMode
-    
-    init(image: UIImage, name: String, bloodtype: String, description: String, age: Int? = nil, nationality: String, onButtonPress: @escaping () -> Void) {
+    init(image: UIImage, name: String, bloodtype: String, description: String, age: Int? = nil, nationality: String, navigationBarViewModel: NavigationBarViewModel, onButtonPress: @escaping () -> Void) {
         self.image = image
         self.name = name
         self.bloodtype = bloodtype
@@ -32,6 +32,7 @@ struct DonateView: View {
         self.onButtonPress = onButtonPress
         self.age = age
         self.nationality = nationality
+        self.navigationBarViewModel = navigationBarViewModel
         
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: "UTC")!
@@ -52,7 +53,9 @@ struct DonateView: View {
                 // HEADER
                 HStack {
                     Button {
-                        self.presentationMode.wrappedValue.dismiss()
+                        withAnimation {
+                            navigationBarViewModel.selectedScreenAppointments = .home
+                        }
                     } label: {
                         Image(systemName: "chevron.left")
                             .font(.custom("Nunito-Semibold", size: 25))
@@ -146,6 +149,19 @@ struct DonateView: View {
                     .datePickerStyle(CompactDatePickerStyle())
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal)
+                
+                Button {
+                    navigationBarViewModel.selectedScreenAppointments = .home
+                } label: {
+                    Text("Confirmar Agendamento")
+                        .font(.custom("Nunito-Regular", size: 22))
+                        .frame(height: 56)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .background(Color(UIColor(named: "AccentColor")!))
+                        .cornerRadius(7)
+                        .padding()
+                }
             }
         }
         .navigationBarHidden(true)
@@ -160,7 +176,7 @@ struct DonateView_Previews: PreviewProvider {
     static let description = "Tratamento medico / Cirurgia"
     
     static var previews: some View {
-        DonateView(image: image, name: name, bloodtype: bloodtype, description: description, nationality: "Brasileira") {
+        DonateView(image: image, name: name, bloodtype: bloodtype, description: description, nationality: "Brasileira", navigationBarViewModel: NavigationBarViewModel()) {
             print("button pressed!")
         }
     }

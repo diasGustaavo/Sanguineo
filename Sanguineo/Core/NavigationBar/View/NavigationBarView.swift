@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct NavigationBarView: View {
+    let image = UIImage(named: "3d_avatar_28")!
+    let name = "Luciano Araujo"
+    let bloodtype = "O-"
+    let age = 22
+    let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
+    let nationality = "Brasileira"
+    
+    let imageHospital = UIImage(named: "3d_avatar_28_hospital")!
+    let nameHospital = "Hemocentro"
+    let bloodtypeHospital = "O-"
+    let descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
+    
     @ObservedObject var viewModel: NavigationBarViewModel
     @StateObject private var profileViewModel = ProfileViewModel(
         image: Image("3davatar2"),
@@ -22,9 +34,21 @@ struct NavigationBarView: View {
             
             switch viewModel.selectedTab {
             case .home:
-                FeedView()
+                FeedView(navigationBarViewModel: viewModel)
             case .appointments:
-                AppointmentsView()
+                switch viewModel.selectedScreenAppointments {
+                case .home:
+                    AppointmentsView()
+                case .newAppointment:
+                    if viewModel.selectedScreenAppointments == .newAppointment {
+                        withAnimation {
+                            DonateView(image: image, name: name, bloodtype: bloodtype, description: description, nationality: nationality, navigationBarViewModel: viewModel) {
+                                // some action
+                            }
+                            .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
+                        }
+                    }
+                }
             case .profile:
                 ProfileView(profile: profileViewModel)
             }

@@ -19,6 +19,8 @@ struct FeedView: View {
     let bloodtypeHospital = "O-"
     let descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
     
+    @ObservedObject var navigationBarViewModel: NavigationBarViewModel
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -132,7 +134,9 @@ struct FeedView: View {
                     HStack(spacing: 15) {
                         ForEach(0..<3) { _ in
                             ReusablePersonCellView(image: image, name: name, bloodtype: bloodtype, age: age, description: description) {
-                                print("Button pressed!")
+                                print("bota 1 pressionado")
+                                navigationBarViewModel.selectedTab = .appointments
+                                navigationBarViewModel.selectedScreenAppointments = .newAppointment
                             }
                         }
                     }
@@ -165,7 +169,9 @@ struct FeedView: View {
                     HStack(spacing: 15) {
                         ForEach(0..<3) { _ in
                             ReusablePersonCellView(image: imageHospital, name: nameHospital, bloodtype: bloodtypeHospital, age: nil, description: descriptionHospital) {
-                                print("Button pressed!")
+                                print("bota 2 pressionado")
+                                navigationBarViewModel.selectedTab = .appointments
+                                navigationBarViewModel.selectedScreenAppointments = .newAppointment
                             }
                         }
                     }
@@ -180,6 +186,6 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(navigationBarViewModel: NavigationBarViewModel())
     }
 }
