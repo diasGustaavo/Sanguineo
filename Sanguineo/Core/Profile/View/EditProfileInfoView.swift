@@ -14,6 +14,12 @@ struct EditProfileInfoView: View {
     @Binding var email: String
     @Binding var phone: String
     
+    @Binding var CEP: String
+    @Binding var neighborhood: String
+    @Binding var street: String
+    @Binding var number: String
+    @Binding var complement: String
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -71,9 +77,13 @@ struct EditProfileInfoView: View {
                     CustomCell(leftSymbol: "phone", buttonText: "Editar telefone")
                 }
                 
-                CustomButtonCell(leftSymbol: "mappin.and.ellipse", buttonText: "Editar endereço") {
-                    // some action
+                NavigationLink {
+                    EditAddressView(CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement)
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "mappin.and.ellipse", buttonText: "Editar endereço")
                 }
+                
                 CustomButtonCell(leftSymbol: "drop", buttonText: "Editar tipo sanguíneo") {
                     // some action
                 }
@@ -89,6 +99,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"))
+        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"), CEP: Binding.constant("58073343"), neighborhood: Binding.constant("Cidade dos Colibris"), street: Binding.constant("Rua Simas Turbo"), number: Binding.constant("69"), complement: Binding.constant("22"))
     }
 }

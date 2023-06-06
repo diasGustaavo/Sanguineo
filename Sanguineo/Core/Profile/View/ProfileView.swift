@@ -16,6 +16,12 @@ struct ProfileView: View {
     @State var email: String
     @State var phone: String
     
+    @State var CEP: String
+    @State var neighborhood: String
+    @State var street: String
+    @State var number: String
+    @State var complement: String
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -64,7 +70,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 NavigationLink {
-                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email, phone: $phone)
+                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email, phone: $phone, CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Editar informações do perfil")
@@ -128,6 +134,6 @@ struct ProfileView_Previews: PreviewProvider {
             age: 30
         )
         
-        ProfileView(profile: profile, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "83981474782")
+        ProfileView(profile: profile, name: "guga dias", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "83981474782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22")
     }
 }

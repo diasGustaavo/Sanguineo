@@ -12,18 +12,20 @@ struct ResponsiveSimpleCustomTextField: View {
     @Binding public var content: String
     let id: Int
     let scrollViewProxy: ScrollViewProxy
+    let font: String
     
-    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>) {
+    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>, font: String = "Nunito-SemiBold") {
         self.id = id
         self.scrollViewProxy = scrollViewProxy
         self._content = content
+        self.font = font
     }
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             TextField("", text: $content)
                 .foregroundColor(.black)
-                .font(.custom("Nunito-SemiBold", size: 20))
+                .font(.custom(font, size: 20))
                 .keyboardType(.emailAddress)
                 .introspectTextField { textField in
                     self.scrollOnAppear(textField: textField)
@@ -34,7 +36,8 @@ struct ResponsiveSimpleCustomTextField: View {
                 .frame(height: 1)
                 .foregroundColor(.black)
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom)
         .id(id)
     }
 
