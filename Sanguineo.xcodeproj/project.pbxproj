@@ -34,6 +34,7 @@
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
 		B426F71E2A2F534E00A8E231 /* EditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426F71D2A2F534E00A8E231 /* EditNameView.swift */; };
 		B426F7202A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */; };
+		B426F7222A2F5F5800A8E231 /* EditSocialNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426F7212A2F5F5800A8E231 /* EditSocialNameView.swift */; };
 		B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */; };
 		B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */; };
 		B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */; };
@@ -95,6 +96,7 @@
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B426F71D2A2F534E00A8E231 /* EditNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameView.swift; sourceTree = "<group>"; };
 		B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSimpleCustomTextField.swift; sourceTree = "<group>"; };
+		B426F7212A2F5F5800A8E231 /* EditSocialNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSocialNameView.swift; sourceTree = "<group>"; };
 		B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePersonCellView.swift; sourceTree = "<group>"; };
 		B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonCell.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				B483BF482A262E120005746D /* ProfileView.swift */,
 				B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */,
 				B426F71D2A2F534E00A8E231 /* EditNameView.swift */,
+				B426F7212A2F5F5800A8E231 /* EditSocialNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				B483BF462A262E050005746D /* AppointmentsView.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
+				B426F7222A2F5F5800A8E231 /* EditSocialNameView.swift in Sources */,
 				B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */,
 				B426F71E2A2F534E00A8E231 /* EditNameView.swift in Sources */,
 				B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */,

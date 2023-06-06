@@ -10,6 +10,7 @@ import SwiftUI
 struct EditProfileInfoView: View {
     
     @Binding var name: String
+    @Binding var fakeName: String
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -42,13 +43,18 @@ struct EditProfileInfoView: View {
                 
                 NavigationLink {
                     EditNameView(name: $name)
+                        .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Editar nome")
                 }
                 
-                CustomButtonCell(leftSymbol: "theatermasks", buttonText: "Editar nome social") {
-                    // some action
+                NavigationLink {
+                    EditSocialNameView(name: $name)
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "theatermasks", buttonText: "Editar nome social")
                 }
+                
                 CustomButtonCell(leftSymbol: "envelope", buttonText: "Editar e-mail") {
                     // some action
                 }
@@ -73,6 +79,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(name: Binding.constant("guga dias"))
+        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"))
     }
 }

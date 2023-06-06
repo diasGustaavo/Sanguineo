@@ -1,5 +1,5 @@
 //
-//  EditNameView.swift
+//  EditSocialNameView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 06/06/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditNameView: View {
+struct EditSocialNameView: View {
     
     @Binding var name: String
     
@@ -35,11 +35,11 @@ struct EditNameView: View {
                         .padding(.bottom, 32)
                         
                         HStack {
-                            Text("Editar nome de preferência")
+                            Text("Editar nome social")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .multilineTextAlignment(.leading)
                             
-                            Spacer().frame(width: 100)
+                            Spacer().frame(width: 180)
                             
                             Spacer()
                         }
@@ -50,7 +50,7 @@ struct EditNameView: View {
                         
                         ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name)
                         
-                        Text("Por favor, escreva o seu nome completo exatamente como consta em seu documento enviado para a triagem, juntamente com o seu número de CPF, RG e CNH. É importante que todas as informações estejam corretas e atualizadas para que possamos realizar a análise correta.")
+                        Text("Por gentileza, preencha o campo do seu nome social, entendido como o nome pelo qual você deseja ser chamado durante o atendimento no hemocentro.")
                             .font(.custom("Nunito-Light", size: 15))
                             .multilineTextAlignment(.leading)
                             .padding(.horizontal)
@@ -77,8 +77,8 @@ struct EditNameView: View {
     }
 }
 
-struct EditNameView_Previews: PreviewProvider {
+struct EditSocialNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EditNameView(name: Binding.constant("guga dias"))
+        EditSocialNameView(name: Binding.constant("guga dias"))
     }
 }

@@ -12,6 +12,7 @@ struct ProfileView: View {
     @State private var isShowingImagePicker = false
     
     @State var name: String
+    @State var fakeName: String
     
     var body: some View {
         NavigationView {
@@ -61,7 +62,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 NavigationLink {
-                    EditProfileInfoView(name: $name)
+                    EditProfileInfoView(name: $name, fakeName: $fakeName)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Editar informações do perfil")
@@ -125,6 +126,6 @@ struct ProfileView_Previews: PreviewProvider {
             age: 30
         )
         
-        ProfileView(profile: profile, name: "guga")
+        ProfileView(profile: profile, name: "guga", fakeName: "liz taylor")
     }
 }
