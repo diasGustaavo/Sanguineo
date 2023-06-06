@@ -49,7 +49,7 @@ struct EditPhoneView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $phone)
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $phone, keyboardType: .phonePad)
                             .onChange(of: phone) { newValue in
                                 phone = format(with: "(XX) XXXXX-XXXX", phone: newValue)
                             }

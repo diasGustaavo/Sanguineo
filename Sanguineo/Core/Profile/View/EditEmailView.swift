@@ -48,7 +48,7 @@ struct EditEmailView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $email)
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $email, keyboardType: .emailAddress)
                         
                         Text("Por favor, escolha um endereço de e-mail de sua preferência para receber as notificações.")
                             .font(.custom("Nunito-Light", size: 16))

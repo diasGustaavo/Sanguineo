@@ -97,7 +97,7 @@ struct PersonalInfo: View {
                         Spacer()
                             .frame(height: 20)
                         
-                        ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail")
+                        ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail", keyboardType: .emailAddress)
                         
                         Spacer()
                             .frame(height: 20)
@@ -112,7 +112,7 @@ struct PersonalInfo: View {
                         Spacer()
                             .frame(height: 20)
                         
-                        ResponsiveCustomTextField(id: 5, scrollViewProxy: scrollViewProxy, content: $phonenum, logo: "iphone", placeholder: "Número do celular")
+                        ResponsiveCustomTextField(id: 5, scrollViewProxy: scrollViewProxy, content: $phonenum, logo: "iphone", placeholder: "Número do celular", keyboardType: .phonePad)
                     }
                     
                     Spacer().frame(height: 40)

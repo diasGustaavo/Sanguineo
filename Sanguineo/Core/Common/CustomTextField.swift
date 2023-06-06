@@ -13,11 +13,13 @@ struct CustomTextField: View {
     let logo: String
     let placeholder: String
     @State private var isSecured = true
+    let keyboardType: UIKeyboardType
     
-    init(content: Binding<String>, logo: String = "envelope", placeholder: String = "Placeholder") {
+    init(content: Binding<String>, logo: String = "envelope", placeholder: String = "Placeholder", keyboardType: UIKeyboardType = .default) {
         self._content = content
         self.logo = logo
         self.placeholder = placeholder
+        self.keyboardType = keyboardType
     }
     
     var body: some View {
@@ -41,13 +43,13 @@ struct CustomTextField: View {
                                 .padding(.horizontal)
                                 .padding(.trailing, 20)
                                 .autocapitalization(.none)
-                                .keyboardType(.emailAddress)
+                                .keyboardType(keyboardType)
                         } else {
                             TextField("", text: $content)
                                 .padding(.horizontal)
                                 .padding(.trailing, 20)
                                 .autocapitalization(.none)
-                                .keyboardType(.emailAddress)
+                                .keyboardType(keyboardType)
                         }
                         Button(action: {
                             self.isSecured.toggle()
@@ -60,7 +62,7 @@ struct CustomTextField: View {
                     TextField("", text: $content)
                         .padding(.horizontal)  // Same padding as placeholder
                         .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
+                        .keyboardType(keyboardType)
                 }
             }
         }

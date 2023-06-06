@@ -15,13 +15,15 @@ struct ResponsiveCustomTextField: View {
     let id: Int
     let scrollViewProxy: ScrollViewProxy
     @State private var isSecured = true
+    let keyboardType: UIKeyboardType
     
-    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>, logo: String = "envelope", placeholder: String = "Placeholder") {
+    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>, logo: String = "envelope", placeholder: String = "Placeholder", keyboardType: UIKeyboardType = .default) {
         self.id = id
         self.scrollViewProxy = scrollViewProxy
         self._content = content
         self.logo = logo
         self.placeholder = placeholder
+        self.keyboardType = keyboardType
     }
     
     var body: some View {
@@ -45,7 +47,7 @@ struct ResponsiveCustomTextField: View {
                                 .padding(.horizontal)
                                 .padding(.trailing, 20)
                                 .autocapitalization(.none)
-                                .keyboardType(.emailAddress)
+                                .keyboardType(keyboardType)  // Set the keyboard type
                                 .introspectTextField { textField in
                                     self.scrollOnAppear(textField: textField)
                                 }
@@ -54,7 +56,7 @@ struct ResponsiveCustomTextField: View {
                                 .padding(.horizontal)
                                 .padding(.trailing, 20)
                                 .autocapitalization(.none)
-                                .keyboardType(.emailAddress)
+                                .keyboardType(keyboardType)  // Set the keyboard type
                                 .introspectTextField { textField in
                                     self.scrollOnAppear(textField: textField)
                                 }
@@ -70,7 +72,7 @@ struct ResponsiveCustomTextField: View {
                     TextField("", text: $content)
                         .padding(.horizontal)  // Same padding as placeholder
                         .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
+                        .keyboardType(keyboardType)  // Set the keyboard type
                         .introspectTextField { textField in
                             self.scrollOnAppear(textField: textField)
                         }

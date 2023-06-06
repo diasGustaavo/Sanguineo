@@ -40,10 +40,10 @@ struct LoginView: View {
                     
                     // TEXTFIELDS
                     Group {
-                        ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $loginModel.email, placeholder: "Email")
+                        ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $loginModel.email, placeholder: "Email", keyboardType: .emailAddress)
                             .padding(.horizontal)
                         
-                        CustomTextField(content: $loginModel.password, logo: "lock", placeholder: "Senha")
+                        CustomTextField(content: $loginModel.password, logo: "lock", placeholder: "Senha", keyboardType: .default)
                             .padding()
                     }
                     

@@ -13,12 +13,14 @@ struct ResponsiveSimpleCustomTextField: View {
     let id: Int
     let scrollViewProxy: ScrollViewProxy
     let font: String
+    let keyboardType: UIKeyboardType
     
-    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>, font: String = "Nunito-SemiBold") {
+    init(id: Int, scrollViewProxy: ScrollViewProxy, content: Binding<String>, font: String = "Nunito-SemiBold", keyboardType: UIKeyboardType = .default) {
         self.id = id
         self.scrollViewProxy = scrollViewProxy
         self._content = content
         self.font = font
+        self.keyboardType = keyboardType
     }
     
     var body: some View {
@@ -26,7 +28,7 @@ struct ResponsiveSimpleCustomTextField: View {
             TextField("", text: $content)
                 .foregroundColor(.black)
                 .font(.custom(font, size: 20))
-                .keyboardType(.emailAddress)
+                .keyboardType(keyboardType)  // Set the keyboard type
                 .introspectTextField { textField in
                     self.scrollOnAppear(textField: textField)
                 }

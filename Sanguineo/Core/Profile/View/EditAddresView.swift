@@ -65,7 +65,7 @@ struct EditAddressView: View {
                             }
                             .padding(.horizontal)
                             
-                            ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $CEP, font: "Nunito-Light")
+                            ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $CEP, font: "Nunito-Light", keyboardType: .numberPad)
                                 .onChange(of: CEP) { newValue in
                                     CEP = format(with: "XXXXX-XXX", phone: newValue)
                                 }
@@ -110,7 +110,7 @@ struct EditAddressView: View {
                             }
                             .padding(.horizontal)
                             
-                            ResponsiveSimpleCustomTextField(id: 4, scrollViewProxy: scrollViewProxy, content: $number, font: "Nunito-Light")
+                            ResponsiveSimpleCustomTextField(id: 4, scrollViewProxy: scrollViewProxy, content: $number, font: "Nunito-Light", keyboardType: .numberPad)
                         }
                         
                         // Complemento
