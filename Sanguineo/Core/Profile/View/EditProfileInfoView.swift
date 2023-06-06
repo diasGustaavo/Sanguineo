@@ -12,6 +12,7 @@ struct EditProfileInfoView: View {
     @Binding var name: String
     @Binding var fakeName: String
     @Binding var email: String
+    @Binding var phone: String
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -63,9 +64,13 @@ struct EditProfileInfoView: View {
                     CustomCell(leftSymbol: "envelope", buttonText: "Editar e-mail")
                 }
                 
-                CustomButtonCell(leftSymbol: "phone", buttonText: "Editar telefone") {
-                    // some action
+                NavigationLink {
+                    EditPhoneView(phone: $phone)
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "phone", buttonText: "Editar telefone")
                 }
+                
                 CustomButtonCell(leftSymbol: "mappin.and.ellipse", buttonText: "Editar endereço") {
                     // some action
                 }
@@ -84,6 +89,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"))
+        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"))
     }
 }

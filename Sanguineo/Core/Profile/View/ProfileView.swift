@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State var name: String
     @State var fakeName: String
     @State var email: String
+    @State var phone: String
     
     var body: some View {
         NavigationView {
@@ -63,7 +64,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 NavigationLink {
-                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email)
+                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email, phone: $phone)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Editar informações do perfil")
@@ -127,6 +128,6 @@ struct ProfileView_Previews: PreviewProvider {
             age: 30
         )
         
-        ProfileView(profile: profile, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com")
+        ProfileView(profile: profile, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "83981474782")
     }
 }
