@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EditProfileInfoView: View {
     
+    @Binding var name: String
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -38,9 +40,12 @@ struct EditProfileInfoView: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 32)
                 
-                CustomButtonCell(leftSymbol: "person", buttonText: "Editar nome") {
-                    // some action
+                NavigationLink {
+                    EditNameView(name: $name)
+                } label: {
+                    CustomCell(leftSymbol: "person", buttonText: "Editar nome")
                 }
+                
                 CustomButtonCell(leftSymbol: "theatermasks", buttonText: "Editar nome social") {
                     // some action
                 }
@@ -68,6 +73,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView()
+        EditProfileInfoView(name: Binding.constant("guga dias"))
     }
 }

@@ -32,6 +32,8 @@
 		B418FFB12A05366500C05261 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B418FFA12A05366500C05261 /* Nunito-SemiBold.ttf */; };
 		B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFB92A05499800C05261 /* InitialLogView.swift */; };
 		B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418FFBB2A054A5900C05261 /* HomeViewModel.swift */; };
+		B426F71E2A2F534E00A8E231 /* EditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426F71D2A2F534E00A8E231 /* EditNameView.swift */; };
+		B426F7202A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */; };
 		B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */; };
 		B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */; };
 		B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */; };
@@ -91,6 +93,8 @@
 		B418FFB22A05368A00C05261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B418FFB92A05499800C05261 /* InitialLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLogView.swift; sourceTree = "<group>"; };
 		B418FFBB2A054A5900C05261 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B426F71D2A2F534E00A8E231 /* EditNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameView.swift; sourceTree = "<group>"; };
+		B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSimpleCustomTextField.swift; sourceTree = "<group>"; };
 		B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePersonCellView.swift; sourceTree = "<group>"; };
 		B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonCell.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				B4EC9EBA2A1CF37900940B2F /* CustomTextField.swift */,
 				B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */,
 				B49ED1602A2E2D54006A7EA4 /* CustomCell.swift */,
+				B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 			children = (
 				B483BF482A262E120005746D /* ProfileView.swift */,
 				B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */,
+				B426F71D2A2F534E00A8E231 /* EditNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -543,10 +549,12 @@
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */,
+				B426F71E2A2F534E00A8E231 /* EditNameView.swift in Sources */,
 				B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B418FF902A05321C00C05261 /* TutorialView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
+				B426F7202A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift in Sources */,
 				B483BF492A262E120005746D /* ProfileView.swift in Sources */,
 				B4EC9EBB2A1CF37900940B2F /* CustomTextField.swift in Sources */,
 				B40B93892A28E279004126DB /* DetailedFeedCategoryView.swift in Sources */,

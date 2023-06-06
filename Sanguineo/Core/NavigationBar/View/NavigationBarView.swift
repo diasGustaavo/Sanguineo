@@ -50,7 +50,7 @@ struct NavigationBarView: View {
                     }
                 }
             case .profile:
-                ProfileView(profile: profileViewModel)
+                ProfileView(profile: profileViewModel, name: "guga")
             }
             
             HStack {
