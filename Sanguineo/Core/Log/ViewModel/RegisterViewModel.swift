@@ -18,8 +18,9 @@ class RegisterViewModel: ObservableObject {
     @Published var isCheckedEmail: Bool
     @Published var isCameraAuthorized: Bool
     @Published var selectedImage: UIImage?
+    @Published var selectedBlood: Int
     
-    init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false) {
+    init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false, selectedBlood: Int = 0) {
         self.selectedTab = selectedTab
         self.name = name
         self.email = email
@@ -29,5 +30,6 @@ class RegisterViewModel: ObservableObject {
         self.isCheckedForm = isCheckedForm
         self.isCheckedEmail = isCheckedEmail
         self.isCameraAuthorized = isCameraAuthorized
+        self.selectedBlood = selectedBlood
     }
 }

@@ -29,7 +29,7 @@ struct RegisterView: View {
             .padding()
             
             TabView(selection: $registerViewModel.selectedTab) {
-                PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab)
+                PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab, selectedBlood: $registerViewModel.selectedBlood)
                     .tag(0)
                     .environmentObject(initialLogViewModel)
                     .gesture(DragGesture())
@@ -76,6 +76,7 @@ struct PersonalInfo: View {
     @Binding var phonenum: String
     @Binding var isChecked: Bool
     @Binding var selectedTab: Int
+    @Binding var selectedBlood: Int
     
     @State private var showAlert = false
     @State private var alertMessage = ""
@@ -94,8 +95,16 @@ struct PersonalInfo: View {
                     Group {
                         ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name, logo: "person", placeholder: "Nome e sobrenome")
                         
-                        Spacer()
-                            .frame(height: 20)
+                        
+                        Group {
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            ResponsiveCustomPicker(id: 69, selection: $selectedBlood, options: ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"], description: "Tipo Sanguineo")
+                            
+                            Spacer()
+                                .frame(height: 20)
+                        }
                         
                         ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail", keyboardType: .emailAddress)
                         

@@ -56,6 +56,7 @@
 		B4A4073B2A2A2C9F00F54357 /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */; };
 		B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03DE2A1F8A7E00DC04E2 /* User.swift */; };
 		B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03E12A1F8D5800DC04E2 /* UserService.swift */; };
+		B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
@@ -117,6 +118,7 @@
 		B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
 		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4CB03E12A1F8D5800DC04E2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomPicker.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */,
 				B49ED1602A2E2D54006A7EA4 /* CustomCell.swift */,
 				B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */,
+				B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				B418FF7E2A05293C00C05261 /* HomeView.swift in Sources */,
 				B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */,
 				B40B93872A28DBCC004126DB /* ReusableLargePersonCellView.swift in Sources */,
+				B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */,
 				B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 				B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */,
