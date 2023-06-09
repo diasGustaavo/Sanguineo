@@ -55,7 +55,6 @@ struct NavigationBarView: View {
                 RequestView()
             }
             
-            
             HStack {
                 Spacer().frame(width: 20)
                 
