@@ -19,6 +19,14 @@ class RegisterViewModel: ObservableObject {
     @Published var isCameraAuthorized: Bool
     @Published var selectedImage: UIImage?
     @Published var selectedBlood: Int
+    let bloodTypes = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
+    
+    func getSelectedBloodType() -> String {
+        guard bloodTypes.indices.contains(selectedBlood) else {
+            fatalError("Index \(selectedBlood) is out of bounds for options array of size \(bloodTypes.count).")
+        }
+        return bloodTypes[selectedBlood]
+    }
     
     init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false, selectedBlood: Int = 0) {
         self.selectedTab = selectedTab

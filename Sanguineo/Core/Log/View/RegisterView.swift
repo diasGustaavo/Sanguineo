@@ -449,6 +449,7 @@ struct DocumentRequestView: View {
                             email: registerViewModel.email,
                             password: registerViewModel.password1,
                             phonenum: registerViewModel.phonenum,
+                            bloodtype: registerViewModel.getSelectedBloodType(),
                             selectedImage: selectedImage
                         )
                     } else {

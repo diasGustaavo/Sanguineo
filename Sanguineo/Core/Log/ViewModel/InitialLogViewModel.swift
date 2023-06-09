@@ -65,7 +65,7 @@ class InitialLogViewModel: ObservableObject {
         addressSt: String = "",
         addressNumber: String = "",
         phonenum: String,
-        bloodtype: String = "",
+        bloodtype: String,
         age: String = "",
         selectedImage: UIImage
     ) {
