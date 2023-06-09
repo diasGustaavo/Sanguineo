@@ -22,6 +22,8 @@ struct ProfileView: View {
     @State var number: String
     @State var complement: String
     
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -60,8 +62,11 @@ struct ProfileView: View {
                                 .resizable()
                                 .frame(width: 20, height: 20)
                             
+                            Text("Tipo Sanguíneo:")
+                                .font(.custom("Nunito-SemiBold", size: 15))
+                            
                             Text(profile.bloodType)
-                                .font(.custom("Nunito-Regular", size: 17))
+                                .font(.custom("Nunito-Regular", size: 15))
                         }
                     }
                     
@@ -99,7 +104,7 @@ struct ProfileView: View {
                 Spacer()
                 
                 Button {
-                    // some action
+                    initialLogViewModel.signout()
                 } label: {
                     Text("Sair")
                         .bold()

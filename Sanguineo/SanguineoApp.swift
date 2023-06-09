@@ -18,13 +18,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct SanguineoApp: App {
-    @StateObject var homeViewModel = HomeViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(homeViewModel)
+                .environmentObject(HomeViewModel())
+                .environmentObject(InitialLogViewModel())
         }
     }
 }

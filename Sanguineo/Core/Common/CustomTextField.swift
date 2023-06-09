@@ -66,7 +66,8 @@ struct CustomTextField: View {
                 }
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 8)
         .overlay(
             RoundedRectangle(cornerRadius: 4)
                 .stroke(Color.gray, lineWidth: 1)

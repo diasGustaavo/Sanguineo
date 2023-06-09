@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @StateObject var initialLogViewModel = InitialLogViewModel()
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
@@ -38,5 +38,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environmentObject(HomeViewModel())
+            .environmentObject(InitialLogViewModel())
     }
 }
