@@ -27,7 +27,7 @@ struct NavigationBarView: View {
         bloodType: "A+",
         age: 30
     )
-
+    
     var body: some View {
         VStack {
             Spacer() // This will push the rest of the content to the bottom
@@ -51,7 +51,10 @@ struct NavigationBarView: View {
                 }
             case .profile:
                 ProfileView(profile: profileViewModel, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "(83) 98147-4782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22")
+            case .request: // New case added
+                RequestView()
             }
+            
             
             HStack {
                 Spacer().frame(width: 20)
@@ -69,7 +72,7 @@ struct NavigationBarView: View {
                             
                             Spacer().frame(height: 5)
                             
-                            Text("Home")
+                            Text("Início")
                                 .font(.system(size: 12))
                         }
                     }.foregroundColor(viewModel.selectedTab == .home ? .accentColor : .black)
@@ -91,11 +94,33 @@ struct NavigationBarView: View {
                             
                             Spacer().frame(height: 5)
                             
-                            Text("Appointments")
+                            Text("Agendamentos")
                                 .font(.system(size: 12))
                         }
                     }.foregroundColor(viewModel.selectedTab == .appointments ? .accentColor : .black)
                 }
+                
+                Spacer()
+                
+                VStack {
+                    if viewModel.selectedTab == .request {
+                        Rectangle().frame(width: 30, height: 2).foregroundColor(.accentColor)
+                    }
+                    
+                    Spacer().frame(height: 10)
+                    
+                    Button(action: { viewModel.selectedTab = .request }) {
+                        VStack {
+                            Image(systemName: "doc.text") // Replace this with the desired image for the new tab
+                            
+                            Spacer().frame(height: 5)
+                            
+                            Text("Solicitação")
+                                .font(.system(size: 12))
+                        }
+                    }.foregroundColor(viewModel.selectedTab == .request ? .accentColor : .black)
+                }
+                .padding(.horizontal)
                 
                 Spacer()
                 
@@ -112,7 +137,7 @@ struct NavigationBarView: View {
                             
                             Spacer().frame(height: 5)
                             
-                            Text("Profile")
+                            Text("Perfil")
                                 .font(.system(size: 12))
                         }
                     }.foregroundColor(viewModel.selectedTab == .profile ? .accentColor : .black)

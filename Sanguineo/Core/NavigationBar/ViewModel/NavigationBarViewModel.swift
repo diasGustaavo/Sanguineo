@@ -8,14 +8,15 @@
 import Foundation
 
 enum NavigationTab: String {
-    case home = "Home"
-    case appointments = "Appointments"
-    case profile = "Profile"
+    case home = "Início"
+    case appointments = "Compromissos"
+    case profile = "Perfil"
+    case request = "Solicitação" // New tab
 }
 
 enum AppointmentsScreens: String {
-    case home = "Home"
-    case newAppointment = "newAppointment"
+    case home = "Início"
+    case newAppointment = "NovoCompromisso"
 }
 
 class NavigationBarViewModel: ObservableObject {
