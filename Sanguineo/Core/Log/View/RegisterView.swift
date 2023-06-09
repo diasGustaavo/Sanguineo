@@ -31,7 +31,6 @@ struct RegisterView: View {
             TabView(selection: $registerViewModel.selectedTab) {
                 PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab, selectedBlood: $registerViewModel.selectedBlood)
                     .tag(0)
-                    .environmentObject(initialLogViewModel)
                     .gesture(DragGesture())
                 ConfirmationCodeView(selectedTab: $registerViewModel.selectedTab, isChecked: $registerViewModel.isCheckedEmail)
                     .tag(1)
@@ -39,7 +38,6 @@ struct RegisterView: View {
                 DocumentRequestView(registerViewModel: registerViewModel, selectedTab: $registerViewModel.selectedTab)
                     .tag(2)
                     .gesture(DragGesture())
-                    .environmentObject(initialLogViewModel)
                 // Add more tabs as needed
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hide default tab indicators

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct InitialLogView: View {
-    @EnvironmentObject var homeViewModel: HomeViewModel
     @ObservedObject var initialLogViewModel: InitialLogViewModel
     @StateObject var loginViewModel = LoginViewModel()
     
@@ -141,11 +140,9 @@ struct InitialLogView: View {
         }
         .fullScreenCover(isPresented: $initialLogViewModel.isLoginViewActive) {
             LoginView(loginModel: loginViewModel)
-                .environmentObject(initialLogViewModel)
         }
         .fullScreenCover(isPresented: $initialLogViewModel.isRegisterViewActive) {
             RegisterView()
-                .environmentObject(initialLogViewModel)
         }
     }
 }

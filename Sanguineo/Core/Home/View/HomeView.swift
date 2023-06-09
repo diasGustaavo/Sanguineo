@@ -16,10 +16,8 @@ struct HomeView: View {
         if !initialLogViewModel.isLoggedIn {
             if homeViewModel.isTutorialActive {
                 TutorialView()
-                    .environmentObject(homeViewModel)
             } else {
                 InitialLogView(initialLogViewModel: initialLogViewModel)
-                    .environmentObject(homeViewModel)
             }
         } else {
 //            Button {
