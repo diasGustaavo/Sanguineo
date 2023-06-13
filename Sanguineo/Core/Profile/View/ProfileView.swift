@@ -81,8 +81,11 @@ struct ProfileView: View {
                     CustomCell(leftSymbol: "person", buttonText: "Editar informações do perfil")
                 }
                 
-                CustomButtonCell(leftSymbol: "star", buttonText: "Recompensas") {
-                    // some action
+                NavigationLink {
+                    RewardsView()
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "star", buttonText: "Recompensas")
                 }
                 
                 CustomButtonCell(leftSymbol: "location", buttonText: "Configurar localização") {

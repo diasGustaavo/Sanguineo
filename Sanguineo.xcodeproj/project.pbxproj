@@ -70,6 +70,7 @@
 		B4F09C402A3896990056BD48 /* RewardMainComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F09C3F2A3896990056BD48 /* RewardMainComponentView.swift */; };
 		B4F09C422A389D570056BD48 /* ViewIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F09C412A389D570056BD48 /* ViewIf.swift */; };
 		B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F09C432A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift */; };
+		B4F09C462A38A5BC0056BD48 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F09C452A38A5BC0056BD48 /* RewardsView.swift */; };
 		B4FC5E712A1B99DC00CC2BBC /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = B4FC5E702A1B99DC00CC2BBC /* Introspect */; };
 		B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		B4F09C3F2A3896990056BD48 /* RewardMainComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardMainComponentView.swift; sourceTree = "<group>"; };
 		B4F09C412A389D570056BD48 /* ViewIf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewIf.swift; sourceTree = "<group>"; };
 		B4F09C432A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCapitalizingFirstLetter.swift; sourceTree = "<group>"; };
+		B4F09C452A38A5BC0056BD48 /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		B4FC5E742A1BB5D400CC2BBC /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				B4F09C3F2A3896990056BD48 /* RewardMainComponentView.swift */,
+				B4F09C452A38A5BC0056BD48 /* RewardsView.swift */,
 			);
 			path = RewardsView;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
 				B426F7222A2F5F5800A8E231 /* EditSocialNameView.swift in Sources */,
 				B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */,
+				B4F09C462A38A5BC0056BD48 /* RewardsView.swift in Sources */,
 				B426F71E2A2F534E00A8E231 /* EditNameView.swift in Sources */,
 				B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
