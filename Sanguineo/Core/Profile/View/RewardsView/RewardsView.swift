@@ -85,12 +85,24 @@ struct RewardsView: View {
                     .padding()
                     .padding(.horizontal, 6)
                     
-                    RewardMainComponentView(stepsComplete: stepsComplete, productName: "rappi")
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 6)
+                    NavigationLink {
+                        RewardsDetailedView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        RewardMainComponentView(stepsComplete: stepsComplete, productName: "rappi")
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 6)
+                            .foregroundColor(.black)
+                    }
                     
-                    RewardMainComponentView(stepsComplete: stepsComplete, productName: "ifood")
-                        .padding(.horizontal, 24)
+                    NavigationLink {
+                        RewardsDetailedView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        RewardMainComponentView(stepsComplete: stepsComplete, productName: "ifood")
+                            .padding(.horizontal, 24)
+                            .foregroundColor(.black)
+                    }
                     
                     HStack {
                         Text("Moda")
@@ -102,9 +114,15 @@ struct RewardsView: View {
                     .padding()
                     .padding(.horizontal, 6)
                     
-                    RewardMainComponentView(stepsComplete: stepsComplete, productName: "renner")
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 6)
+                    NavigationLink {
+                        RewardsDetailedView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        RewardMainComponentView(stepsComplete: stepsComplete, productName: "renner")
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 6)
+                    }
                 }
             }
         }

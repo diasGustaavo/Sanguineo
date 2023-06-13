@@ -39,7 +39,7 @@ struct RewardMainComponentView: View {
                     
                     HStack {
                         Text("Desconto em compras \(productName.capitalizingFirstLetter())")
-                            .font(.custom("Nunito-Light", size: 16))
+                            .font(.custom("Nunito-Light", size: 14))
                         
                         Spacer()
                     }
