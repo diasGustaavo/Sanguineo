@@ -26,8 +26,8 @@ struct CustomTextField: View {
         HStack {
             Image(systemName: logo)
                 .foregroundColor(.accentColor)
-                .font(.system(size: 24))
-                .frame(width: UIScreen.screenWidth * 0.05)
+                .font(.system(size: 18))
+                .frame(width: UIScreen.screenWidth * 0.03)
             
             ZStack(alignment: .leading) {
                 if content.isEmpty {
