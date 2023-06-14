@@ -13,22 +13,17 @@ struct HomeView: View {
     @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
-        if !initialLogViewModel.isLoggedIn {
-            if homeViewModel.isTutorialActive {
-                TutorialView()
-            } else {
-                InitialLogView(initialLogViewModel: initialLogViewModel)
-            }
-        } else {
-//            Button {
-//                withAnimation {
-//                    initialLogViewModel.signout()
-//                }
-//            } label: {
-//                Text("App")
+//        if !initialLogViewModel.isLoggedIn {
+//            if homeViewModel.isTutorialActive {
+//                TutorialView()
+//            } else {
+//                InitialLogView(initialLogViewModel: initialLogViewModel)
 //            }
-            NavigationBarView(viewModel: navigationBarViewModel)
-        }
+//        } else {
+//            NavigationBarView(viewModel: navigationBarViewModel)
+//        }
+        
+        NavigationBarView(viewModel: navigationBarViewModel)
     }
 }
 

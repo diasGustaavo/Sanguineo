@@ -25,6 +25,7 @@ struct SanguineoApp: App {
             HomeView()
                 .environmentObject(HomeViewModel())
                 .environmentObject(InitialLogViewModel())
+                .environmentObject(AddressViewModel())
         }
     }
 }

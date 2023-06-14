@@ -33,7 +33,7 @@ struct CustomTextField: View {
                 if content.isEmpty {
                     Text(placeholder)
                         .foregroundColor(.gray)  // Color of placeholder
-                        .font(.custom("Nunito-Light", size: 18)) // Font family and size of placeholder
+                        .font(.custom("Nunito-Light", size: 16)) // Font family and size of placeholder
                         .padding(.horizontal)  // Padding to align with TextField
                 }
                 if placeholder == "Password" || placeholder == "Senha" {

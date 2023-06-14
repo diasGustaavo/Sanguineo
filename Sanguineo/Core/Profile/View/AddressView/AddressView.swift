@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AddressView: View {
-    @State var addressTyped: String
-
+    @Namespace private var animation
+    
+    @EnvironmentObject var addressViewModel: AddressViewModel
+    
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -39,61 +41,71 @@ struct AddressView: View {
                 .padding()
                 .padding(.horizontal, 6)
                 
-                CustomTextField(content: $addressTyped, logo: "magnifyingglass", placeholder: "Endereço e número", keyboardType: .default)
+                CustomTextField(content: $addressViewModel.selectedAddress, logo: "magnifyingglass", placeholder: "Endereço e número", keyboardType: .default)
                     .padding()
                 
-                Button {
-                    // some action
-                } label: {
-                    VStack {
-                        HStack {
-                            Image(systemName: "location")
-                                .foregroundColor(.accentColor)
+                if !addressViewModel.isSearching {
+                    Button {
+                        // some action
+                    } label: {
+                        VStack {
+                            HStack {
+                                Image(systemName: "location")
+                                    .foregroundColor(.accentColor)
+                                
+                                Text("Usar a localização atual")
+                                    .font(.custom("Nunito-Regular", size: 22))
+                                
+                                Spacer()
+                            }
                             
-                            Text("Usar a localização atual")
-                                .font(.custom("Nunito-Regular", size: 22))
-                            
-                            Spacer()
+                            HStack {
+                                Text("Manaíra, João Pessoa - PB")
+                                    .font(.custom("Nunito-Light", size: 16))
+                                
+                                Spacer()
+                            }
                         }
-                        
-                        HStack {
-                            Text("Manaíra, João Pessoa - PB")
-                                .font(.custom("Nunito-Light", size: 16))
-                            
-                            Spacer()
-                        }
+                        .padding(.horizontal, 32)
                     }
-                    .padding(.horizontal, 32)
+                    .foregroundColor(.black)
+                    .matchedGeometryEffect(id: "Button1", in: animation)
+                    .transition(.move(edge: .trailing))
                 }
-                .foregroundColor(.black)
                 
-                ScrollView {
-                    AddressBasicComponentView(isChecked: .constant(true), buttonFunction: {
-                        print("Button pressed!")
-                    }, eraseAddress: {
-                        print("Address erased!")
-                    })
-                    .padding(.horizontal)
-                    .padding(.bottom, 2)
-                    .padding(.top)
+                ZStack {
+                    Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all)
                     
-                    AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
-                        print("Button pressed!")
-                    }, eraseAddress: {
-                        print("Address erased!")
-                    })
-                    .padding(.horizontal)
-                    .padding(.bottom, 2)
-                    
-                    AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
-                        print("Button pressed!")
-                    }, eraseAddress: {
-                        print("Address erased!")
-                    })
-                    .padding(.horizontal)
-                    .padding(.bottom, 2)
+                    if !addressViewModel.isSearching {
+                        ScrollView {
+                            AddressBasicComponentView(isChecked: .constant(true), buttonFunction: {
+                                print("Button pressed!")
+                            }, eraseAddress: {
+                                print("Address erased!")
+                            })
+                            .padding(.horizontal)
+                            .padding(.bottom, 2)
+                            .padding(.top)
+                            
+                            AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
+                                print("Button pressed!")
+                            }, eraseAddress: {
+                                print("Address erased!")
+                            })
+                            .padding(.horizontal)
+                            .padding(.bottom, 2)
+                            
+                            AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
+                                print("Button pressed!")
+                            }, eraseAddress: {
+                                print("Address erased!")
+                            })
+                            .padding(.horizontal)
+                            .padding(.bottom, 2)
+                        }
+                        .transition(.move(edge: .trailing))
+                    }
                 }
-                .background(Color.gray.opacity(0.1))
             }
         }
     }
@@ -101,6 +113,7 @@ struct AddressView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressView(addressTyped: "")
+        AddressView()
+            .environmentObject(AddressViewModel())
     }
 }
