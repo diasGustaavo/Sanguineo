@@ -64,6 +64,7 @@
 		B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
+		B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */; };
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */; };
 		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
@@ -137,6 +138,7 @@
 		B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomPicker.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomTextField.swift; sourceTree = "<group>"; };
 		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				B4F09C3E2A38966B0056BD48 /* RewardsView */,
 				B4F09C3D2A3896270056BD48 /* EditProfileView */,
 				B4802FA82A39DD240041A277 /* AddressView */,
+				B4DA512B2A3B5591006C12ED /* PermissionsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +502,14 @@
 				B4F09C432A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B4DA512B2A3B5591006C12ED /* PermissionsView */ = {
+			isa = PBXGroup;
+			children = (
+				B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */,
+			);
+			path = PermissionsView;
 			sourceTree = "<group>";
 		};
 		B4F09C3D2A3896270056BD48 /* EditProfileView */ = {
@@ -648,6 +659,7 @@
 				B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */,
 				B4F09C4A2A38BD800056BD48 /* CustomTextFieldCopy.swift in Sources */,
 				B41F5B022A33627A00E9465A /* RequestView.swift in Sources */,
+				B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */,
 				B483BF462A262E050005746D /* AppointmentsView.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,

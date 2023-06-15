@@ -95,8 +95,11 @@ struct ProfileView: View {
                     CustomCell(leftSymbol: "location", buttonText: "Configurar localização")
                 }
                 
-                CustomButtonCell(leftSymbol: "checkmark.circle", buttonText: "Permissões do app") {
-                    // some action
+                NavigationLink {
+                    PermissionsView()
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "checkmark.circle", buttonText: "Permissões do app")
                 }
                 
                 CustomButtonCell(leftSymbol: "doc.plaintext", buttonText: "Termos de uso") {
