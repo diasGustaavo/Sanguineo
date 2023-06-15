@@ -41,7 +41,7 @@ struct AddressView: View {
                 .padding()
                 .padding(.horizontal, 6)
                 
-                CustomTextField(content: $addressViewModel.selectedAddress, logo: "magnifyingglass", placeholder: "Endereço e número", keyboardType: .default)
+                CustomTextField(content: $addressViewModel.typedSearchAddress, logo: "magnifyingglass", placeholder: "Endereço e número", keyboardType: .default)
                     .padding()
                 
                 if !addressViewModel.isSearching {
@@ -49,18 +49,24 @@ struct AddressView: View {
                         // some action
                     } label: {
                         VStack {
-                            HStack {
-                                Image(systemName: "location")
-                                    .foregroundColor(.accentColor)
-                                
-                                Text("Usar a localização atual")
-                                    .font(.custom("Nunito-Regular", size: 22))
-                                
-                                Spacer()
+                            Button {
+                                addressViewModel.addCurrentLocation()
+                            } label: {
+                                HStack {
+                                    Image(systemName: "location")
+                                        .foregroundColor(.accentColor)
+                                    
+                                    Text("Usar a localização atual")
+                                        .font(.custom("Nunito-Regular", size: 22))
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
+                                    
+                                    Spacer()
+                                }
                             }
                             
                             HStack {
-                                Text("Manaíra, João Pessoa - PB")
+                                Text(addressViewModel.currentLocation)
                                     .font(.custom("Nunito-Light", size: 16))
                                 
                                 Spacer()
@@ -78,32 +84,41 @@ struct AddressView: View {
                     
                     if !addressViewModel.isSearching {
                         ScrollView {
-                            AddressBasicComponentView(isChecked: .constant(true), buttonFunction: {
-                                print("Button pressed!")
-                            }, eraseAddress: {
-                                print("Address erased!")
-                            })
-                            .padding(.horizontal)
-                            .padding(.bottom, 2)
-                            .padding(.top)
+                            Spacer().frame(height: 10)
                             
-                            AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
-                                print("Button pressed!")
-                            }, eraseAddress: {
-                                print("Address erased!")
-                            })
-                            .padding(.horizontal)
-                            .padding(.bottom, 2)
-                            
-                            AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
-                                print("Button pressed!")
-                            }, eraseAddress: {
-                                print("Address erased!")
-                            })
-                            .padding(.horizontal)
-                            .padding(.bottom, 2)
+                            ForEach(addressViewModel.addresses, id: \.self) { address in
+                                let addressComponents = address.components(separatedBy: ",")
+                                AddressBasicComponentView(isChecked: .constant(addressViewModel.selectedAddress == address),
+                                                          buttonFunction: {
+                                    print("DEBUG: button selected")
+                                    withAnimation {
+                                        self.addressViewModel.selectedAddress = address
+                                    }
+                                },
+                                                          eraseAddress: {
+                                    print("DEBUG: button erased")
+                                    self.addressViewModel.eraseAddress(address)
+                                }, street: addressComponents.first ?? "Rua desconhecida", area: addressComponents.dropFirst().joined(separator: ",").trimmingCharacters(in: .whitespaces))
+                                .padding(.top, 2)
+                                .padding(.horizontal)
+                            }
                         }
                         .transition(.move(edge: .trailing))
+                    } else {
+                        ScrollView {
+                            ForEach(addressViewModel.searchedLikeAddresses, id: \.self) { searchedLikeAddress in
+                                Button {
+                                    addressViewModel.addAddress(searchedLikeAddress)
+                                    addressViewModel.typedSearchAddress = ""
+                                } label: {
+                                    AddressSearchedItemView(address: searchedLikeAddress)
+                                        .padding(.horizontal)
+                                        .padding(.top)
+                                }
+                                .foregroundColor(.black)
+                            }
+                        }
+                        .transition(.move(edge: .leading))
                     }
                 }
             }

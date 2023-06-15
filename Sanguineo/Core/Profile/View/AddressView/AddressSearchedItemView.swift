@@ -16,12 +16,14 @@ struct AddressSearchedItemView: View {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.accentColor)
-                .frame(width: 40, height: 40)
+                .frame(width: 30, height: 30)
 
             Text(address)
-                .font(.custom("Nunito-Light", size: 16))
+                .font(.custom("Nunito-Light", size: 18))
                 .lineLimit(2)
                 .truncationMode(.tail)
+            
+            Spacer()
         }
     }
 }

@@ -803,6 +803,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sanguineo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nos precisamos acessar a sua camera para poder fotografar os documentos necessarios do seu cadastro.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Precisamos da sua localizacao para obter os hemocentros mais proximos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -834,6 +835,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sanguineo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nos precisamos acessar a sua camera para poder fotografar os documentos necessarios do seu cadastro.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Precisamos da sua localizacao para obter os hemocentros mais proximos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

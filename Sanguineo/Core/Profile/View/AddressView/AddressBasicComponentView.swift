@@ -12,7 +12,9 @@ struct AddressBasicComponentView: View {
     let buttonFunction: () -> Void
     let eraseAddress: () -> Void
 
-    // New state property to control visibility
+    let street: String  // New property for street name
+    let area: String  // New property for area name
+
     @State private var isVisible: Bool = true
 
     var body: some View {
@@ -24,9 +26,10 @@ struct AddressBasicComponentView: View {
                     } label: {
                         VStack {
                             HStack {
-                                Text("Rua das Flores, n 123")
+                                Text(street)  // Use the street property
                                     .font(.custom("Nunito-Regular", size: 22))
                                     .padding(.trailing, 2)
+                                    .lineLimit(1)
                                 
                                 if isChecked {
                                     Image(systemName: "checkmark.circle")
@@ -41,21 +44,14 @@ struct AddressBasicComponentView: View {
                             Spacer().frame(height: 5)
                             
                             HStack {
-                                Text("Manaíra, João Pessoa - PB")
+                                Text(area)  // Use the area property
                                     .font(.custom("Nunito-Light", size: 16))
+                                    .lineLimit(2)
                                 
                                 Spacer()
-                            }
-                            
-                            Spacer().frame(height: 2)
-                            
-                            HStack {
-                                Text("Apto 605 - Mag")
-                                    .font(.custom("Nunito-Light", size: 16))
                                 
-                                Spacer()
+                                Spacer().frame(width: 50)
                             }
-                            .padding(.bottom, 6)
                         }
                         .foregroundColor(.black)
                     }
@@ -70,7 +66,7 @@ struct AddressBasicComponentView: View {
                         }
                         
                         Spacer()
-                            .frame(height: 50)
+                            .frame(height: 20)
                     }
                     
                     Spacer()
@@ -98,10 +94,21 @@ struct AddressBasicComponentView: View {
 
 struct AddressBasicComponentView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressBasicComponentView(isChecked: .constant(true), buttonFunction: {
-            print("Button pressed!")
-        }, eraseAddress: {
-            print("Address erased!")
-        })
+        Group {
+            AddressBasicComponentView(isChecked: .constant(true), buttonFunction: {
+                print("Button pressed!")
+            }, eraseAddress: {
+                print("Address erased!")
+            }, street: "Rua Empresario Manoel de Brito, n 123", area: "Manaíra, João Pessoa - PB")
+            .previewDisplayName("Checked")
+
+            AddressBasicComponentView(isChecked: .constant(false), buttonFunction: {
+                print("Button pressed!")
+            }, eraseAddress: {
+                print("Address erased!")
+            }, street: "Rua das Flores, n 123", area: "Manaíra, João Pessoa - PB")
+            .previewDisplayName("Unchecked")
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
