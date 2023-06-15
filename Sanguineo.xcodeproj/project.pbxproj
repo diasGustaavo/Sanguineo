@@ -65,6 +65,7 @@
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
 		B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */; };
+		B4DA51302A3B5C25006C12ED /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512F2A3B5C25006C12ED /* TermsView.swift */; };
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */; };
 		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
@@ -139,6 +140,7 @@
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		B4DA512F2A3B5C25006C12ED /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomTextField.swift; sourceTree = "<group>"; };
 		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				B4F09C3D2A3896270056BD48 /* EditProfileView */,
 				B4802FA82A39DD240041A277 /* AddressView */,
 				B4DA512B2A3B5591006C12ED /* PermissionsView */,
+				B4DA512E2A3B5C17006C12ED /* TermsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -510,6 +513,14 @@
 				B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */,
 			);
 			path = PermissionsView;
+			sourceTree = "<group>";
+		};
+		B4DA512E2A3B5C17006C12ED /* TermsView */ = {
+			isa = PBXGroup;
+			children = (
+				B4DA512F2A3B5C25006C12ED /* TermsView.swift */,
+			);
+			path = TermsView;
 			sourceTree = "<group>";
 		};
 		B4F09C3D2A3896270056BD48 /* EditProfileView */ = {
@@ -645,6 +656,7 @@
 				B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */,
 				B4F09C422A389D570056BD48 /* ViewIf.swift in Sources */,
 				B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */,
+				B4DA51302A3B5C25006C12ED /* TermsView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
 				B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */,
 				B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */,
