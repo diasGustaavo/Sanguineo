@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  NotificationsView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 15/06/23.
@@ -9,8 +9,11 @@ import SwiftUI
 import AVFoundation
 import CoreLocation
 
-struct SettingsView: View {
+struct NotificationsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State var notifications = false
+    @State var email = false
+    @State var sms = false
     
     var body: some View {
         NavigationView {
@@ -40,19 +43,29 @@ struct SettingsView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    CustomCell(leftSymbol: "bell", buttonText: "Gerenciar notificações")
+                    HStack {
+                        Text("Como você quer receber novidades e lembretes do Sanguineo")
+                            .font(.custom("Nunito-Regular", size: 18))
+                        
+                        Spacer()
+                        
+                        Spacer().frame(width: 50)
+                    }
+                    .padding()
                     
-                    CustomCell(leftSymbol: "paintpalette", buttonText: "Tema")
+                    CustomToggleCell(leftSymbol: "bell", toggleText: "Gerenciar notificações", isOn: $notifications)
                     
-                    CustomCell(leftSymbol: "info.circle", buttonText: "Sobre esta versão")
+                    CustomToggleCell(leftSymbol: "paintpalette", toggleText: "Tema", isOn: $email)
+                    
+                    CustomToggleCell(leftSymbol: "info.circle", toggleText: "Sobre esta versão", isOn: $sms)
                 }
             }
         }
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
+struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        NotificationsView()
     }
 }

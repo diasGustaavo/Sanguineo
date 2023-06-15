@@ -67,6 +67,8 @@
 		B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */; };
 		B4DA51302A3B5C25006C12ED /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512F2A3B5C25006C12ED /* TermsView.swift */; };
 		B4DA51332A3B5EF3006C12ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA51322A3B5EF3006C12ED /* SettingsView.swift */; };
+		B4DA51352A3B611A006C12ED /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA51342A3B611A006C12ED /* NotificationsView.swift */; };
+		B4DA51372A3B625F006C12ED /* CustomToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA51362A3B625F006C12ED /* CustomToggleCell.swift */; };
 		B4E439A02A17BD1D00FFE907 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */; };
 		B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */; };
 		B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */; };
@@ -143,6 +145,8 @@
 		B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
 		B4DA512F2A3B5C25006C12ED /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		B4DA51322A3B5EF3006C12ED /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B4DA51342A3B611A006C12ED /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		B4DA51362A3B625F006C12ED /* CustomToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleCell.swift; sourceTree = "<group>"; };
 		B4E4399F2A17BD1D00FFE907 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B4E4BAED2A165E9F00F108C1 /* ResponsiveCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomTextField.swift; sourceTree = "<group>"; };
 		B4E4BAEF2A1673B600F108C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 				B426F71F2A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift */,
 				B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */,
 				B4F09C492A38BD800056BD48 /* CustomTextFieldCopy.swift */,
+				B4DA51362A3B625F006C12ED /* CustomToggleCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				B4DA51322A3B5EF3006C12ED /* SettingsView.swift */,
+				B4DA51342A3B611A006C12ED /* NotificationsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -678,6 +684,8 @@
 				B4EC9EB92A1CECBF00940B2F /* InitialLogViewModel.swift in Sources */,
 				B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */,
 				B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */,
+				B4DA51352A3B611A006C12ED /* NotificationsView.swift in Sources */,
+				B4DA51372A3B625F006C12ED /* CustomToggleCell.swift in Sources */,
 				B4A4073B2A2A2C9F00F54357 /* EditProfileInfoView.swift in Sources */,
 				B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */,
 				B4F09C4A2A38BD800056BD48 /* CustomTextFieldCopy.swift in Sources */,
