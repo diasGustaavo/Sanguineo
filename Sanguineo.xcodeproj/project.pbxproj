@@ -42,6 +42,8 @@
 		B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */; };
 		B446510B2A3C8834005D2BB9 /* AboutThisVersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446510A2A3C8834005D2BB9 /* AboutThisVersionView.swift */; };
 		B446510D2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446510C2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift */; };
+		B446510F2A3C8DBA005D2BB9 /* SelectThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446510E2A3C8DBA005D2BB9 /* SelectThemeView.swift */; };
+		B44651112A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */; };
 		B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */; };
 		B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */; };
 		B4802FAA2A39DD450041A277 /* AddressBasicComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4802FA92A39DD450041A277 /* AddressBasicComponentView.swift */; };
@@ -126,6 +128,8 @@
 		B43454622A277D69000BC1EF /* ReusablePersonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePersonCellView.swift; sourceTree = "<group>"; };
 		B446510A2A3C8834005D2BB9 /* AboutThisVersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisVersionView.swift; sourceTree = "<group>"; };
 		B446510C2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		B446510E2A3C8DBA005D2BB9 /* SelectThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectThemeView.swift; sourceTree = "<group>"; };
+		B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckmarkCell.swift; sourceTree = "<group>"; };
 		B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonCell.swift; sourceTree = "<group>"; };
 		B4802FA92A39DD450041A277 /* AddressBasicComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBasicComponentView.swift; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 				B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */,
 				B4F09C492A38BD800056BD48 /* CustomTextFieldCopy.swift */,
 				B4DA51362A3B625F006C12ED /* CustomToggleCell.swift */,
+				B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				B4DA51342A3B611A006C12ED /* NotificationsView.swift */,
 				B446510A2A3C8834005D2BB9 /* AboutThisVersionView.swift */,
 				B446510C2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift */,
+				B446510E2A3C8DBA005D2BB9 /* SelectThemeView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -681,6 +687,7 @@
 				B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */,
 				B4DA51302A3B5C25006C12ED /* TermsView.swift in Sources */,
 				B418FF7C2A05293C00C05261 /* SanguineoApp.swift in Sources */,
+				B446510F2A3C8DBA005D2BB9 /* SelectThemeView.swift in Sources */,
 				B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */,
 				B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
@@ -691,6 +698,7 @@
 				B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */,
 				B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */,
 				B4DA51352A3B611A006C12ED /* NotificationsView.swift in Sources */,
+				B44651112A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift in Sources */,
 				B4DA51372A3B625F006C12ED /* CustomToggleCell.swift in Sources */,
 				B4A4073B2A2A2C9F00F54357 /* EditProfileInfoView.swift in Sources */,
 				B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */,

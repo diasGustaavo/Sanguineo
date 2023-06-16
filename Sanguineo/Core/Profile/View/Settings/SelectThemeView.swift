@@ -1,5 +1,5 @@
 //
-//  NotificationsView.swift
+//  SelectThemeView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 15/06/23.
@@ -7,11 +7,21 @@
 
 import SwiftUI
 
-struct NotificationsView: View {
+struct Option: Identifiable {
+    let id = UUID()
+    let symbol: String
+    let text: String
+}
+
+struct SelectThemeView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var notifications = false
-    @State var email = false
-    @State var sms = false
+    @State var selectedOption: String?
+
+    var options = [
+        Option(symbol: "window.shade.open", text: "Claro"),
+        Option(symbol: "window.shade.closed", text: "Escuro"),
+        Option(symbol: "globe.americas", text: "Padrão do sistema")
+    ]
     
     var body: some View {
         NavigationView {
@@ -41,29 +51,23 @@ struct NotificationsView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    HStack {
-                        Text("Como você quer receber novidades e lembretes do Sanguineo")
-                            .font(.custom("Nunito-Regular", size: 18))
-                        
-                        Spacer()
-                        
-                        Spacer().frame(width: 50)
+                    ForEach(options) { option in
+                        Button {
+                            withAnimation {
+                                selectedOption = option.text
+                            }
+                        } label: {
+                            CustomCheckmarkCell(leftSymbol: option.symbol, checkmarkText: option.text, isChecked: .constant(selectedOption == option.text))
+                        }
                     }
-                    .padding()
-                    
-                    CustomToggleCell(leftSymbol: "bell", toggleText: "Gerenciar notificações", isOn: $notifications)
-                    
-                    CustomToggleCell(leftSymbol: "paintpalette", toggleText: "Tema", isOn: $email)
-                    
-                    CustomToggleCell(leftSymbol: "info.circle", toggleText: "Sobre esta versão", isOn: $sms)
                 }
             }
         }
     }
 }
 
-struct NotificationsView_Previews: PreviewProvider {
+struct SelectThemeView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationsView()
+        SelectThemeView()
     }
 }

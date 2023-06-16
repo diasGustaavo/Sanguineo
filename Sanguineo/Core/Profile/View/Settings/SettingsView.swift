@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import AVFoundation
-import CoreLocation
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode

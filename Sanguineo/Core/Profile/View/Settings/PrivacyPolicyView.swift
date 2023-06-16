@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import AVFoundation
-import CoreLocation
 
 struct PrivacyPolicyView: View {
     @Environment(\.presentationMode) var presentationMode
