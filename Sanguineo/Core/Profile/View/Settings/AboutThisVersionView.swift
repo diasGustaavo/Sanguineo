@@ -40,7 +40,12 @@ struct AboutThisVersionView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    CustomCell(leftSymbol: "lock", buttonText: "Politica de privacidade")
+                    NavigationLink {
+                        PrivacyPolicyView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        CustomCell(leftSymbol: "lock", buttonText: "Politica de privacidade")
+                    }
                     
                     CustomCell(leftSymbol: "checkmark", buttonText: "Versão 1.00.01 (69962472700)", showRightButton: false)
                 }
