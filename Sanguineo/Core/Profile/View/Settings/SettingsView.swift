@@ -40,7 +40,12 @@ struct SettingsView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    CustomCell(leftSymbol: "bell", buttonText: "Gerenciar notificações")
+                    NavigationLink {
+                        NotificationsView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        CustomCell(leftSymbol: "bell", buttonText: "Gerenciar notificações")
+                    }
                     
                     CustomCell(leftSymbol: "paintpalette", buttonText: "Tema")
                     

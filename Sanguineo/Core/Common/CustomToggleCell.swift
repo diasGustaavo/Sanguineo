@@ -24,6 +24,7 @@ struct CustomToggleCell: View {
                 
                 Toggle("", isOn: $isOn)
                     .labelsHidden() // Hides the empty label
+                    .toggleStyle(SwitchToggleStyle(tint: .accentColor))
             }
             .padding()
             .foregroundColor(.primary)

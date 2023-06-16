@@ -11,6 +11,7 @@ struct CustomCell: View {
     let leftSymbol: String
     let buttonText: String
     let rightSymbol = "chevron.right"
+    var showRightButton: Bool = true
     
     var body: some View {
         VStack {
@@ -26,9 +27,11 @@ struct CustomCell: View {
                     .font(.custom("Nunito-SemiBold", size: 18))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Image(systemName: rightSymbol)
-                    .imageScale(.large)  // change this to adjust size
-                    .foregroundColor(.accentColor)
+                if showRightButton {
+                    Image(systemName: rightSymbol)
+                        .imageScale(.large)  // change this to adjust size
+                        .foregroundColor(.accentColor)
+                }
             }
             .padding()
             .foregroundColor(.primary)

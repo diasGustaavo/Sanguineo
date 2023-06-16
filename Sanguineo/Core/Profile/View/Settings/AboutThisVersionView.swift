@@ -1,5 +1,5 @@
 //
-//  NotificationsView.swift
+//  AboutThisVersionView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 15/06/23.
@@ -9,11 +9,8 @@ import SwiftUI
 import AVFoundation
 import CoreLocation
 
-struct NotificationsView: View {
+struct AboutThisVersionView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var notifications = false
-    @State var email = false
-    @State var sms = false
     
     var body: some View {
         NavigationView {
@@ -31,7 +28,7 @@ struct NotificationsView: View {
                     
                     Spacer()
                     
-                    Text("Gerenciar notificações")
+                    Text("Sobre esta versão")
                         .font(.custom("Nunito-Bold", size: 20))
                         .multilineTextAlignment(.center)
                     
@@ -43,29 +40,17 @@ struct NotificationsView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    HStack {
-                        Text("Como você quer receber novidades e lembretes do Sanguineo")
-                            .font(.custom("Nunito-Regular", size: 18))
-                        
-                        Spacer()
-                        
-                        Spacer().frame(width: 50)
-                    }
-                    .padding()
+                    CustomCell(leftSymbol: "lock", buttonText: "Politica de privacidade")
                     
-                    CustomToggleCell(leftSymbol: "bell", toggleText: "Gerenciar notificações", isOn: $notifications)
-                    
-                    CustomToggleCell(leftSymbol: "paintpalette", toggleText: "Tema", isOn: $email)
-                    
-                    CustomToggleCell(leftSymbol: "info.circle", toggleText: "Sobre esta versão", isOn: $sms)
+                    CustomCell(leftSymbol: "checkmark", buttonText: "Versão 1.00.01 (69962472700)", showRightButton: false)
                 }
             }
         }
     }
 }
 
-struct NotificationsView_Previews: PreviewProvider {
+struct AboutThisVersionView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationsView()
+        AboutThisVersionView()
     }
 }
