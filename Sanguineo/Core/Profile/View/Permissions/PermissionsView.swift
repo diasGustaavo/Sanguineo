@@ -7,12 +7,11 @@
 
 import SwiftUI
 import AVFoundation
-import CoreLocation
 
 struct PermissionsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var cameraPermission: Bool = false
-    @State private var gpsPermission: Bool = false
+    @ObservedObject private var locationManager = LocationManager()
     
     var body: some View {
         NavigationView {
@@ -78,42 +77,49 @@ struct PermissionsView: View {
                 .padding()
                 .padding(.horizontal, 4)
                 
-                HStack {
-                    Image(systemName: gpsPermission ? "checkmark.circle" : "xmark.circle")
-                        .padding(.trailing)
-                        .font(.custom("Nunito-SemiBold", size: 24))
-                        .if(gpsPermission, transform: { view in
-                            view.foregroundColor(.accentColor)
-                        })
-                        .if(!gpsPermission, transform: { view in
-                            view.foregroundColor(.red)
-                        })
-                    
-                    VStack {
-                        HStack {
-                            Text("Localização")
-                                .font(.custom("Nunito-Regular", size: 20))
-                            
-                            Spacer()
-                        }
-                        .padding(.vertical, 2)
+                Button {
+                    locationManager.requestLocationPermission()
+                } label: {
+                    HStack {
+                        Image(systemName: gpsPermission ? "checkmark.circle" : "xmark.circle")
+                            .padding(.trailing)
+                            .font(.custom("Nunito-SemiBold", size: 24))
+                            .if(gpsPermission, transform: { view in
+                                view.foregroundColor(.accentColor)
+                            })
+                            .if(!gpsPermission, transform: { view in
+                                view.foregroundColor(.red)
+                            })
                         
-                        HStack {
-                            Text("Nós utilizamos o GPS para localizar Hemocentros perto de sua localização")
-                                .font(.custom("Nunito-Light", size: 16))
+                        VStack {
+                            HStack {
+                                Text("Localização")
+                                    .font(.custom("Nunito-Regular", size: 20))
+                                
+                                Spacer()
+                            }
+                            .padding(.vertical, 2)
                             
-                            Spacer()
+                            HStack {
+                                Text("Nós utilizamos o GPS para localizar Hemocentros perto de sua localização")
+                                    .font(.custom("Nunito-Light", size: 16))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
+                            }
+                            .padding(.bottom, 2)
                         }
-                        .padding(.bottom, 2)
                     }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.accentColor, lineWidth: 0.8)
+                    )
+                    .padding(.horizontal)
+                    .padding(.horizontal, 4)
                 }
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.accentColor, lineWidth: 0.8)
-                )
-                .padding(.horizontal)
-                .padding(.horizontal, 4)
+                .foregroundColor(.black)
+
                 
                 Spacer()
             }
@@ -121,19 +127,17 @@ struct PermissionsView: View {
         .onAppear(perform: {
             DispatchQueue.main.async {
                 self.cameraPermission = AVCaptureDevice.authorizationStatus(for: .video) == .authorized
-                
-                if CLLocationManager.locationServicesEnabled() {
-                    switch CLLocationManager().authorizationStatus {
-                    case .authorizedAlways, .authorizedWhenInUse:
-                        self.gpsPermission = true
-                    default:
-                        self.gpsPermission = false
-                    }
-                } else {
-                    self.gpsPermission = false
-                }
             }
         })
+    }
+    
+    var gpsPermission: Bool {
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            return true
+        default:
+            return false
+        }
     }
 }
 

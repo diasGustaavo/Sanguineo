@@ -6,13 +6,9 @@
 //
 
 import SwiftUI
-import AVFoundation
-import CoreLocation
 
 struct TermsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var cameraPermission: Bool = false
-    @State private var gpsPermission: Bool = false
     
     var body: some View {
         NavigationView {
@@ -64,22 +60,6 @@ struct TermsView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            DispatchQueue.main.async {
-                self.cameraPermission = AVCaptureDevice.authorizationStatus(for: .video) == .authorized
-                
-                if CLLocationManager.locationServicesEnabled() {
-                    switch CLLocationManager().authorizationStatus {
-                    case .authorizedAlways, .authorizedWhenInUse:
-                        self.gpsPermission = true
-                    default:
-                        self.gpsPermission = false
-                    }
-                } else {
-                    self.gpsPermission = false
-                }
-            }
-        })
     }
 }
 
