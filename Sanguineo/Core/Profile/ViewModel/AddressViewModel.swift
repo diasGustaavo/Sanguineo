@@ -45,6 +45,7 @@ class AddressViewModel: ObservableObject {
     
     func addAddress(_ address: String) {
         addresses.append(address)
+        selectedAddress = address
     }
     
     func eraseAddress(_ address: String) {
