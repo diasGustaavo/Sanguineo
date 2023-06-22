@@ -13,7 +13,7 @@ struct TutorialView: View {
     
     init() {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "AccentColor")!
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor(named: "interColor")!
     }
     
     var body: some View {
@@ -25,6 +25,7 @@ struct TutorialView: View {
                 VamosLaView().tag(3)
             }
             .tabViewStyle(.page)
+            .accentColor(.pink)
             
             Button {
                 if selection != 3 {

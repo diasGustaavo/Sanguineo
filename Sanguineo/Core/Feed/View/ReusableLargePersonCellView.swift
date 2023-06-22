@@ -70,7 +70,7 @@ struct ReusableLargePersonCellView: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 12)
             .frame(maxWidth: UIScreen.screenWidth - 40)
-            .background(Color.gray.opacity(0.1))
+            .background(Color(uiColor: UIColor(named: "interColor2")!))
             .cornerRadius(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)

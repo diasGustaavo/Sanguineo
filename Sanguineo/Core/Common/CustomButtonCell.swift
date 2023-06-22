@@ -34,7 +34,6 @@ struct CustomButtonCell: View {
                 }
                 .padding()
                 .foregroundColor(.primary)
-                .background(Color.white)
             }
             
             Divider()

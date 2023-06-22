@@ -25,7 +25,7 @@ struct EditNameView: View {
                                 Image(systemName: "chevron.left")
                                     .font(.custom("Nunito-Semibold", size: 25))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                                     .padding(.trailing)
                             }
                             

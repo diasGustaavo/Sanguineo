@@ -30,6 +30,7 @@ struct AddressBasicComponentView: View {
                                     .font(.custom("Nunito-Regular", size: 22))
                                     .padding(.trailing, 2)
                                     .lineLimit(1)
+                                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                                 
                                 if isChecked {
                                     Image(systemName: "checkmark.circle")
@@ -47,13 +48,14 @@ struct AddressBasicComponentView: View {
                                 Text(area)  // Use the area property
                                     .font(.custom("Nunito-Light", size: 16))
                                     .lineLimit(2)
+                                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                                 
                                 Spacer()
                                 
                                 Spacer().frame(width: 50)
                             }
                         }
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
                     
                     VStack {
@@ -62,7 +64,7 @@ struct AddressBasicComponentView: View {
                         } label: {
                             Image(systemName: "ellipsis")
                                 .font(.custom("Nunito-SemiBold", size: 20))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                         }
                         
                         Spacer()
@@ -72,7 +74,7 @@ struct AddressBasicComponentView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.white)
+                .background(Color(uiColor: UIColor(named: "backColor")!))
                 .cornerRadius(8)
                 .if(isChecked, transform: { view in
                     view.overlay(

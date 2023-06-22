@@ -26,7 +26,7 @@ struct ResponsiveSimpleCustomTextField: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             TextField("", text: $content)
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                 .font(.custom(font, size: 20))
                 .keyboardType(keyboardType)  // Set the keyboard type
                 .introspectTextField { textField in
@@ -36,7 +36,7 @@ struct ResponsiveSimpleCustomTextField: View {
             
             Rectangle()
                 .frame(height: 1)
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
         }
         .padding(.horizontal)
         .padding(.bottom)

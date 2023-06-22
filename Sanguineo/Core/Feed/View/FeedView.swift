@@ -64,7 +64,7 @@ struct FeedView: View {
                             Text("Filtros")
                                 .font(.custom("Nunito-Regular", size: 14))
                                 .frame(height: 40)
-                                .foregroundColor(Color.black)
+                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                                 .padding(.trailing)
                         }
                         .overlay(
@@ -82,7 +82,7 @@ struct FeedView: View {
                             .font(.custom("Nunito-Regular", size: 14))
                             .multilineTextAlignment(.center)
                             .frame(height: 40)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .padding(.horizontal)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -100,7 +100,7 @@ struct FeedView: View {
                             .multilineTextAlignment(.center)
                             .frame(height: 40)
                             .padding(.horizontal)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
                                     .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)

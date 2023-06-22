@@ -68,7 +68,7 @@ struct ReusablePersonCellView: View {
             .padding(.vertical)
             .padding(.horizontal, 8)
             .frame(maxWidth: 240)
-            .background(Color.gray.opacity(0.1))
+            .background(Color(uiColor: UIColor(named: "interColor2")!))
             .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)

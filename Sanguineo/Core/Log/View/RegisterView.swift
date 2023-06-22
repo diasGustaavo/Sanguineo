@@ -305,7 +305,7 @@ struct ConfirmationCodeView: View {
                     } label: {
                         Text("Reenviar Codigo ")
                             .font(.custom("Nunito-Light", size: 14))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
                     
                     Spacer()
@@ -319,7 +319,7 @@ struct ConfirmationCodeView: View {
                     } label: {
                         Text("Ajuda")
                             .font(.custom("Nunito-Light", size: 14))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
                     
                     Spacer()

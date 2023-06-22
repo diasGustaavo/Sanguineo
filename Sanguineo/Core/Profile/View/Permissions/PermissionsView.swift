@@ -23,7 +23,7 @@ struct PermissionsView: View {
                         Image(systemName: "chevron.left")
                             .font(.custom("Nunito-Semibold", size: 25))
                             .multilineTextAlignment(.center)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .padding(.trailing)
                     }
                     
@@ -118,7 +118,7 @@ struct PermissionsView: View {
                     .padding(.horizontal)
                     .padding(.horizontal, 4)
                 }
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
 
                 
                 Spacer()

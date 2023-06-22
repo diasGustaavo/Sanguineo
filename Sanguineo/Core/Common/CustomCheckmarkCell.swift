@@ -31,7 +31,6 @@ struct CustomCheckmarkCell: View {
             }
             .padding()
             .foregroundColor(.primary)
-            .background(Color.white)
             
             Divider()
                 .frame(height: 1)

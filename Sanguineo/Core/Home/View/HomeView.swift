@@ -22,8 +22,11 @@ struct HomeView: View {
 //            }
 //        } else {
 //            NavigationBarView(viewModel: navigationBarViewModel)
+//                .onAppear {
+//                    settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+//                }
 //        }
-        
+//
         NavigationBarView(viewModel: navigationBarViewModel)
             .onAppear {
                 settingsViewModel.applyTheme(theme: settingsViewModel.theme)
@@ -36,5 +39,6 @@ struct ContentView_Previews: PreviewProvider {
         HomeView()
             .environmentObject(HomeViewModel())
             .environmentObject(InitialLogViewModel())
+            .environmentObject(SettingsViewModel())
     }
 }

@@ -24,7 +24,7 @@ struct AddressView: View {
                         Image(systemName: "chevron.left")
                             .font(.custom("Nunito-Semibold", size: 25))
                             .multilineTextAlignment(.center)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .padding(.trailing)
                     }
                     
@@ -74,7 +74,7 @@ struct AddressView: View {
                         }
                         .padding(.horizontal, 32)
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     .matchedGeometryEffect(id: "Button1", in: animation)
                     .transition(.move(edge: .trailing))
                 }
@@ -115,7 +115,7 @@ struct AddressView: View {
                                         .padding(.horizontal)
                                         .padding(.top)
                                 }
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             }
                         }
                         .transition(.move(edge: .leading))

@@ -75,7 +75,7 @@ struct AppointmentsView: View {
                     .padding(.horizontal)
                     .padding(.top, 8)
                 }
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                 
                 Button {
                     // some code
@@ -103,7 +103,7 @@ struct AppointmentsView: View {
                     .padding(.horizontal)
                     .padding(.top, 8)
                 }
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                 
                 Spacer()
             }

@@ -74,7 +74,7 @@ struct NavigationBarView: View {
                             Text("Início")
                                 .font(.system(size: 12))
                         }
-                    }.foregroundColor(viewModel.selectedTab == .home ? .accentColor : .black)
+                    }.foregroundColor(viewModel.selectedTab == .home ? .accentColor : Color(uiColor: UIColor(named: "frontColor")!))
                 }
                 .padding(.horizontal)
                 
@@ -96,7 +96,7 @@ struct NavigationBarView: View {
                             Text("Agendamentos")
                                 .font(.system(size: 12))
                         }
-                    }.foregroundColor(viewModel.selectedTab == .appointments ? .accentColor : .black)
+                    }.foregroundColor(viewModel.selectedTab == .appointments ? .accentColor : Color(uiColor: UIColor(named: "frontColor")!))
                 }
                 
                 Spacer()
@@ -117,7 +117,7 @@ struct NavigationBarView: View {
                             Text("Solicitação")
                                 .font(.system(size: 12))
                         }
-                    }.foregroundColor(viewModel.selectedTab == .request ? .accentColor : .black)
+                    }.foregroundColor(viewModel.selectedTab == .request ? .accentColor : Color(uiColor: UIColor(named: "frontColor")!))
                 }
                 .padding(.horizontal)
                 
@@ -139,7 +139,7 @@ struct NavigationBarView: View {
                             Text("Perfil")
                                 .font(.system(size: 12))
                         }
-                    }.foregroundColor(viewModel.selectedTab == .profile ? .accentColor : .black)
+                    }.foregroundColor(viewModel.selectedTab == .profile ? .accentColor : Color(uiColor: UIColor(named: "frontColor")!))
                 }
                 .padding(.horizontal)
                 

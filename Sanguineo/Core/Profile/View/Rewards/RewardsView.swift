@@ -27,7 +27,7 @@ struct RewardsView: View {
                             Image(systemName: "chevron.left")
                                 .font(.custom("Nunito-Semibold", size: 25))
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                                 .padding(.trailing)
                         }
                         
@@ -92,7 +92,7 @@ struct RewardsView: View {
                         RewardMainComponentView(stepsComplete: stepsComplete, productName: "rappi")
                             .padding(.horizontal, 24)
                             .padding(.bottom, 6)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
                     
                     NavigationLink {
@@ -101,7 +101,7 @@ struct RewardsView: View {
                     } label: {
                         RewardMainComponentView(stepsComplete: stepsComplete, productName: "ifood")
                             .padding(.horizontal, 24)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
                     
                     HStack {
@@ -119,7 +119,7 @@ struct RewardsView: View {
                             .navigationBarBackButtonHidden()
                     } label: {
                         RewardMainComponentView(stepsComplete: stepsComplete, productName: "renner")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .padding(.horizontal, 24)
                             .padding(.bottom, 6)
                     }

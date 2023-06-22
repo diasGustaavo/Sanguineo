@@ -78,7 +78,7 @@ struct RequestView: View {
                     .padding(.horizontal)
                     .padding(.top, 8)
                 }
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                 
                 Button {
                     // some code
@@ -106,7 +106,7 @@ struct RequestView: View {
                     .padding(.horizontal)
                     .padding(.top, 8)
                 }
-                .foregroundColor(.black)
+                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                 
                 Button {
                     // some action
