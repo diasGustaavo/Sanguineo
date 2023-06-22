@@ -42,12 +42,22 @@ struct SettingsView: View {
                         NotificationsView()
                             .navigationBarBackButtonHidden()
                     } label: {
-                        CustomCell(leftSymbol: "bell", buttonText: "Gerenciar notificações")
+                        CustomCell(leftSymbol: "bell", buttonText: "Gerenciar tema")
                     }
                     
-                    CustomCell(leftSymbol: "paintpalette", buttonText: "Tema")
+                    NavigationLink {
+                        SelectThemeView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        CustomCell(leftSymbol: "paintpalette", buttonText: "Tema")
+                    }
                     
-                    CustomCell(leftSymbol: "info.circle", buttonText: "Sobre esta versão")
+                    NavigationLink {
+                        AboutThisVersionView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        CustomCell(leftSymbol: "info.circle", buttonText: "Sobre esta versão")
+                    }
                 }
             }
         }

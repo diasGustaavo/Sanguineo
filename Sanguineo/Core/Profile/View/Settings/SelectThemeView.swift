@@ -15,20 +15,14 @@ struct Option: Identifiable {
 
 struct SelectThemeView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var selectedOption: String?
-
-    var options = [
-        Option(symbol: "window.shade.open", text: "Claro"),
-        Option(symbol: "window.shade.closed", text: "Escuro"),
-        Option(symbol: "globe.americas", text: "Padrão do sistema")
-    ]
+    @EnvironmentObject var viewModel: SettingsViewModel
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
                     Button {
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .font(.custom("Nunito-Semibold", size: 25))
@@ -51,15 +45,26 @@ struct SelectThemeView: View {
                 .padding(.horizontal, 6)
                 
                 ScrollView {
-                    ForEach(options) { option in
-                        Button {
-                            withAnimation {
-                                selectedOption = option.text
-                            }
-                        } label: {
-                            CustomCheckmarkCell(leftSymbol: option.symbol, checkmarkText: option.text, isChecked: .constant(selectedOption == option.text))
-                        }
-                    }
+                    CustomCheckmarkCell(
+                        leftSymbol: "window.shade.open",
+                        checkmarkText: "Claro",
+                        isChecked: viewModel.theme == "white",
+                        action: { viewModel.theme = "white" }
+                    )
+                    
+                    CustomCheckmarkCell(
+                        leftSymbol: "window.shade.closed",
+                        checkmarkText: "Escuro",
+                        isChecked: viewModel.theme == "dark",
+                        action: { viewModel.theme = "dark" }
+                    )
+                    
+                    CustomCheckmarkCell(
+                        leftSymbol: "globe.americas",
+                        checkmarkText: "Padrão do sistema",
+                        isChecked: viewModel.theme == "system",
+                        action: { viewModel.theme = "system" }
+                    )
                 }
             }
         }
@@ -68,6 +73,6 @@ struct SelectThemeView: View {
 
 struct SelectThemeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectThemeView()
+        SelectThemeView().environmentObject(SettingsViewModel())
     }
 }

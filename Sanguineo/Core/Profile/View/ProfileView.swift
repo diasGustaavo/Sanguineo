@@ -109,8 +109,11 @@ struct ProfileView: View {
                     CustomCell(leftSymbol: "doc.plaintext", buttonText: "Termos de uso")
                 }
                 
-                CustomButtonCell(leftSymbol: "gearshape", buttonText: "Configurações") {
-                    // some action
+                NavigationLink {
+                    SettingsView()
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "gearshape", buttonText: "Configurações")
                 }
                 
                 Spacer()

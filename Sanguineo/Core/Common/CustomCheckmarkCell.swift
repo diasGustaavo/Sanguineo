@@ -10,7 +10,8 @@ import SwiftUI
 struct CustomCheckmarkCell: View {
     let leftSymbol: String
     let checkmarkText: String
-    @Binding var isChecked: Bool
+    let isChecked: Bool
+    let action: () -> Void
     
     var body: some View {
         VStack {
@@ -22,7 +23,7 @@ struct CustomCheckmarkCell: View {
                     .font(.custom("Nunito-SemiBold", size: 18))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Button(action: { isChecked.toggle() }) {
+                Button(action: action) {
                     Image(systemName: isChecked ? "checkmark.square.fill" : "square")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
@@ -44,7 +45,9 @@ struct CustomCheckmarkCell_Previews: PreviewProvider {
     @State static var checkmarkStatus = false
 
     static var previews: some View {
-        CustomCheckmarkCell(leftSymbol: "star.fill", checkmarkText: "Custom Checkmark", isChecked: $checkmarkStatus)
-            .padding()
+        CustomCheckmarkCell(leftSymbol: "star.fill", checkmarkText: "Custom Checkmark", isChecked: checkmarkStatus) {
+            checkmarkStatus.toggle()
+        }
+        .padding()
     }
 }

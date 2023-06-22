@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
@@ -24,6 +25,9 @@ struct HomeView: View {
 //        }
         
         NavigationBarView(viewModel: navigationBarViewModel)
+            .onAppear {
+                settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+            }
     }
 }
 

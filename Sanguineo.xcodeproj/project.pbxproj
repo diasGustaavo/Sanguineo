@@ -44,6 +44,7 @@
 		B446510D2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446510C2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift */; };
 		B446510F2A3C8DBA005D2BB9 /* SelectThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446510E2A3C8DBA005D2BB9 /* SelectThemeView.swift */; };
 		B44651112A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */; };
+		B44651132A3C9549005D2BB9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44651122A3C9549005D2BB9 /* SettingsViewModel.swift */; };
 		B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */; };
 		B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */; };
 		B4802FAA2A39DD450041A277 /* AddressBasicComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4802FA92A39DD450041A277 /* AddressBasicComponentView.swift */; };
@@ -130,6 +131,7 @@
 		B446510C2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		B446510E2A3C8DBA005D2BB9 /* SelectThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectThemeView.swift; sourceTree = "<group>"; };
 		B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckmarkCell.swift; sourceTree = "<group>"; };
+		B44651122A3C9549005D2BB9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B46838CE2A28C02600BC1630 /* CustomButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonCell.swift; sourceTree = "<group>"; };
 		B4802FA92A39DD450041A277 /* AddressBasicComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBasicComponentView.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			children = (
 				B46838CC2A28BAD800BC1630 /* ProfileViewModel.swift */,
 				B4802FAE2A39F4330041A277 /* AddressViewModel.swift */,
+				B44651122A3C9549005D2BB9 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				B4F09C482A38B7970056BD48 /* RewardsDetailedView.swift in Sources */,
 				B4802FAA2A39DD450041A277 /* AddressBasicComponentView.swift in Sources */,
 				B4DA51332A3B5EF3006C12ED /* SettingsView.swift in Sources */,
+				B44651132A3C9549005D2BB9 /* SettingsViewModel.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B426F72A2A2F74A400A8E231 /* EditAddresView.swift in Sources */,
 				B426F7262A2F650600A8E231 /* EditPhoneView.swift in Sources */,
