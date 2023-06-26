@@ -9,13 +9,7 @@ import SwiftUI
 
 struct MakeRequestView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var cirurgia = false
-    @State var acidente = false
-    @State var doenca = false
-    @State var tratamento = false
-    @State var outro = false
-    @State var aditionalInfo = ""
-    @State var hemocentro = ""
+    @ObservedObject var viewModel: MakeRequestViewModel = MakeRequestViewModel()
     
     var body: some View {
         NavigationView {
@@ -96,19 +90,19 @@ struct MakeRequestView: View {
                     HStack(spacing: 14) {
                         Button {
                             withAnimation {
-                                cirurgia.toggle()
+                                viewModel.cirurgia.toggle()
                             }
                         } label: {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Cirurgia")
                                     .font(.custom("Nunito", size: 16))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(cirurgia ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
+                                    .foregroundColor(viewModel.cirurgia ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 0)
                             .frame(height: 40, alignment: .center)
-                            .background(cirurgia ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .background(viewModel.cirurgia ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -118,19 +112,19 @@ struct MakeRequestView: View {
                         
                         Button {
                             withAnimation {
-                                acidente.toggle()
+                                viewModel.acidente.toggle()
                             }
                         } label: {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Acidente")
                                     .font(.custom("Nunito", size: 16))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(acidente ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
+                                    .foregroundColor(viewModel.acidente ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 0)
                             .frame(height: 40, alignment: .center)
-                            .background(acidente ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .background(viewModel.acidente ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -140,19 +134,19 @@ struct MakeRequestView: View {
                         
                         Button {
                             withAnimation {
-                                doenca.toggle()
+                                viewModel.doenca.toggle()
                             }
                         } label: {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Doença")
                                     .font(.custom("Nunito", size: 16))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(doenca ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
+                                    .foregroundColor(viewModel.doenca ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 0)
                             .frame(height: 40, alignment: .center)
-                            .background(doenca ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .background(viewModel.doenca ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -166,19 +160,19 @@ struct MakeRequestView: View {
                     HStack(spacing: 14) {
                         Button {
                             withAnimation {
-                                tratamento.toggle()
+                                viewModel.tratamento.toggle()
                             }
                         } label: {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Tratamento Médico")
                                     .font(.custom("Nunito", size: 16))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(tratamento ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
+                                    .foregroundColor(viewModel.tratamento ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 0)
                             .frame(height: 40, alignment: .center)
-                            .background(tratamento ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .background(viewModel.tratamento ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -188,19 +182,19 @@ struct MakeRequestView: View {
                         
                         Button {
                             withAnimation {
-                                outro.toggle()
+                                viewModel.outro.toggle()
                             }
                         } label: {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Outro")
                                     .font(.custom("Nunito", size: 16))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(outro ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
+                                    .foregroundColor(viewModel.outro ? Color(UIColor(named: "backColor")!) : Color(UIColor(named: "AccentColor")!))
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 0)
                             .frame(height: 40, alignment: .center)
-                            .background(outro ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .background(viewModel.outro ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
@@ -223,7 +217,7 @@ struct MakeRequestView: View {
                     .padding(.bottom, 8)
                     
                     HStack(alignment: .top, spacing: 10) {
-                        TextEditor(text: $aditionalInfo)
+                        TextEditor(text: $viewModel.additionalInfo)
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -243,7 +237,7 @@ struct MakeRequestView: View {
                     .padding(.top, 12)
                     .padding(.bottom, 8)
                     
-                    CustomTextField(content: $hemocentro, logo: "magnifyingglass", placeholder: "Nome do hemocentro")
+                    CustomTextField(content: $viewModel.hemocentro, logo: "stethoscope", placeholder: "Nome do hemocentro")
                     
                     Button {
                         self.presentationMode.wrappedValue.dismiss()
