@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RequestView: View {
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @StateObject var viewModel: RequestViewModel = RequestViewModel()
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -53,64 +56,36 @@ struct RequestView: View {
                     }
                     .padding()
                     
-                    Button {
-                        // some code
-                    } label: {
-                        HStack {
-                            Image(uiImage: UIImage(named: "3d_avatar_3")!)
-                                .resizable()
-                                .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
-                            
-                            Spacer()
-                            
-                            Text("Principais informações do agendamento")
-                                .font(.custom("Nunito-Light", size: 16))
-                                .multilineTextAlignment(.leading)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "pencil")
+                    ForEach(viewModel.requests, id: \.self) { req in
+                        NavigationLink(destination: MakeRequestView(requestID: req.id ?? "", viewModel: viewModel).navigationBarBackButtonHidden()) {
+                            HStack {
+                                Image(uiImage: UIImage(named: "3davatar2")!)
+                                    .resizable()
+                                    .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                
+                                Spacer()
+                                
+                                Text("Principais informações do agendamento")
+                                    .font(.custom("Nunito-Light", size: 16))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "pencil")
+                            }
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.accentColor, lineWidth: 0.8)
+                            )
+                            .padding(.horizontal)
+                            .padding(.top, 8)
                         }
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.accentColor, lineWidth: 0.8)
-                        )
-                        .padding(.horizontal)
-                        .padding(.top, 8)
+                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     }
-                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                    
-                    Button {
-                        // some code
-                    } label: {
-                        HStack {
-                            Image(uiImage: UIImage(named: "3d_avatar_7")!)
-                                .resizable()
-                                .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
-                            
-                            Spacer()
-                            
-                            Text("Principais informações do agendamento")
-                                .font(.custom("Nunito-Light", size: 16))
-                                .multilineTextAlignment(.leading)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "pencil")
-                        }
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.accentColor, lineWidth: 0.8)
-                        )
-                        .padding(.horizontal)
-                        .padding(.top, 8)
-                    }
-                    .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     
                     NavigationLink {
-                        MakeRequestView()
+                        MakeRequestView(requestID: "", viewModel: viewModel)
                             .navigationBarBackButtonHidden()
                     } label: {
                         HStack {
@@ -126,10 +101,15 @@ struct RequestView: View {
                         .cornerRadius(7)
                         .padding()
                     }
-
+                    
                     
                     Spacer()
                 }
+            }
+        }
+        .onAppear {
+            if let currentUserUID = initialLogViewModel.currentUser?.uid {
+                viewModel.fetchRequests(for: currentUserUID)
             }
         }
     }

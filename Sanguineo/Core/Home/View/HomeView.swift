@@ -14,23 +14,23 @@ struct HomeView: View {
     @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
-//        if !initialLogViewModel.isLoggedIn {
-//            if homeViewModel.isTutorialActive {
-//                TutorialView()
-//            } else {
-//                InitialLogView(initialLogViewModel: initialLogViewModel)
-//            }
-//        } else {
-//            NavigationBarView(viewModel: navigationBarViewModel)
-//                .onAppear {
-//                    settingsViewModel.applyTheme(theme: settingsViewModel.theme)
-//                }
-//        }
-//
-        NavigationBarView(viewModel: navigationBarViewModel)
-            .onAppear {
-                settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+        if !initialLogViewModel.isLoggedIn {
+            if homeViewModel.isTutorialActive {
+                TutorialView()
+            } else {
+                InitialLogView(initialLogViewModel: initialLogViewModel)
             }
+        } else {
+            NavigationBarView(viewModel: navigationBarViewModel)
+                .onAppear {
+                    settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+                }
+        }
+//
+//        NavigationBarView(viewModel: navigationBarViewModel)
+//            .onAppear {
+//                settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+//            }
     }
 }
 

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct MakeRequestView: View {
+    let requestID: String
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: MakeRequestViewModel = MakeRequestViewModel()
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @ObservedObject var viewModel: RequestViewModel
     
     var body: some View {
         NavigationView {
@@ -240,7 +242,10 @@ struct MakeRequestView: View {
                     CustomTextField(content: $viewModel.hemocentro, logo: "stethoscope", placeholder: "Nome do hemocentro")
                     
                     Button {
-                        self.presentationMode.wrappedValue.dismiss()
+                        if let currentUserUID = initialLogViewModel.currentUser?.uid {
+                            viewModel.saveRequest(authorUID: currentUserUID, reqUID: requestID)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     } label: {
                         HStack {
                             Spacer()
@@ -260,11 +265,14 @@ struct MakeRequestView: View {
                 .padding(.horizontal, 24)
             }
         }
+        .onAppear {
+            viewModel.fetchRequest(withId: requestID)
+        }
     }
 }
 
 struct MakeRequestView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeRequestView()
+        MakeRequestView(requestID: "", viewModel: RequestViewModel())
     }
 }
