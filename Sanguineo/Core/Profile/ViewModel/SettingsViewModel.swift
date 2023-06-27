@@ -26,7 +26,6 @@ class SettingsViewModel: ObservableObject {
         mailNotifications = UserDefaults.standard.bool(forKey: "mailNotifications")
         phoneNotifications = UserDefaults.standard.bool(forKey: "phoneNotifications")
         theme = UserDefaults.standard.string(forKey: "theme") ?? "system"
-        print("theme obtained: \(theme)")
         
         $appNotifications
             .sink { newValue in
@@ -50,13 +49,10 @@ class SettingsViewModel: ObservableObject {
     func applyTheme(theme: String) {
         switch theme {
         case "dark":
-            print("applying dark")
             toggleDarkMode()
         case "white":
-            print("applying white")
             toggleWhiteMode()
         default:
-            print("applying default")
             toggleSystemMode()
         }
     }
