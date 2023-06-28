@@ -50,7 +50,7 @@ struct NavigationBarView: View {
                     }
                 }
             case .profile:
-                ProfileView(profile: profileViewModel, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "(83) 98147-4782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22")
+                ProfileView(profile: profileViewModel, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "(83) 98147-4782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22", gender: 1)
             case .request: // New case added
                 RequestView()
             }

@@ -64,6 +64,7 @@ class InitialLogViewModel: ObservableObject {
         addressCEP: String = "",
         addressSt: String = "",
         addressNumber: String = "",
+        complement: String = "",
         phonenum: String,
         bloodtype: String,
         age: String = "",
@@ -110,7 +111,7 @@ class InitialLogViewModel: ObservableObject {
                 self.fetchUser()
             }
 
-            let user = User(uid: firebaseUser.uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+            let user = User(uid: firebaseUser.uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
             self.currentUser = user
 
             do {

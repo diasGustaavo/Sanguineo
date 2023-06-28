@@ -22,6 +22,8 @@ struct ProfileView: View {
     @State var number: String
     @State var complement: String
     
+    @State var gender: Int
+    
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     
     var body: some View {
@@ -75,7 +77,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 NavigationLink {
-                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email, phone: $phone, CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement)
+                    EditProfileInfoView(name: $name, fakeName: $fakeName, email: $email, phone: $phone, CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement, gender: $gender)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Editar informações do perfil")
@@ -154,6 +156,6 @@ struct ProfileView_Previews: PreviewProvider {
             age: 30
         )
         
-        ProfileView(profile: profile, name: "guga dias", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "83981474782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22")
+        ProfileView(profile: profile, name: "guga dias", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "83981474782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22", gender: 1)
     }
 }

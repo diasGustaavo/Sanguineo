@@ -20,6 +20,8 @@ struct EditProfileInfoView: View {
     @Binding var number: String
     @Binding var complement: String
     
+    @Binding var gender: Int
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -87,10 +89,14 @@ struct EditProfileInfoView: View {
                 CustomButtonCell(leftSymbol: "drop", buttonText: "Editar tipo sanguíneo") {
                     // some action
                 }
-                CustomButtonCell(leftSymbol: "hand.raised.square.on.square", buttonText: "Editar gênero") {
-                    // some action
-                }
                 
+                NavigationLink {
+                    EditGenderView(selectedGender: $gender)
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "hand.raised.square.on.square", buttonText: "Editar gênero")
+                }
+
                 Spacer()
             }
         }
@@ -99,6 +105,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"), CEP: Binding.constant("58073343"), neighborhood: Binding.constant("Cidade dos Colibris"), street: Binding.constant("Rua Simas Turbo"), number: Binding.constant("69"), complement: Binding.constant("22"))
+        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"), CEP: Binding.constant("58073343"), neighborhood: Binding.constant("Cidade dos Colibris"), street: Binding.constant("Rua Simas Turbo"), number: Binding.constant("69"), complement: Binding.constant("22"), gender: .constant(1))
     }
 }

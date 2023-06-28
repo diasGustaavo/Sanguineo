@@ -38,7 +38,7 @@ class UserService: ObservableObject {
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: "A", phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
                 self.user = user
             } else {
                 print("DEBUG: Error parsing user data to Swift properties")
@@ -66,7 +66,7 @@ class UserService: ObservableObject {
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: "A", phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
                 self.user = user
                 completion()
             } else {
