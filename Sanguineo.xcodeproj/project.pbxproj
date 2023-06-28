@@ -68,6 +68,7 @@
 		B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A407362A2A0EAA00F54357 /* DonateView.swift */; };
 		B4A4073B2A2A2C9F00F54357 /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */; };
 		B4B784752A4C672A003DF2B5 /* EditGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B784742A4C672A003DF2B5 /* EditGenderView.swift */; };
+		B4B784772A4C6C2A003DF2B5 /* AboutBloodtypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B784762A4C6C2A003DF2B5 /* AboutBloodtypesView.swift */; };
 		B4C8BBDC2A4B156C00CFD598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C8BBDB2A4B156C00CFD598 /* Request.swift */; };
 		B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03DE2A1F8A7E00DC04E2 /* User.swift */; };
 		B4CB03E22A1F8D5800DC04E2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03E12A1F8D5800DC04E2 /* UserService.swift */; };
@@ -156,6 +157,7 @@
 		B4A407362A2A0EAA00F54357 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
 		B4A4073A2A2A2C9F00F54357 /* EditProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
 		B4B784742A4C672A003DF2B5 /* EditGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGenderView.swift; sourceTree = "<group>"; };
+		B4B784762A4C6C2A003DF2B5 /* AboutBloodtypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutBloodtypesView.swift; sourceTree = "<group>"; };
 		B4C8BBDB2A4B156C00CFD598 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4CB03E12A1F8D5800DC04E2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				B426F7252A2F650600A8E231 /* EditPhoneView.swift */,
 				B426F7292A2F74A400A8E231 /* EditAddresView.swift */,
 				B4B784742A4C672A003DF2B5 /* EditGenderView.swift */,
+				B4B784762A4C6C2A003DF2B5 /* AboutBloodtypesView.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				B4F09C482A38B7970056BD48 /* RewardsDetailedView.swift in Sources */,
 				B4802FAA2A39DD450041A277 /* AddressBasicComponentView.swift in Sources */,
 				B4DA51332A3B5EF3006C12ED /* SettingsView.swift in Sources */,
+				B4B784772A4C6C2A003DF2B5 /* AboutBloodtypesView.swift in Sources */,
 				B44651132A3C9549005D2BB9 /* SettingsViewModel.swift in Sources */,
 				B4EC9EB72A1CE83200940B2F /* ImagePicker.swift in Sources */,
 				B426F72A2A2F74A400A8E231 /* EditAddresView.swift in Sources */,

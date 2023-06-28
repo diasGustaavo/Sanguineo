@@ -55,46 +55,49 @@ struct EditProfileInfoView: View {
                     EditNameView(name: $name)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "person", buttonText: "Editar nome")
+                    CustomCell(leftSymbol: "person", buttonText: "Nome")
                 }
                 
                 NavigationLink {
                     EditSocialNameView(name: $name)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "theatermasks", buttonText: "Editar nome social")
+                    CustomCell(leftSymbol: "theatermasks", buttonText: "Nome Social")
                 }
                 
                 NavigationLink {
                     EditEmailView(email: $email)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "envelope", buttonText: "Editar e-mail")
+                    CustomCell(leftSymbol: "envelope", buttonText: "E-mail")
                 }
                 
                 NavigationLink {
                     EditPhoneView(phone: $phone)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "phone", buttonText: "Editar telefone")
+                    CustomCell(leftSymbol: "phone", buttonText: "Telefone")
                 }
                 
                 NavigationLink {
                     EditAddressView(CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "mappin.and.ellipse", buttonText: "Editar endereço")
+                    CustomCell(leftSymbol: "mappin.and.ellipse", buttonText: "Endereço")
                 }
                 
-                CustomButtonCell(leftSymbol: "drop", buttonText: "Editar tipo sanguíneo") {
-                    // some action
+                NavigationLink {
+                    AboutBloodtypesView()
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    CustomCell(leftSymbol: "drop", buttonText: "Tipos Sanguíneos")
                 }
                 
                 NavigationLink {
                     EditGenderView(selectedGender: $gender)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    CustomCell(leftSymbol: "hand.raised.square.on.square", buttonText: "Editar gênero")
+                    CustomCell(leftSymbol: "hand.raised.square.on.square", buttonText: "Gênero")
                 }
 
                 Spacer()
