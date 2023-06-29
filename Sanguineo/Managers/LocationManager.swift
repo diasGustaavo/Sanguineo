@@ -14,7 +14,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     override init() {
         self.locationManager = CLLocationManager()
-        print("authorizationStatus: \(self.locationManager.authorizationStatus)")
         self.authorizationStatus = self.locationManager.authorizationStatus
         
         super.init()

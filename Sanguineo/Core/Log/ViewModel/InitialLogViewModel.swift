@@ -68,6 +68,7 @@ class InitialLogViewModel: ObservableObject {
         phonenum: String,
         bloodtype: String,
         age: String = "",
+        gender: String = "",
         selectedImage: UIImage
     ) {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -111,7 +112,7 @@ class InitialLogViewModel: ObservableObject {
                 self.fetchUser()
             }
 
-            let user = User(uid: firebaseUser.uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+            let user = User(uid: firebaseUser.uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender)
             self.currentUser = user
 
             do {

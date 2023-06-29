@@ -34,14 +34,17 @@ class UserService: ObservableObject {
                let addressCEP = data["addressCEP"] as? String,
                let addressSt = data["addressSt"] as? String,
                let addressNumber = data["addressNumber"] as? String,
+               let complement = data["complement"] as? String,
                let phonenum = data["phonenum"] as? String,
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
-               let age = data["age"] as? String {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: "A", phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+               let age = data["age"] as? String,
+               let gender = data["gender"] as? String
+            {
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender)
                 self.user = user
             } else {
-                print("DEBUG: Error parsing user data to Swift properties")
+                print("DEBUG: Error parsing user data to Swift properties fetchUser")
             }
         }
     }
@@ -62,15 +65,17 @@ class UserService: ObservableObject {
                let addressCEP = data["addressCEP"] as? String,
                let addressSt = data["addressSt"] as? String,
                let addressNumber = data["addressNumber"] as? String,
+               let complement = data["complement"] as? String,
                let phonenum = data["phonenum"] as? String,
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
-               let age = data["age"] as? String {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: "A", phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age)
+               let age = data["age"] as? String,
+               let gender = data["gender"] as? String {
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender)
                 self.user = user
                 completion()
             } else {
-                print("DEBUG: Error parsing user data to Swift properties")
+                print("DEBUG: Error parsing user data to Swift properties fetchUserAndDo")
             }
         }
     }
