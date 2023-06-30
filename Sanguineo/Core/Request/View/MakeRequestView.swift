@@ -227,7 +227,7 @@ struct MakeRequestView: View {
                     }
                     .padding(.top, 8)
                     .padding(.bottom, 5)
-                    .frame(maxWidth: .infinity, minHeight: 180, maxHeight: 180, alignment: .top)
+                    .frame(maxWidth: .infinity, minHeight: 140, maxHeight: 140, alignment: .top)
                     
                     HStack {
                         Text("Hemocentros")
