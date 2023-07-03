@@ -62,14 +62,14 @@
 		B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A407362A2A0EAA00F54357 /* DonateView.swift */; };
 		B4AD4F5D2A52EDB700320F2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AD4F5C2A52EDB700320F2F /* GoogleService-Info.plist */; };
 		B4AD4F5F2A52EDF500320F2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F5E2A52EDF500320F2F /* UserService.swift */; };
-		B4AD4F7C2A52EEBC00320F2F /* EditEmailView.swift 08-52-54-318.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F742A52EEBC00320F2F /* EditEmailView.swift 08-52-54-318.swift */; };
-		B4AD4F7D2A52EEBC00320F2F /* EditPhoneView.swift 08-52-54-318.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift 08-52-54-318.swift */; };
-		B4AD4F7E2A52EEBC00320F2F /* EditAddresView.swift 08-55-04-182.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F762A52EEBC00320F2F /* EditAddresView.swift 08-55-04-182.swift */; };
-		B4AD4F7F2A52EEBC00320F2F /* EditGenderView.swift 08-52-54-316.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F772A52EEBC00320F2F /* EditGenderView.swift 08-52-54-316.swift */; };
-		B4AD4F802A52EEBC00320F2F /* EditProfileInfoView.swift 08-52-54-317.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift 08-52-54-317.swift */; };
-		B4AD4F812A52EEBC00320F2F /* AboutBloodtypesView.swift 08-55-04-216.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift 08-55-04-216.swift */; };
-		B4AD4F822A52EEBC00320F2F /* EditNameView.swift 08-52-54-315.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift 08-52-54-315.swift */; };
-		B4AD4F832A52EEBC00320F2F /* EditSocialNameView.swift 08-52-54-317.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift 08-52-54-317.swift */; };
+		B4AD4F7C2A52EEBC00320F2F /* EditEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F742A52EEBC00320F2F /* EditEmailView.swift */; };
+		B4AD4F7D2A52EEBC00320F2F /* EditPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift */; };
+		B4AD4F7E2A52EEBC00320F2F /* EditAddresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F762A52EEBC00320F2F /* EditAddresView.swift */; };
+		B4AD4F7F2A52EEBC00320F2F /* EditGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F772A52EEBC00320F2F /* EditGenderView.swift */; };
+		B4AD4F802A52EEBC00320F2F /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift */; };
+		B4AD4F812A52EEBC00320F2F /* AboutBloodtypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift */; };
+		B4AD4F822A52EEBC00320F2F /* EditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift */; };
+		B4AD4F832A52EEBC00320F2F /* EditSocialNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift */; };
 		B4C8BBDC2A4B156C00CFD598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C8BBDB2A4B156C00CFD598 /* Request.swift */; };
 		B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03DE2A1F8A7E00DC04E2 /* User.swift */; };
 		B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */; };
@@ -151,14 +151,14 @@
 		B4A407362A2A0EAA00F54357 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
 		B4AD4F5C2A52EDB700320F2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4AD4F5E2A52EDF500320F2F /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		B4AD4F742A52EEBC00320F2F /* EditEmailView.swift 08-52-54-318.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditEmailView.swift 08-52-54-318.swift"; sourceTree = "<group>"; };
-		B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift 08-52-54-318.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditPhoneView.swift 08-52-54-318.swift"; sourceTree = "<group>"; };
-		B4AD4F762A52EEBC00320F2F /* EditAddresView.swift 08-55-04-182.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditAddresView.swift 08-55-04-182.swift"; sourceTree = "<group>"; };
-		B4AD4F772A52EEBC00320F2F /* EditGenderView.swift 08-52-54-316.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditGenderView.swift 08-52-54-316.swift"; sourceTree = "<group>"; };
-		B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift 08-52-54-317.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditProfileInfoView.swift 08-52-54-317.swift"; sourceTree = "<group>"; };
-		B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift 08-55-04-216.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AboutBloodtypesView.swift 08-55-04-216.swift"; sourceTree = "<group>"; };
-		B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift 08-52-54-315.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditNameView.swift 08-52-54-315.swift"; sourceTree = "<group>"; };
-		B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift 08-52-54-317.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditSocialNameView.swift 08-52-54-317.swift"; sourceTree = "<group>"; };
+		B4AD4F742A52EEBC00320F2F /* EditEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEmailView.swift; sourceTree = "<group>"; };
+		B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhoneView.swift; sourceTree = "<group>"; };
+		B4AD4F762A52EEBC00320F2F /* EditAddresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAddresView.swift; sourceTree = "<group>"; };
+		B4AD4F772A52EEBC00320F2F /* EditGenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGenderView.swift; sourceTree = "<group>"; };
+		B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
+		B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutBloodtypesView.swift; sourceTree = "<group>"; };
+		B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameView.swift; sourceTree = "<group>"; };
+		B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSocialNameView.swift; sourceTree = "<group>"; };
 		B4C8BBDB2A4B156C00CFD598 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomPicker.swift; sourceTree = "<group>"; };
@@ -566,14 +566,14 @@
 		B4F09C3D2A3896270056BD48 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
-				B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift 08-55-04-216.swift */,
-				B4AD4F762A52EEBC00320F2F /* EditAddresView.swift 08-55-04-182.swift */,
-				B4AD4F742A52EEBC00320F2F /* EditEmailView.swift 08-52-54-318.swift */,
-				B4AD4F772A52EEBC00320F2F /* EditGenderView.swift 08-52-54-316.swift */,
-				B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift 08-52-54-315.swift */,
-				B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift 08-52-54-318.swift */,
-				B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift 08-52-54-317.swift */,
-				B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift 08-52-54-317.swift */,
+				B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift */,
+				B4AD4F762A52EEBC00320F2F /* EditAddresView.swift */,
+				B4AD4F742A52EEBC00320F2F /* EditEmailView.swift */,
+				B4AD4F772A52EEBC00320F2F /* EditGenderView.swift */,
+				B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift */,
+				B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift */,
+				B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift */,
+				B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -695,7 +695,7 @@
 				B4F09C402A3896990056BD48 /* RewardMainComponentView.swift in Sources */,
 				B4802FB12A3A0D780041A277 /* AddressSearchedItemView.swift in Sources */,
 				B40B93872A28DBCC004126DB /* ReusableLargePersonCellView.swift in Sources */,
-				B4AD4F812A52EEBC00320F2F /* AboutBloodtypesView.swift 08-55-04-216.swift in Sources */,
+				B4AD4F812A52EEBC00320F2F /* AboutBloodtypesView.swift in Sources */,
 				B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */,
 				B4F09C422A389D570056BD48 /* ViewIf.swift in Sources */,
 				B483BF392A262CA50005746D /* NavigationBarViewModel.swift in Sources */,
@@ -707,26 +707,26 @@
 				B483BF372A262B400005746D /* NavigationBarView.swift in Sources */,
 				B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
-				B4AD4F802A52EEBC00320F2F /* EditProfileInfoView.swift 08-52-54-317.swift in Sources */,
-				B4AD4F7D2A52EEBC00320F2F /* EditPhoneView.swift 08-52-54-318.swift in Sources */,
+				B4AD4F802A52EEBC00320F2F /* EditProfileInfoView.swift in Sources */,
+				B4AD4F7D2A52EEBC00320F2F /* EditPhoneView.swift in Sources */,
 				B4EC9EB92A1CECBF00940B2F /* InitialLogViewModel.swift in Sources */,
-				B4AD4F832A52EEBC00320F2F /* EditSocialNameView.swift 08-52-54-317.swift in Sources */,
+				B4AD4F832A52EEBC00320F2F /* EditSocialNameView.swift in Sources */,
 				B46838CF2A28C02600BC1630 /* CustomButtonCell.swift in Sources */,
 				B46838CD2A28BAD800BC1630 /* ProfileViewModel.swift in Sources */,
 				B4DA51352A3B611A006C12ED /* NotificationsView.swift in Sources */,
-				B4AD4F7E2A52EEBC00320F2F /* EditAddresView.swift 08-55-04-182.swift in Sources */,
+				B4AD4F7E2A52EEBC00320F2F /* EditAddresView.swift in Sources */,
 				B44651112A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift in Sources */,
 				B4DA51372A3B625F006C12ED /* CustomToggleCell.swift in Sources */,
 				B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */,
 				B4AD4F5F2A52EDF500320F2F /* UserService.swift in Sources */,
 				B4F09C4A2A38BD800056BD48 /* CustomTextFieldCopy.swift in Sources */,
-				B4AD4F822A52EEBC00320F2F /* EditNameView.swift 08-52-54-315.swift in Sources */,
+				B4AD4F822A52EEBC00320F2F /* EditNameView.swift in Sources */,
 				B41F5B022A33627A00E9465A /* RequestView.swift in Sources */,
 				B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */,
 				B483BF462A262E050005746D /* AppointmentsView.swift in Sources */,
 				B4FC5E752A1BB5D400CC2BBC /* CGImageExtension.swift in Sources */,
 				B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */,
-				B4AD4F7F2A52EEBC00320F2F /* EditGenderView.swift 08-52-54-316.swift in Sources */,
+				B4AD4F7F2A52EEBC00320F2F /* EditGenderView.swift in Sources */,
 				B4802FAC2A39EA1F0041A277 /* AddressView.swift in Sources */,
 				B4C8BBDC2A4B156C00CFD598 /* Request.swift in Sources */,
 				B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */,
@@ -743,7 +743,7 @@
 				B49830B22A49C26900F966EE /* MakeRequestView.swift in Sources */,
 				B4E4BAF02A1673B600F108C1 /* LoginViewModel.swift in Sources */,
 				B446510D2A3C8A6A005D2BB9 /* PrivacyPolicyView.swift in Sources */,
-				B4AD4F7C2A52EEBC00320F2F /* EditEmailView.swift 08-52-54-318.swift in Sources */,
+				B4AD4F7C2A52EEBC00320F2F /* EditEmailView.swift in Sources */,
 				B4802FAF2A39F4330041A277 /* AddressViewModel.swift in Sources */,
 				B426F7202A2F559000A8E231 /* ResponsiveSimpleCustomTextField.swift in Sources */,
 				B414A4A62A44C5FF000168E7 /* LocationManager.swift in Sources */,
