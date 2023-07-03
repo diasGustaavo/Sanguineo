@@ -39,9 +39,10 @@ class UserService: ObservableObject {
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String,
-               let gender = data["gender"] as? String
-            {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender)
+               let gender = data["gender"] as? String,
+               let location = data["location"] as? GeoPoint {
+                let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, location: userLocation)
                 self.user = user
             } else {
                 print("DEBUG: Error parsing user data to Swift properties fetchUser")
@@ -49,7 +50,8 @@ class UserService: ObservableObject {
         }
     }
     
-    func updateUser(fullname: String? = nil,
+    func updateUser(location: User.Location? = nil,
+                    fullname: String? = nil,
                     fakename: String? = nil,
                     email: String? = nil,
                     addressCEP: String? = nil,
@@ -78,6 +80,9 @@ class UserService: ObservableObject {
         if let identityID = identityID { updatedData["identityID"] = identityID }
         if let age = age { updatedData["age"] = age }
         if let gender = gender { updatedData["gender"] = gender }
+        if let location = location {
+            updatedData["location"] = GeoPoint(latitude: location.latitude, longitude: location.longitude)
+        }
 
         // Only attempt an update if there is data to update
         if !updatedData.isEmpty {
@@ -90,7 +95,7 @@ class UserService: ObservableObject {
             }
         }
     }
-    
+
     func fetchUserAndDo(completion: @escaping () -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -112,8 +117,10 @@ class UserService: ObservableObject {
                let bloodtype = data["bloodtype"] as? String,
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String,
-               let gender = data["gender"] as? String {
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender)
+               let gender = data["gender"] as? String,
+               let location = data["location"] as? GeoPoint {
+                let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, location: userLocation)
                 self.user = user
                 completion()
             } else {
@@ -121,18 +128,4 @@ class UserService: ObservableObject {
             }
         }
     }
-    
-    // FETCH USER FUNCTION W/O COMBINE
-    
-    //    static func fetchUser(completion: @escaping(User) -> Void) {
-    //        guard let uid = Auth.auth().currentUser?.uid else { return }
-    //
-    //        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
-    //            guard let snapshot = snapshot else { return }
-    //
-    //            guard let user = try? snapshot.data(as: User.self) else { return }
-    //
-    //            completion(user)
-    //        }
-    //    }
 }

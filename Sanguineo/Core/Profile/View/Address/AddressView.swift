@@ -66,7 +66,7 @@ struct AddressView: View {
                             }
                             
                             HStack {
-                                Text(addressViewModel.currentLocation)
+                                Text("\(addressViewModel.currentLocation?.street ?? ""), \(addressViewModel.currentLocation?.number ?? ""), \(addressViewModel.currentLocation?.neighborhood ?? ""), \(addressViewModel.currentLocation?.city ?? ""), \(addressViewModel.currentLocation?.state ?? "")")
                                     .font(.custom("Nunito-Light", size: 16))
                                 
                                 Spacer()
@@ -87,7 +87,6 @@ struct AddressView: View {
                             Spacer().frame(height: 10)
                             
                             ForEach(addressViewModel.addresses, id: \.self) { address in
-                                let addressComponents = address.components(separatedBy: ",")
                                 AddressBasicComponentView(isChecked: .constant(addressViewModel.selectedAddress == address),
                                                           buttonFunction: {
                                     print("DEBUG: button selected")
@@ -98,7 +97,7 @@ struct AddressView: View {
                                                           eraseAddress: {
                                     print("DEBUG: button erased")
                                     self.addressViewModel.eraseAddress(address)
-                                }, street: addressComponents.first ?? "Rua desconhecida", area: addressComponents.dropFirst().joined(separator: ",").trimmingCharacters(in: .whitespaces))
+                                }, street: address.street ?? "", area: "\(address.neighborhood ?? ""), \(address.city ?? ""), \(address.state ?? "")")
                                 .padding(.top, 2)
                                 .padding(.horizontal)
                             }
@@ -109,9 +108,9 @@ struct AddressView: View {
                             ForEach(addressViewModel.searchedLikeAddresses, id: \.self) { searchedLikeAddress in
                                 Button {
                                     addressViewModel.addAddress(searchedLikeAddress)
-                                    addressViewModel.typedSearchAddress = ""
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 } label: {
-                                    AddressSearchedItemView(address: searchedLikeAddress)
+                                    AddressSearchedItemView(address: "\(searchedLikeAddress.street ?? ""), \(searchedLikeAddress.number ?? ""), \(searchedLikeAddress.neighborhood ?? ""), \(searchedLikeAddress.city ?? ""), \(searchedLikeAddress.state ?? "")")
                                         .padding(.horizontal)
                                         .padding(.top)
                                 }

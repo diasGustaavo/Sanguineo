@@ -12,10 +12,10 @@ import MapKit
 
 class AddressViewModel: ObservableObject {
     
-    @Published var addresses: [String] = []
+    @Published var addresses: [Address] = []
     @Published var isSearching: Bool = false;
-    @Published var selectedAddress: String = "";
-    @Published var currentLocation: String = "";
+    @Published var selectedAddress: Address?;
+    @Published var currentLocation: Address?;
     
     @Published var typedSearchAddress: String = "" {
         didSet {
@@ -25,13 +25,13 @@ class AddressViewModel: ObservableObject {
         }
     }
     
-    @Published var searchedLikeAddresses: [String] = []
+    @Published var searchedLikeAddresses: [Address] = []
     
     private var cancellables = Set<AnyCancellable>()
-
+    
     let locationManager = CLLocationManager()
     let geocoder = CLGeocoder()
-
+    
     init() {
         $typedSearchAddress
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
@@ -43,12 +43,13 @@ class AddressViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addAddress(_ address: String) {
+    func addAddress(_ address: Address) {
         addresses.append(address)
         selectedAddress = address
+        typedSearchAddress = ""
     }
     
-    func eraseAddress(_ address: String) {
+    func eraseAddress(_ address: Address) {
         if let index = addresses.firstIndex(of: address) {
             addresses.remove(at: index)
         }
@@ -59,74 +60,62 @@ class AddressViewModel: ObservableObject {
         if let location = locationManager.location {
             geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
                 if let error = error {
-                    print(error.localizedDescription)
+//                    print(error.localizedDescription)
                     return
                 }
                 
                 if let placemark = placemarks?.first {
-                    var components: [String] = []
-                    guard let street = placemark.thoroughfare else {
-                        print("No thoroughfare available.")
-                        return
-                    }
-                    if let number = placemark.subThoroughfare {
-                        components.append("\(street) \(number)")
-                    } else {
-                        components.append(street)
-                    }
-                    if let neighborhood = placemark.subLocality {
-                        components.append(neighborhood)
-                    }
-                    if let city = placemark.locality {
-                        components.append(city)
-                    }
-                    if let state = placemark.administrativeArea {
-                        components.append(state)
-                    }
-                    let addressString = components.joined(separator: ", ")
-                    self?.addAddress(addressString)
-                    self?.selectedAddress = addressString
-                    self?.currentLocation = addressString
+                    let street = placemark.thoroughfare
+                    let number = placemark.subThoroughfare
+                    let neighborhood = placemark.subLocality
+                    let city = placemark.locality
+                    let state = placemark.administrativeArea
+                    
+                    let address = Address(street: street,
+                                          number: number,
+                                          neighborhood: neighborhood,
+                                          city: city,
+                                          state: state,
+                                          coordinateX: location.coordinate.longitude,
+                                          coordinateY: location.coordinate.latitude)
+                    
+                    self?.addAddress(address)
+                    self?.selectedAddress = address
+                    self?.currentLocation = address
                 }
             }
         } else {
-            print("Current location not available.")
+            print("DEBUG: Current location not available.")
         }
     }
     
     private func updateSearchedLikeAddresses() {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = typedSearchAddress
-
+        
         let search = MKLocalSearch(request: request)
         search.start { [weak self] (response, error) in
             if let error = error {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
                 return
             }
-
+            
             if let mapItems = response?.mapItems {
-                print(mapItems.count)
+//                print(mapItems.count)
                 self?.searchedLikeAddresses = mapItems.compactMap {
-                    var components: [String] = []
-                    guard let street = $0.placemark.thoroughfare else {
-                        return nil
-                    }
-                    if let number = $0.placemark.subThoroughfare {
-                        components.append("\(street) \(number)")
-                    } else {
-                        components.append(street)
-                    }
-                    if let neighborhood = $0.placemark.subLocality {
-                        components.append(neighborhood)
-                    }
-                    if let city = $0.placemark.locality {
-                        components.append(city)
-                    }
-                    if let state = $0.placemark.administrativeArea {
-                        components.append(state)
-                    }
-                    return components.joined(separator: ", ")
+                    let street = $0.placemark.thoroughfare
+                    let number = $0.placemark.subThoroughfare
+                    let neighborhood = $0.placemark.subLocality
+                    let city = $0.placemark.locality
+                    let state = $0.placemark.administrativeArea
+                    
+                    return Address(street: street,
+                                   number: number,
+                                   neighborhood: neighborhood,
+                                   city: city,
+                                   state: state,
+                                   coordinateX: $0.placemark.coordinate.longitude,
+                                   coordinateY: $0.placemark.coordinate.latitude)
                 }
             }
         }

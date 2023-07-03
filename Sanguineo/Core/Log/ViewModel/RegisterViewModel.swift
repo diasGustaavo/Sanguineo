@@ -17,7 +17,7 @@ class RegisterViewModel: ObservableObject {
     @Published var isCheckedForm: Bool
     @Published var isCheckedEmail: Bool
     @Published var isCameraAuthorized: Bool
-    @Published var selectedImage: UIImage?
+    @Published var selectedImage: UIImage? = UIImage(named: "3davatar2")! // temporary
     @Published var selectedBlood: Int
     let bloodTypes = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
     

@@ -22,8 +22,15 @@ struct User: Codable, Hashable {
     let identityID: String
     let age: String
     let gender: String
+    let location: Location
+    
+    // Define a new struct to hold the latitude and longitude
+    struct Location: Codable, Hashable {
+        let latitude: Double
+        let longitude: Double
+    }
 }
 
 extension User {
-    static let example = User(uid: NSUUID().uuidString, fullname: "guga dias", fakename: "cassia eler", email: "ghmd196@gmail.com", password: "12345678", addressCEP: "58073345", addressSt: "rua emp manuel de brito", addressNumber: "304", complement: "A", phonenum: "83981474782", bloodtype: "O-", identityID: "6969", age: "23", gender: "male")
+    static let example = User(uid: NSUUID().uuidString, fullname: "guga dias", fakename: "cassia eler", email: "ghmd196@gmail.com", password: "12345678", addressCEP: "58073345", addressSt: "rua emp manuel de brito", addressNumber: "304", complement: "A", phonenum: "83981474782", bloodtype: "O-", identityID: "6969", age: "23", gender: "male", location: Location(latitude: 37.4220, longitude: -122.0841))
 }
