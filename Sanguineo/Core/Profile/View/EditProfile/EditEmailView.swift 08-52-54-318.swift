@@ -1,5 +1,5 @@
 //
-//  EditNameView.swift
+//  EditEmailView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 06/06/23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct EditNameView: View {
+struct EditEmailView: View {
     
-    @Binding var name: String
+    @Binding var email: String
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -35,11 +35,11 @@ struct EditNameView: View {
                         .padding(.bottom, 32)
                         
                         HStack {
-                            Text("Editar nome de preferência")
+                            Text("Editar e-mail")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .multilineTextAlignment(.leading)
                             
-                            Spacer().frame(width: 100)
+                            Spacer().frame(width: 180)
                             
                             Spacer()
                         }
@@ -48,17 +48,18 @@ struct EditNameView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name)
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $email, keyboardType: .emailAddress)
                         
-                        Text("Por favor, escreva o seu nome completo exatamente como consta em seu documento enviado para a triagem, juntamente com o seu número de CPF, RG e CNH. É importante que todas as informações estejam corretas e atualizadas para que possamos realizar a análise correta.")
-                            .font(.custom("Nunito-Light", size: 15))
-                            .multilineTextAlignment(.leading)
+                        Text("Por favor, escolha um endereço de e-mail de sua preferência para receber as notificações.")
+                            .font(.custom("Nunito-Light", size: 16))
+//                            .multilineTextAlignment(.leading)
                             .padding(.horizontal)
                         
                         Spacer()
                             .frame(height: 20)
                         
                         Button {
+                            UserService.shared.updateUser(email: email)
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")
@@ -77,8 +78,8 @@ struct EditNameView: View {
     }
 }
 
-struct EditNameView_Previews: PreviewProvider {
+struct EditEmailView_Previews: PreviewProvider {
     static var previews: some View {
-        EditNameView(name: Binding.constant("guga dias"))
+        EditEmailView(email: Binding.constant("diasgustaavo@icloud.com"))
     }
 }

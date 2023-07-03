@@ -1,5 +1,5 @@
 //
-//  EditPhoneView.swift
+//  EditNameView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 06/06/23.
@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct EditPhoneView: View {
+struct EditNameView: View {
     
-    @Binding var phone: String
-    @State var lastPhone = ""
+    @Binding var name: String
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -36,11 +35,11 @@ struct EditPhoneView: View {
                         .padding(.bottom, 32)
                         
                         HStack {
-                            Text("Editar telefone")
+                            Text("Editar nome de preferência")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .multilineTextAlignment(.leading)
                             
-                            Spacer().frame(width: 180)
+                            Spacer().frame(width: 100)
                             
                             Spacer()
                         }
@@ -49,20 +48,18 @@ struct EditPhoneView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $phone, keyboardType: .phonePad)
-                            .onChange(of: phone) { newValue in
-                                phone = format(with: "(XX) XXXXX-XXXX", phone: newValue)
-                            }
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name)
                         
-                        Text("Por favor, forneça um número de telefone de sua preferência para que possamos contatá-lo e/ou enviar informações importantes do hemocentro, se necessário.")
-                            .font(.custom("Nunito-Light", size: 16))
-//                            .multilineTextAlignment(.leading)
+                        Text("Por favor, escreva o seu nome completo exatamente como consta em seu documento enviado para a triagem, juntamente com o seu número de CPF, RG e CNH. É importante que todas as informações estejam corretas e atualizadas para que possamos realizar a análise correta.")
+                            .font(.custom("Nunito-Light", size: 15))
+                            .multilineTextAlignment(.leading)
                             .padding(.horizontal)
                         
                         Spacer()
                             .frame(height: 20)
                         
                         Button {
+                            UserService.shared.updateUser(fullname: name)
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")
@@ -79,31 +76,10 @@ struct EditPhoneView: View {
             }
         }
     }
-    
-    func format(with mask: String, phone: String) -> String {
-        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        var result = ""
-        var index = numbers.startIndex // numbers iterator
-
-        // iterate over the mask characters until the iterator of numbers ends
-        for ch in mask where index < numbers.endIndex {
-            if ch == "X" {
-                // mask requires a number in this place, so take the next one
-                result.append(numbers[index])
-
-                // move numbers iterator to the next index
-                index = numbers.index(after: index)
-
-            } else {
-                result.append(ch) // just append a mask character
-            }
-        }
-        return result
-    }
 }
 
-struct EditPhoneView_Previews: PreviewProvider {
+struct EditNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EditPhoneView(phone: Binding.constant("83981474782"))
+        EditNameView(name: Binding.constant("guga dias"))
     }
 }

@@ -13,6 +13,8 @@ struct EditGenderView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    let genderOptions = ["Masculino", "Feminino", "Outros"]
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -48,7 +50,7 @@ struct EditGenderView: View {
                         Spacer()
                             .frame(height: 100)
                         
-                        ResponsiveCustomPicker(id: 69, selection: $selectedGender, options: ["Masculino", "Feminino", "Outros"], description: "Gênero")
+                        ResponsiveCustomPicker(id: 69, selection: $selectedGender, options: genderOptions, description: "Gênero")
                             .padding(.horizontal, 25)
                             .padding(.vertical)
                         
@@ -60,6 +62,7 @@ struct EditGenderView: View {
                             .frame(height: 20)
                         
                         Button {
+                            UserService.shared.updateUser(gender: genderOptions[selectedGender])
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")

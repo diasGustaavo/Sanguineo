@@ -49,6 +49,48 @@ class UserService: ObservableObject {
         }
     }
     
+    func updateUser(fullname: String? = nil,
+                    fakename: String? = nil,
+                    email: String? = nil,
+                    addressCEP: String? = nil,
+                    addressSt: String? = nil,
+                    addressNumber: String? = nil,
+                    complement: String? = nil,
+                    phonenum: String? = nil,
+                    bloodtype: String? = nil,
+                    identityID: String? = nil,
+                    age: String? = nil,
+                    gender: String? = nil) {
+
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        var updatedData: [String: Any] = [:]
+
+        if let fullname = fullname { updatedData["fullname"] = fullname }
+        if let fakename = fakename { updatedData["fakename"] = fakename }
+        if let email = email { updatedData["email"] = email }
+        if let addressCEP = addressCEP { updatedData["addressCEP"] = addressCEP }
+        if let addressSt = addressSt { updatedData["addressSt"] = addressSt }
+        if let addressNumber = addressNumber { updatedData["addressNumber"] = addressNumber }
+        if let complement = complement { updatedData["complement"] = complement }
+        if let phonenum = phonenum { updatedData["phonenum"] = phonenum }
+        if let bloodtype = bloodtype { updatedData["bloodtype"] = bloodtype }
+        if let identityID = identityID { updatedData["identityID"] = identityID }
+        if let age = age { updatedData["age"] = age }
+        if let gender = gender { updatedData["gender"] = gender }
+
+        // Only attempt an update if there is data to update
+        if !updatedData.isEmpty {
+            Firestore.firestore().collection("users").document(uid).updateData(updatedData) { err in
+                if let err = err {
+                    print("DEBUG: Error updating document: \(err)")
+                } else {
+                    print("DEBUG: Document successfully updated")
+                }
+            }
+        }
+    }
+    
     func fetchUserAndDo(completion: @escaping () -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         

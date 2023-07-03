@@ -1,5 +1,5 @@
 //
-//  EditEmailView.swift
+//  EditSocialNameView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 06/06/23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct EditEmailView: View {
+struct EditSocialNameView: View {
     
-    @Binding var email: String
+    @Binding var name: String
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -35,7 +35,7 @@ struct EditEmailView: View {
                         .padding(.bottom, 32)
                         
                         HStack {
-                            Text("Editar e-mail")
+                            Text("Editar nome social")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .multilineTextAlignment(.leading)
                             
@@ -48,17 +48,18 @@ struct EditEmailView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $email, keyboardType: .emailAddress)
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name)
                         
-                        Text("Por favor, escolha um endereço de e-mail de sua preferência para receber as notificações.")
-                            .font(.custom("Nunito-Light", size: 16))
-//                            .multilineTextAlignment(.leading)
+                        Text("Por gentileza, preencha o campo do seu nome social, entendido como o nome pelo qual você deseja ser chamado durante o atendimento no hemocentro.")
+                            .font(.custom("Nunito-Light", size: 15))
+                            .multilineTextAlignment(.leading)
                             .padding(.horizontal)
                         
                         Spacer()
                             .frame(height: 20)
                         
                         Button {
+                            UserService.shared.updateUser(fakename: name)
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")
@@ -77,8 +78,8 @@ struct EditEmailView: View {
     }
 }
 
-struct EditEmailView_Previews: PreviewProvider {
+struct EditSocialNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EditEmailView(email: Binding.constant("diasgustaavo@icloud.com"))
+        EditSocialNameView(name: Binding.constant("guga dias"))
     }
 }

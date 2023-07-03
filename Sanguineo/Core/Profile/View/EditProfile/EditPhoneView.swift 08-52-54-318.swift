@@ -1,5 +1,5 @@
 //
-//  EditSocialNameView.swift
+//  EditPhoneView.swift
 //  Sanguineo
 //
 //  Created by Gustavo Dias on 06/06/23.
@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct EditSocialNameView: View {
+struct EditPhoneView: View {
     
-    @Binding var name: String
+    @Binding var phone: String
+    @State var lastPhone = ""
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -35,7 +36,7 @@ struct EditSocialNameView: View {
                         .padding(.bottom, 32)
                         
                         HStack {
-                            Text("Editar nome social")
+                            Text("Editar telefone")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .multilineTextAlignment(.leading)
                             
@@ -48,17 +49,21 @@ struct EditSocialNameView: View {
                         Spacer()
                             .frame(height: 50)
                         
-                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name)
+                        ResponsiveSimpleCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $phone, keyboardType: .phonePad)
+                            .onChange(of: phone) { newValue in
+                                phone = format(with: "(XX) XXXXX-XXXX", phone: newValue)
+                            }
                         
-                        Text("Por gentileza, preencha o campo do seu nome social, entendido como o nome pelo qual você deseja ser chamado durante o atendimento no hemocentro.")
-                            .font(.custom("Nunito-Light", size: 15))
-                            .multilineTextAlignment(.leading)
+                        Text("Por favor, forneça um número de telefone de sua preferência para que possamos contatá-lo e/ou enviar informações importantes do hemocentro, se necessário.")
+                            .font(.custom("Nunito-Light", size: 16))
+//                            .multilineTextAlignment(.leading)
                             .padding(.horizontal)
                         
                         Spacer()
                             .frame(height: 20)
                         
                         Button {
+                            UserService.shared.updateUser(phonenum: phone)
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")
@@ -75,10 +80,31 @@ struct EditSocialNameView: View {
             }
         }
     }
+    
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex // numbers iterator
+
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
+    }
 }
 
-struct EditSocialNameView_Previews: PreviewProvider {
+struct EditPhoneView_Previews: PreviewProvider {
     static var previews: some View {
-        EditSocialNameView(name: Binding.constant("guga dias"))
+        EditPhoneView(phone: Binding.constant("83981474782"))
     }
 }
