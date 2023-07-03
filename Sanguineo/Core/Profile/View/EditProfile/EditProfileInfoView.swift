@@ -8,20 +8,7 @@
 import SwiftUI
 
 struct EditProfileInfoView: View {
-    
-    @Binding var name: String
-    @Binding var fakeName: String
-    @Binding var email: String
-    @Binding var phone: String
-    
-    @Binding var CEP: String
-    @Binding var neighborhood: String
-    @Binding var street: String
-    @Binding var number: String
-    @Binding var complement: String
-    
-    @Binding var gender: Int
-    
+    @EnvironmentObject var profile: ProfileViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -52,35 +39,35 @@ struct EditProfileInfoView: View {
                 .padding(.bottom, 32)
                 
                 NavigationLink {
-                    EditNameView(name: $name)
+                    EditNameView(name: $profile.name)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "person", buttonText: "Nome")
                 }
                 
                 NavigationLink {
-                    EditSocialNameView(name: $name)
+                    EditSocialNameView(name: $profile.fakeName)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "theatermasks", buttonText: "Nome Social")
                 }
                 
                 NavigationLink {
-                    EditEmailView(email: $email)
+                    EditEmailView(email: $profile.email)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "envelope", buttonText: "E-mail")
                 }
                 
                 NavigationLink {
-                    EditPhoneView(phone: $phone)
+                    EditPhoneView(phone: $profile.phone)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "phone", buttonText: "Telefone")
                 }
                 
                 NavigationLink {
-                    EditAddressView(CEP: $CEP, neighborhood: $neighborhood, street: $street, number: $number, complement: $complement)
+                    EditAddressView(CEP: $profile.CEP, neighborhood: $profile.neighborhood, street: $profile.street, number: $profile.number, complement: $profile.complement)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "mappin.and.ellipse", buttonText: "Endereço")
@@ -94,7 +81,7 @@ struct EditProfileInfoView: View {
                 }
                 
                 NavigationLink {
-                    EditGenderView(selectedGender: $gender)
+                    EditGenderView(selectedGender: $profile.gender)
                         .navigationBarBackButtonHidden()
                 } label: {
                     CustomCell(leftSymbol: "hand.raised.square.on.square", buttonText: "Gênero")
@@ -108,6 +95,6 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(name: Binding.constant("guga dias"), fakeName: Binding.constant("liz taylor"), email: Binding.constant("diasgustaavo@icloud.com"), phone: Binding.constant("83981474782"), CEP: Binding.constant("58073343"), neighborhood: Binding.constant("Cidade dos Colibris"), street: Binding.constant("Rua Simas Turbo"), number: Binding.constant("69"), complement: Binding.constant("22"), gender: .constant(1))
+        EditProfileInfoView()
     }
 }

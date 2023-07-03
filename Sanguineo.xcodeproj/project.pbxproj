@@ -569,13 +569,13 @@
 		B4F09C3D2A3896270056BD48 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
+				B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift */,
 				B4AD4F792A52EEBC00320F2F /* AboutBloodtypesView.swift */,
 				B4AD4F762A52EEBC00320F2F /* EditAddresView.swift */,
 				B4AD4F742A52EEBC00320F2F /* EditEmailView.swift */,
 				B4AD4F772A52EEBC00320F2F /* EditGenderView.swift */,
 				B4AD4F7A2A52EEBC00320F2F /* EditNameView.swift */,
 				B4AD4F752A52EEBC00320F2F /* EditPhoneView.swift */,
-				B4AD4F782A52EEBC00320F2F /* EditProfileInfoView.swift */,
 				B4AD4F7B2A52EEBC00320F2F /* EditSocialNameView.swift */,
 			);
 			path = EditProfile;

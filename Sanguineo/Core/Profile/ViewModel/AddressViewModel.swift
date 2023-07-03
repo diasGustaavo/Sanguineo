@@ -59,7 +59,7 @@ class AddressViewModel: ObservableObject {
         locationManager.requestWhenInUseAuthorization()
         if let location = locationManager.location {
             geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
-                if let error = error {
+                if error != nil {
 //                    print(error.localizedDescription)
                     return
                 }
@@ -95,7 +95,7 @@ class AddressViewModel: ObservableObject {
         
         let search = MKLocalSearch(request: request)
         search.start { [weak self] (response, error) in
-            if let error = error {
+            if error != nil {
 //                print(error.localizedDescription)
                 return
             }

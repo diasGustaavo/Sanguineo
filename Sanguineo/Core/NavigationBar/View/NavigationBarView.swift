@@ -21,13 +21,6 @@ struct NavigationBarView: View {
     let descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
     
     @ObservedObject var viewModel: NavigationBarViewModel
-    @StateObject private var profileViewModel = ProfileViewModel(
-        image: Image("3davatar2"),
-        name: "John Doe",
-        bloodType: "A+",
-        age: 30
-    )
-    
     var body: some View {
         VStack {
             Spacer() // This will push the rest of the content to the bottom
@@ -50,7 +43,7 @@ struct NavigationBarView: View {
                     }
                 }
             case .profile:
-                ProfileView(profile: profileViewModel, name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "(83) 98147-4782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22", gender: 1)
+                ProfileView()
             case .request: // New case added
                 RequestView()
             }
