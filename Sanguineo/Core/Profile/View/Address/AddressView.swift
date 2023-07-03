@@ -66,9 +66,13 @@ struct AddressView: View {
                             }
                             
                             HStack {
-                                Text("\(addressViewModel.currentLocation?.street ?? ""), \(addressViewModel.currentLocation?.number ?? ""), \(addressViewModel.currentLocation?.neighborhood ?? ""), \(addressViewModel.currentLocation?.city ?? ""), \(addressViewModel.currentLocation?.state ?? "")")
-                                    .font(.custom("Nunito-Light", size: 16))
-                                
+                                Text(
+                                    addressViewModel.currentLocation != nil
+                                    ? "\(addressViewModel.currentLocation?.street ?? ""), \(addressViewModel.currentLocation?.number ?? ""), \(addressViewModel.currentLocation?.neighborhood ?? ""), \(addressViewModel.currentLocation?.city ?? ""), \(addressViewModel.currentLocation?.state ?? "")"
+                                    : "Aperte para obter a localização atual"
+                                )
+                                .font(.custom("Nunito-Light", size: 16))
+                                                            
                                 Spacer()
                             }
                         }
@@ -110,7 +114,13 @@ struct AddressView: View {
                                     addressViewModel.addAddress(searchedLikeAddress)
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 } label: {
-                                    AddressSearchedItemView(address: "\(searchedLikeAddress.street ?? ""), \(searchedLikeAddress.number ?? ""), \(searchedLikeAddress.neighborhood ?? ""), \(searchedLikeAddress.city ?? ""), \(searchedLikeAddress.state ?? "")")
+                                    let street = searchedLikeAddress.street ?? ""
+                                    let number = searchedLikeAddress.number.map { ", \($0)" } ?? ""
+                                    let neighborhood = searchedLikeAddress.neighborhood.map { ", \($0)" } ?? ""
+                                    let city = searchedLikeAddress.city.map { ", \($0)" } ?? ""
+                                    let state = searchedLikeAddress.state.map { ", \($0)" } ?? ""
+
+                                    AddressSearchedItemView(address: "\(street)\(number)\(neighborhood)\(city)\(state)")
                                         .padding(.horizontal)
                                         .padding(.top)
                                 }

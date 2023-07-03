@@ -89,8 +89,6 @@ class UserService: ObservableObject {
             Firestore.firestore().collection("users").document(uid).updateData(updatedData) { err in
                 if let err = err {
                     print("DEBUG: Error updating document: \(err)")
-                } else {
-                    print("DEBUG: Document successfully updated")
                 }
             }
         }

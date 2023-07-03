@@ -14,7 +14,6 @@ class AddressViewModel: ObservableObject {
     
     @Published var addresses: [Address] = []
     @Published var isSearching: Bool = false;
-    @Published var selectedAddress: Address?;
     @Published var currentLocation: Address?;
     
     @Published var typedSearchAddress: String = "" {
@@ -26,6 +25,15 @@ class AddressViewModel: ObservableObject {
     }
     
     @Published var searchedLikeAddresses: [Address] = []
+    
+    @Published var selectedAddress: Address? {
+        didSet {
+            guard let address = selectedAddress else { return }
+            
+            // update address in Firestore
+            UserService.shared.updateUser(location: User.Location(latitude: address.coordinateY, longitude: address.coordinateX))
+        }
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -60,7 +68,6 @@ class AddressViewModel: ObservableObject {
         if let location = locationManager.location {
             geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
                 if error != nil {
-//                    print(error.localizedDescription)
                     return
                 }
                 
@@ -92,23 +99,22 @@ class AddressViewModel: ObservableObject {
     private func updateSearchedLikeAddresses() {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = typedSearchAddress
-        
+
         let search = MKLocalSearch(request: request)
         search.start { [weak self] (response, error) in
             if error != nil {
-//                print(error.localizedDescription)
                 return
             }
-            
+
             if let mapItems = response?.mapItems {
-//                print(mapItems.count)
+                print(mapItems)
                 self?.searchedLikeAddresses = mapItems.compactMap {
-                    let street = $0.placemark.thoroughfare
+                    guard let street = $0.placemark.thoroughfare else { return nil }
                     let number = $0.placemark.subThoroughfare
                     let neighborhood = $0.placemark.subLocality
                     let city = $0.placemark.locality
                     let state = $0.placemark.administrativeArea
-                    
+
                     return Address(street: street,
                                    number: number,
                                    neighborhood: neighborhood,
