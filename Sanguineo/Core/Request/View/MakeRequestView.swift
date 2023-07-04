@@ -266,7 +266,9 @@ struct MakeRequestView: View {
             }
         }
         .onAppear {
-            viewModel.fetchRequest(withId: requestID)
+            if !requestID.isEmpty {
+                viewModel.fetchRequest(withId: requestID)
+            }
         }
     }
 }
