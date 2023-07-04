@@ -139,6 +139,7 @@ struct NavigationBarView: View {
                 Spacer().frame(width: 20)
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
