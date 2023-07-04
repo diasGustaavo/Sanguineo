@@ -9,7 +9,11 @@ import SwiftUI
 
 struct RequestView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @EnvironmentObject var profile: ProfileViewModel
+    
     @StateObject var viewModel: RequestViewModel = RequestViewModel()
+    
+    let genderOptions = ["Masculino", "Feminino", "Outros"]
     
     var body: some View {
         NavigationView {
@@ -22,7 +26,7 @@ struct RequestView: View {
                             .frame(width: 80, height: 80)
                             .padding(.leading)
                         
-                        Text("Joana Dolores")
+                        Text(profile.name)
                             .lineLimit(1)
                             .font(.custom("Nunito-SemiBold", size: 22))
                             .padding()
@@ -40,7 +44,7 @@ struct RequestView: View {
                     .padding(.horizontal)
                     
                     HStack {
-                        Text("Solteiro(a) / Nacionalidade: Brasileiro(a) / Sangue: O- Tratamento médico / Cirurgia")
+                        Text("Nacionalidade: Brasileiro(a) / Sangue: \(profile.bloodtype) / Gênero: \(profile.genderName) / Número: \(profile.phone)")
                             .font(.custom("Nunito-Light", size: 16))
                         
                         Spacer()

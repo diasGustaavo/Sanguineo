@@ -20,6 +20,7 @@ class ProfileViewModel: ObservableObject {
     @Published var number: String = ""
     @Published var complement: String = ""
     @Published var gender: Int = 0
+    @Published var genderName: String = ""
     @Published var bloodtype: String = ""
     
     let genderOptions = ["Masculino", "Feminino", "Outros"]
@@ -45,6 +46,7 @@ class ProfileViewModel: ObservableObject {
         self.number = "\(user?.addressNumber ?? "")"
         self.complement = user?.complement ?? ""
         self.bloodtype = user?.bloodtype ?? ""
+        self.genderName = user?.gender ?? ""
         
         self.gender = Int(user?.gender ?? "0") ?? 0
         if let index = genderOptions.firstIndex(where: { $0 == user?.gender }) {
