@@ -139,6 +139,7 @@ struct NavigationBarView: View {
                 Spacer().frame(width: 20)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // Use StackNavigationViewStyle for consistent behavior across devices
         .ignoresSafeArea(.keyboard)
     }
 }

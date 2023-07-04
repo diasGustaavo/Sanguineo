@@ -36,7 +36,7 @@ struct MakeRequestView: View {
                         )
                         .kerning(0.15)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color(red: 0.24, green: 0.22, blue: 0.22))
+                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                     
                     Spacer()
                     
@@ -73,7 +73,7 @@ struct MakeRequestView: View {
                                     .weight(.light)
                             )
                             .kerning(0.15)
-                            .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.12))
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .frame(alignment: .topLeading)
                         
                         Spacer()

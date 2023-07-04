@@ -149,7 +149,7 @@ struct FeedView: View {
                         .font(.custom("Nunito-Bold", size: 18))
                         .multilineTextAlignment(.leading)
                     
-                    Spacer().frame(width: 100)
+                    Spacer().frame(width: 80)
                     
                     NavigationLink {
                         DetailedFeedCategoryView(sectionDescription: "Campanhas de doações", image: imageHospital, name: nameHospital, bloodtype: bloodtypeHospital, description: descriptionHospital, onButtonPress: {
