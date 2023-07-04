@@ -44,6 +44,7 @@ class UserService: ObservableObject {
                 let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
                 let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, location: userLocation)
                 self.user = user
+                print("DEBUG: Setting user now! USER SERVICE")
             } else {
                 print("DEBUG: Error parsing user data to Swift properties fetchUser")
             }
@@ -55,6 +56,7 @@ class UserService: ObservableObject {
                     fakename: String? = nil,
                     email: String? = nil,
                     addressCEP: String? = nil,
+                    addressNeighborhood: String? = nil,
                     addressSt: String? = nil,
                     addressNumber: String? = nil,
                     complement: String? = nil,
@@ -72,6 +74,7 @@ class UserService: ObservableObject {
         if let fakename = fakename { updatedData["fakename"] = fakename }
         if let email = email { updatedData["email"] = email }
         if let addressCEP = addressCEP { updatedData["addressCEP"] = addressCEP }
+        if let addressNeighborhood = addressNeighborhood { updatedData["addressNeighborhood"] = addressNeighborhood }
         if let addressSt = addressSt { updatedData["addressSt"] = addressSt }
         if let addressNumber = addressNumber { updatedData["addressNumber"] = addressNumber }
         if let complement = complement { updatedData["complement"] = complement }

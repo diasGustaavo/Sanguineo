@@ -132,6 +132,13 @@ struct EditAddressView: View {
                                 .frame(height: 20)
                             
                             Button {
+//                                @Binding var CEP: String
+//                                @Binding var neighborhood: String
+//                                @Binding var street: String
+//                                @Binding var number: String
+//                                @Binding var complement: String
+                                
+                                UserService.shared.updateUser(addressCEP: CEP, addressNeighborhood: neighborhood, addressSt: street, addressNumber: number, complement: complement)
                                 self.presentationMode.wrappedValue.dismiss()
                             } label: {
                                 Text("Enviar")

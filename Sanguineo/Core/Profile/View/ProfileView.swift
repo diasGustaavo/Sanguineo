@@ -137,6 +137,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-            .environmentObject(ProfileViewModel(image: Image(uiImage: UIImage(named: "3d_avatar_28")!), name: "guga", fakeName: "liz taylor", email: "diasgustaavo@icloud.com", phone: "(83) 98147-4782", CEP: "58073343", neighborhood: "Cidade dos Colibris", street: "Rua Simas Turbo", number: "69", complement: "22", gender: 0, bloodtype: "0+"))
+            .environmentObject(ProfileViewModel())
     }
 }

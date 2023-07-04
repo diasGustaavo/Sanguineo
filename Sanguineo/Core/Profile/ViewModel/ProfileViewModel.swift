@@ -10,30 +10,47 @@ import Combine
 
 class ProfileViewModel: ObservableObject {
     @Published var image: Image
-    @Published var name: String
-    @Published var fakeName: String
-    @Published var email: String
-    @Published var phone: String
-    @Published var CEP: String
-    @Published var neighborhood: String
-    @Published var street: String
-    @Published var number: String
-    @Published var complement: String
-    @Published var gender: Int
-    @Published var bloodtype: String
+    @Published var name: String = ""
+    @Published var fakeName: String = ""
+    @Published var email: String = ""
+    @Published var phone: String = ""
+    @Published var CEP: String = ""
+    @Published var neighborhood: String = ""
+    @Published var street: String = ""
+    @Published var number: String = ""
+    @Published var complement: String = ""
+    @Published var gender: Int = 0
+    @Published var bloodtype: String = ""
+    
+    let genderOptions = ["Masculino", "Feminino", "Outros"]
 
-    init(image: Image, name: String, fakeName: String, email: String, phone: String, CEP: String, neighborhood: String, street: String, number: String, complement: String, gender: Int, bloodtype: String) {
-        self.image = image
-        self.name = name
-        self.fakeName = fakeName
-        self.email = email
-        self.phone = phone
-        self.CEP = CEP
-        self.neighborhood = neighborhood
-        self.street = street
-        self.number = number
-        self.complement = complement
-        self.gender = gender
-        self.bloodtype = bloodtype
+    var cancellables = Set<AnyCancellable>()
+
+    init() {
+        self.image = Image(uiImage: UIImage(named: "3d_avatar_28")!)
+
+        UserService.shared.$user
+            .sink { [weak self] in self?.updateUser($0) }
+            .store(in: &cancellables)
+    }
+
+    func updateUser(_ user: User?) {
+        self.name = user?.fullname ?? ""
+        self.fakeName = user?.fakename ?? ""
+        self.email = user?.email ?? ""
+        self.phone = user?.phonenum ?? ""
+        self.CEP = user?.addressCEP ?? ""
+        self.neighborhood = user?.addressSt ?? ""
+        self.street = user?.addressSt ?? ""
+        self.number = "\(user?.addressNumber ?? "")"
+        self.complement = user?.complement ?? ""
+        self.bloodtype = user?.bloodtype ?? ""
+        
+        self.gender = Int(user?.gender ?? "0") ?? 0
+        if let index = genderOptions.firstIndex(where: { $0 == user?.gender }) {
+            self.gender = index
+        } else {
+            self.gender = 0
+        }
     }
 }
