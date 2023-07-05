@@ -8,17 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-    let image = UIImage(named: "3d_avatar_28")!
-    let name = "Luciano Araujo"
-    let bloodtype = "O-"
-    let age = 22
-    let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
-    
-    let imageHospital = UIImage(named: "3d_avatar_28_hospital")!
-    let nameHospital = "Hemocentro"
-    let bloodtypeHospital = "O-"
-    let descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
-    
+    @EnvironmentObject var feedViewModel: FeedViewModel
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
     
     var body: some View {
@@ -117,7 +107,7 @@ struct FeedView: View {
                     Spacer().frame(width: 100)
                     
                     NavigationLink {
-                        DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda", image: image, name: name, bloodtype: bloodtype, description: description, age: age) {
+                        DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda", requesters: feedViewModel.individuals) {
                             // some action
                         }
                     } label: {
@@ -132,9 +122,9 @@ struct FeedView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
-                        ForEach(0..<3) { _ in
-                            ReusablePersonCellView(image: image, name: name, bloodtype: bloodtype, age: age, description: description) {
-                                print("bota 1 pressionado")
+                        ForEach(feedViewModel.individuals, id: \.self) { individual in
+                            ReusablePersonCellView(image: individual.image, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
+                                print("button 1 pressed")
                                 navigationBarViewModel.selectedTab = .appointments
                                 navigationBarViewModel.selectedScreenAppointments = .newAppointment
                             }
@@ -152,9 +142,9 @@ struct FeedView: View {
                     Spacer().frame(width: 80)
                     
                     NavigationLink {
-                        DetailedFeedCategoryView(sectionDescription: "Campanhas de doações", image: imageHospital, name: nameHospital, bloodtype: bloodtypeHospital, description: descriptionHospital, onButtonPress: {
+                        DetailedFeedCategoryView(sectionDescription: "Campanhas de doações", requesters: feedViewModel.hospitals) {
                             // some action
-                        })
+                        }
                     } label: {
                         Text("Expandir")
                             .font(.custom("Nunito-Regular", size: 16))
@@ -167,9 +157,9 @@ struct FeedView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
-                        ForEach(0..<3) { _ in
-                            ReusablePersonCellView(image: imageHospital, name: nameHospital, bloodtype: bloodtypeHospital, age: nil, description: descriptionHospital) {
-                                print("bota 2 pressionado")
+                        ForEach(feedViewModel.hospitals, id: \.self) { hospital in
+                            ReusablePersonCellView(image: hospital.image, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
+                                print("button 2 pressed")
                                 navigationBarViewModel.selectedTab = .appointments
                                 navigationBarViewModel.selectedScreenAppointments = .newAppointment
                             }
@@ -187,5 +177,6 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView(navigationBarViewModel: NavigationBarViewModel())
+            .environmentObject(FeedViewModel())
     }
 }

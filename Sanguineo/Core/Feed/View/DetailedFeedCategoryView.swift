@@ -9,26 +9,18 @@ import SwiftUI
 
 struct DetailedFeedCategoryView: View {
     let sectionDescription: String
-    
-    let image: UIImage
-    let name: String
-    let bloodtype: String
-    let age: Int?
-    let description: String
+    let requesters: [RequesterInfo]
     let onButtonPress: () -> Void
     
     @Environment(\.presentationMode) var presentationMode
-    
-    init(sectionDescription: String, image: UIImage, name: String, bloodtype: String, description: String, age: Int? = nil, onButtonPress: @escaping () -> Void) {
+    @GestureState private var dragOffset = CGSize.zero
+
+    init(sectionDescription: String, requesters: [RequesterInfo], onButtonPress: @escaping () -> Void) {
         self.sectionDescription = sectionDescription
-        self.image = image
-        self.name = name
-        self.bloodtype = bloodtype
-        self.description = description
+        self.requesters = requesters
         self.onButtonPress = onButtonPress
-        self.age = age
     }
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -80,22 +72,21 @@ struct DetailedFeedCategoryView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
                 
-                if let age = age {
-                    ForEach(0..<3) { _ in
-                        ReusableLargePersonCellView(image: image, name: name, bloodtype: bloodtype, age: age, description: description) {
-                            print("Button pressed!")
-                        }
-                    }
-                } else {
-                    ForEach(0..<3) { _ in
-                        ReusableLargePersonCellView(image: image, name: name, bloodtype: bloodtype, age: nil, description: description) {
-                            print("Button pressed!")
-                        }
+                ForEach(requesters, id: \.name) { requester in
+                    ReusableLargePersonCellView(image: requester.image, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
+                        print("Button pressed!")
                     }
                 }
             }
         }
         .navigationBarHidden(true)
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
     }
 }
 
@@ -105,9 +96,11 @@ struct DetailedFeedCategoryView_Previews: PreviewProvider {
     static let bloodtype = "O-"
     static let age: Int? = 22
     static let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
+    static let individual = Individual(image: image, name: name, bloodtype: bloodtype, age: age!, description: description)
+    static let hospital = Hospital(image: image, name: "Hospital", bloodtype: bloodtype, description: "We urgently need O+ blood for several patients.")
 
     static var previews: some View {
-        DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda:", image: image, name: name, bloodtype: bloodtype, description: description) {
+        DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda:", requesters: [individual, hospital]) {
             print("button pressed!")
         }
     }
