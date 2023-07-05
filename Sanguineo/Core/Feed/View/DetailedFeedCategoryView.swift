@@ -73,7 +73,7 @@ struct DetailedFeedCategoryView: View {
                 .padding(.top, 20)
                 
                 ForEach(requesters, id: \.name) { requester in
-                    ReusableLargePersonCellView(image: requester.image, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
+                    ReusableLargePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
                         print("Button pressed!")
                     }
                 }
@@ -96,7 +96,7 @@ struct DetailedFeedCategoryView_Previews: PreviewProvider {
     static let bloodtype = "O-"
     static let age: Int? = 22
     static let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
-    static let individual = Individual(image: image, name: name, bloodtype: bloodtype, age: age!, description: description)
+    static let individual = Individual(id: UUID().uuidString, name: name, bloodtype: bloodtype, age: age!, description: description)
     static let hospital = Hospital(image: image, name: "Hospital", bloodtype: bloodtype, description: "We urgently need O+ blood for several patients.")
 
     static var previews: some View {

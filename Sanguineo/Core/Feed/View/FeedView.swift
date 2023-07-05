@@ -123,7 +123,7 @@ struct FeedView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         ForEach(feedViewModel.individuals, id: \.self) { individual in
-                            ReusablePersonCellView(image: individual.image, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
+                            ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
                                 print("button 1 pressed")
                                 navigationBarViewModel.selectedTab = .appointments
                                 navigationBarViewModel.selectedScreenAppointments = .newAppointment
