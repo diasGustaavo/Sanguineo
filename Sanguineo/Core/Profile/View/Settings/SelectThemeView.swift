@@ -15,6 +15,8 @@ struct Option: Identifiable {
 
 struct SelectThemeView: View {
     @Environment(\.presentationMode) var presentationMode
+    @GestureState private var dragOffset = CGSize.zero
+    
     @EnvironmentObject var viewModel: SettingsViewModel
     
     var body: some View {
@@ -68,6 +70,13 @@ struct SelectThemeView: View {
                 }
             }
         }
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
     }
 }
 

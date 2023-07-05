@@ -10,6 +10,8 @@ import AVFoundation
 
 struct PermissionsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @GestureState private var dragOffset = CGSize.zero
+    
     @State private var cameraPermission: Bool = false
     @ObservedObject private var locationManager = LocationManager()
     
@@ -124,6 +126,13 @@ struct PermissionsView: View {
                 Spacer()
             }
         }
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
         .onAppear(perform: {
             DispatchQueue.main.async {
                 self.cameraPermission = AVCaptureDevice.authorizationStatus(for: .video) == .authorized

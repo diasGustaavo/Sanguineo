@@ -14,6 +14,8 @@ struct AddressView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @GestureState private var dragOffset = CGSize.zero
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -132,6 +134,13 @@ struct AddressView: View {
                 }
             }
         }
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
     }
 }
 

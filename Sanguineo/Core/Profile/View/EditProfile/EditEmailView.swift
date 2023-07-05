@@ -11,7 +11,8 @@ struct EditEmailView: View {
     
     @Binding var email: String
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @GestureState private var dragOffset = CGSize.zero
     
     var body: some View {
         NavigationView {
@@ -20,7 +21,7 @@ struct EditEmailView: View {
                     VStack {
                         HStack {
                             Button {
-                                self.presentationMode.wrappedValue.dismiss()
+                                self.mode.wrappedValue.dismiss()
                             } label: {
                                 Image(systemName: "chevron.left")
                                     .font(.custom("Nunito-Semibold", size: 25))
@@ -60,7 +61,7 @@ struct EditEmailView: View {
                         
                         Button {
                             UserService.shared.updateUser(email: email)
-                            self.presentationMode.wrappedValue.dismiss()
+                            self.mode.wrappedValue.dismiss()
                         } label: {
                             Text("Enviar")
                                 .font(.custom("Nunito-Regular", size: 22))
@@ -74,6 +75,13 @@ struct EditEmailView: View {
                     }
                 }
             }
+            .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+            
+                if(value.startLocation.x < 20 && value.translation.width > 100) {
+                    self.mode.wrappedValue.dismiss()
+                }
+                
+            }))
         }
     }
 }

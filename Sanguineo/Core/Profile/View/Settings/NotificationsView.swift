@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotificationsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @GestureState private var dragOffset = CGSize.zero
+    
     @State var notifications = false
     @State var email = false
     @State var sms = false
@@ -59,6 +61,13 @@ struct NotificationsView: View {
                 }
             }
         }
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
     }
 }
 

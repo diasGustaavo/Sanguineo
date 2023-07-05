@@ -11,6 +11,7 @@ struct RewardsView: View {
     let stepsComplete: Int
     
     @Environment(\.presentationMode) var presentationMode
+    @GestureState private var dragOffset = CGSize.zero
     
     init(stepsComplete: Int = 2) {
         self.stepsComplete = stepsComplete
@@ -126,6 +127,13 @@ struct RewardsView: View {
                 }
             }
         }
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+        
+            if(value.startLocation.x < 20 && value.translation.width > 100) {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            
+        }))
     }
 }
 
