@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -43,30 +44,41 @@ class FeedViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    @Published var individualsLoading = true
+    
     init() {
         fetchData()
     }
     
     func fetchData() {
+        individualsLoading = true
+        
         db.collection("requests").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                let totalDocuments = querySnapshot?.documents.count ?? 0
+                var processedDocuments = 0
+                
                 querySnapshot?.documents.forEach { document in
-                    if let authorUID = document.data()["authorUID"] as? String {
-                        if let additionalInfo = document.data()["additionalInfo"] as? String {
-                            print(authorUID)
-                            print(additionalInfo)
+                    if let authorUID = document.data()["authorUID"] as? String,
+                       let additionalInfo = document.data()["additionalInfo"] as? String {
+                        
+                        self.db.collection("users").document(authorUID).getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                guard let bloodtype = document.data()?["bloodtype"] as? String else { return }
+                                guard let fakename = document.data()?["fakename"] as? String else { return }
+                                guard let ageString = document.data()?["age"] as? String, let age = Int(ageString) else { return }
+                                
+                                let newIndividual = Individual(id: authorUID, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo)
+                                self.individuals.append(newIndividual)
+                            }
                             
-                            // Fetch bloodtype from users collection
-                            self.db.collection("users").document(authorUID).getDocument { (document, error) in
-                                if let document = document, document.exists {
-                                    guard let bloodtype = document.data()?["bloodtype"] as? String else { return }
-                                    guard let fakename = document.data()?["fakename"] as? String else { return }
-                                    guard let age = document.data()?["age"] as? String else { return }
-                                    
-                                    let newIndividual = Individual(id: authorUID, name: fakename, bloodtype: bloodtype, age: Int(age)!, description: additionalInfo)
-                                    self.individuals.append(newIndividual)
+                            processedDocuments += 1
+                            
+                            if processedDocuments == totalDocuments {
+                                withAnimation {
+                                    self.individualsLoading = false
                                 }
                             }
                         }

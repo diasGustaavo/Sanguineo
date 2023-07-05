@@ -74,6 +74,7 @@
 		B4C8BBDC2A4B156C00CFD598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C8BBDB2A4B156C00CFD598 /* Request.swift */; };
 		B4CB03DF2A1F8A7E00DC04E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB03DE2A1F8A7E00DC04E2 /* User.swift */; };
 		B4CCA2112A5598AC0000E768 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CCA2102A5598AC0000E768 /* FeedViewModel.swift */; };
+		B4CCA2132A55B7B70000E768 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CCA2122A55B7B70000E768 /* Spinner.swift */; };
 		B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
@@ -165,6 +166,7 @@
 		B4C8BBDB2A4B156C00CFD598 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B4CB03DE2A1F8A7E00DC04E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4CCA2102A5598AC0000E768 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		B4CCA2122A55B7B70000E768 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomPicker.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				B4F09C492A38BD800056BD48 /* CustomTextFieldCopy.swift */,
 				B4DA51362A3B625F006C12ED /* CustomToggleCell.swift */,
 				B44651102A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift */,
+				B4CCA2122A55B7B70000E768 /* Spinner.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				B4AD4F7E2A52EEBC00320F2F /* EditAddresView.swift in Sources */,
 				B44651112A3C8EE3005D2BB9 /* CustomCheckmarkCell.swift in Sources */,
 				B4DA51372A3B625F006C12ED /* CustomToggleCell.swift in Sources */,
+				B4CCA2132A55B7B70000E768 /* Spinner.swift in Sources */,
 				B4F09C442A389EAD0056BD48 /* StringCapitalizingFirstLetter.swift in Sources */,
 				B4AD4F5F2A52EDF500320F2F /* UserService.swift in Sources */,
 				B4F09C4A2A38BD800056BD48 /* CustomTextFieldCopy.swift in Sources */,

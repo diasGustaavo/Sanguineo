@@ -120,19 +120,32 @@ struct FeedView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        ForEach(feedViewModel.individuals, id: \.self) { individual in
-                            ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
-                                print("button 1 pressed")
-                                navigationBarViewModel.selectedTab = .appointments
-                                navigationBarViewModel.selectedScreenAppointments = .newAppointment
+                
+                if !feedViewModel.individualsLoading {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 15) {
+                            ForEach(feedViewModel.individuals, id: \.self) { individual in
+                                ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
+                                    print("button 1 pressed")
+                                    navigationBarViewModel.selectedTab = .appointments
+                                    navigationBarViewModel.selectedScreenAppointments = .newAppointment
+                                }
                             }
                         }
+                        .padding(.vertical)
                     }
-                    .padding(.vertical)
+                    .padding(.leading, 16)
+                } else {
+                    VStack {
+                        Spacer()
+                            .frame(height: 40)
+                        
+                        Spinner(lineWidth: 5, height: 32, width: 32)
+                        
+                        Spacer()
+                            .frame(height: 20)
+                    }
                 }
-                .padding(.leading, 16)
                 
                 HStack {
                     Text("Campanhas de doações")
