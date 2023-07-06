@@ -9,7 +9,12 @@ import SwiftUI
 
 struct FeedView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @EnvironmentObject var addressViewModel: AddressViewModel
+    
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
+
+    // add this line
+    @State private var showingAddressView = false
     
     var body: some View {
         NavigationView {
@@ -26,9 +31,15 @@ struct FeedView: View {
                     
                     Spacer()
                     
-                    Text("Rua Empresario Manoel...")
+                    Text((addressViewModel.selectedAddress?.street.map { String($0.prefix(22)) + ($0.count > 25 ? "..." : "") } ?? "Sem endereço selecionado"))
                         .font(.custom("Nunito-Light", size: 16))
                         .multilineTextAlignment(.center)
+                        .onTapGesture {
+                            showingAddressView = true
+                        }
+                        .sheet(isPresented: $showingAddressView) {
+                            AddressView()
+                        }
                     
                     Image(systemName: "chevron.down")
                         .font(.custom("Nunito-Light", size: 14))
@@ -201,5 +212,6 @@ struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView(navigationBarViewModel: NavigationBarViewModel())
             .environmentObject(FeedViewModel())
+            .environmentObject(AddressViewModel())
     }
 }
