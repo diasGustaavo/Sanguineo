@@ -19,6 +19,8 @@ class RegisterViewModel: ObservableObject {
     @Published var isCameraAuthorized: Bool
     @Published var selectedImage: UIImage? = UIImage(named: "3davatar2")! // temporary
     @Published var selectedBlood: Int
+    @Published var dateOfBirth: Date
+    
     let bloodTypes = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
     
     func getSelectedBloodType() -> String {
@@ -28,7 +30,7 @@ class RegisterViewModel: ObservableObject {
         return bloodTypes[selectedBlood]
     }
     
-    init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false, selectedBlood: Int = 0) {
+    init(selectedTab: Int = 0, name: String = "", email: String = "", password1: String = "", password2: String = "", phonenum: String = "", isCheckedForm: Bool = false, isCheckedEmail: Bool = false, isCameraAuthorized: Bool = false, selectedBlood: Int = 0, dateOfBirth: Date = Date()) {
         self.selectedTab = selectedTab
         self.name = name
         self.email = email
@@ -39,5 +41,6 @@ class RegisterViewModel: ObservableObject {
         self.isCheckedEmail = isCheckedEmail
         self.isCameraAuthorized = isCameraAuthorized
         self.selectedBlood = selectedBlood
+        self.dateOfBirth = dateOfBirth
     }
 }

@@ -29,7 +29,7 @@ struct RegisterView: View {
             .padding()
             
             TabView(selection: $registerViewModel.selectedTab) {
-                PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab, selectedBlood: $registerViewModel.selectedBlood)
+                PersonalInfo(name: $registerViewModel.name, email: $registerViewModel.email, password1: $registerViewModel.password1, password2: $registerViewModel.password2, phonenum: $registerViewModel.phonenum, isChecked: $registerViewModel.isCheckedForm, selectedTab: $registerViewModel.selectedTab, selectedBlood: $registerViewModel.selectedBlood, dateOfBirth: $registerViewModel.dateOfBirth)
                     .tag(0)
                     .gesture(DragGesture())
                 ConfirmationCodeView(selectedTab: $registerViewModel.selectedTab, isChecked: $registerViewModel.isCheckedEmail)
@@ -75,6 +75,7 @@ struct PersonalInfo: View {
     @Binding var isChecked: Bool
     @Binding var selectedTab: Int
     @Binding var selectedBlood: Int
+    @Binding var dateOfBirth: Date
     
     @State private var showAlert = false
     @State private var alertMessage = ""
@@ -83,18 +84,20 @@ struct PersonalInfo: View {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
                 VStack(alignment: .leading) {
-                    Text("Preencha suas informações pessoais")
-                        .multilineTextAlignment(.leading)
-                        .font(.custom("Nunito-SemiBold", size: 24))
-                    
-                    Spacer().frame(height: 40)
+                    // HEADER
+                    Group {
+                        Text("Preencha suas informações pessoais")
+                            .multilineTextAlignment(.leading)
+                            .font(.custom("Nunito-SemiBold", size: 24))
+                        
+                        Spacer().frame(height: 40)
+                    }
                     
                     // TEXTFIELDS
                     Group {
-                        ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name, logo: "person", placeholder: "Nome e sobrenome")
-                        
-                        
                         Group {
+                            ResponsiveCustomTextField(id: 1, scrollViewProxy: scrollViewProxy, content: $name, logo: "person", placeholder: "Nome e sobrenome")
+                            
                             Spacer()
                                 .frame(height: 20)
                             
@@ -104,22 +107,29 @@ struct PersonalInfo: View {
                                 .frame(height: 20)
                         }
                         
-                        ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail", keyboardType: .emailAddress)
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        ResponsiveCustomTextField(id: 3, scrollViewProxy: scrollViewProxy, content: $password1, logo: "lock", placeholder: "Senha")
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        ResponsiveCustomTextField(id: 4, scrollViewProxy: scrollViewProxy, content: $password2, logo: "lock", placeholder: "Senha")
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        ResponsiveCustomTextField(id: 5, scrollViewProxy: scrollViewProxy, content: $phonenum, logo: "iphone", placeholder: "Número do celular", keyboardType: .phonePad)
+                        Group {
+                            ResponsiveCustomTextField(id: 2, scrollViewProxy: scrollViewProxy, content: $email, placeholder: "E-mail", keyboardType: .emailAddress)
+                            
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            ResponsiveCustomDatePicker(id: 3, scrollViewProxy: scrollViewProxy, date: $dateOfBirth, logo: "calendar", placeholder: "Data de Nascimento")
+                            
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            ResponsiveCustomTextField(id: 4, scrollViewProxy: scrollViewProxy, content: $password1, logo: "lock", placeholder: "Senha")
+                            
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            ResponsiveCustomTextField(id: 5, scrollViewProxy: scrollViewProxy, content: $password2, logo: "lock", placeholder: "Senha")
+                            
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            ResponsiveCustomTextField(id: 6, scrollViewProxy: scrollViewProxy, content: $phonenum, logo: "iphone", placeholder: "Número do celular", keyboardType: .phonePad)
+                        }
                     }
                     
                     Spacer().frame(height: 40)
@@ -450,6 +460,7 @@ struct DocumentRequestView: View {
                             password: registerViewModel.password1,
                             phonenum: registerViewModel.phonenum,
                             bloodtype: registerViewModel.getSelectedBloodType(),
+                            dateOfBirth: registerViewModel.dateOfBirth,
                             selectedImage: selectedImage
                         )
                     } else {
