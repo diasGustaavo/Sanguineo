@@ -68,7 +68,13 @@ class FeedViewModel: ObservableObject {
                             if let document = document, document.exists {
                                 guard let bloodtype = document.data()?["bloodtype"] as? String else { return }
                                 guard let fakename = document.data()?["fakename"] as? String else { return }
-                                guard let ageString = document.data()?["age"] as? String, let age = Int(ageString) else { return }
+                                guard let dateOfBirthTimestamp = document.data()?["dateOfBirth"] as? Timestamp else { return }
+
+                                let dateOfBirth = dateOfBirthTimestamp.dateValue()
+                                let calendar = Calendar.current
+
+                                let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
+                                guard let age = ageComponents.year else { return }
                                 
                                 let newIndividual = Individual(id: authorUID, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo)
                                 self.individuals.append(newIndividual)
