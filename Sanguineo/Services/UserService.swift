@@ -41,10 +41,13 @@ class UserService: ObservableObject {
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String,
                let gender = data["gender"] as? String,
-               let dateOfBirth = data["dateOfBirth"] as? Timestamp,
-               let location = data["location"] as? GeoPoint {
+               let dateOfBirth = data["dateOfBirth"] as? Timestamp {
+                
+                let location = data["location"] as? GeoPoint ?? GeoPoint(latitude: 0, longitude: 0)
                 let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
+                
                 let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, dateOfBirth: dateOfBirth.dateValue(), location: userLocation)
+                
                 self.user = user
                 print("DEBUG: Setting user now! USER SERVICE")
             } else {
@@ -67,11 +70,11 @@ class UserService: ObservableObject {
                     identityID: String? = nil,
                     age: String? = nil,
                     gender: String? = nil) {
-
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
-
+        
         var updatedData: [String: Any] = [:]
-
+        
         if let fullname = fullname { updatedData["fullname"] = fullname }
         if let fakename = fakename { updatedData["fakename"] = fakename }
         if let email = email { updatedData["email"] = email }
@@ -88,7 +91,7 @@ class UserService: ObservableObject {
         if let location = location {
             updatedData["location"] = GeoPoint(latitude: location.latitude, longitude: location.longitude)
         }
-
+        
         // Only attempt an update if there is data to update
         if !updatedData.isEmpty {
             Firestore.firestore().collection("users").document(uid).updateData(updatedData) { err in
@@ -98,7 +101,7 @@ class UserService: ObservableObject {
             }
         }
     }
-
+    
     func fetchUserAndDo(completion: @escaping () -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -121,10 +124,13 @@ class UserService: ObservableObject {
                let identityID = data["identityID"] as? String,
                let age = data["age"] as? String,
                let gender = data["gender"] as? String,
-               let dateOfBirth = data["dateOfBirth"] as? Timestamp,
-               let location = data["location"] as? GeoPoint {
+               let dateOfBirth = data["dateOfBirth"] as? Timestamp {
+                
+                let location = data["location"] as? GeoPoint ?? GeoPoint(latitude: 0, longitude: 0)
                 let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
+                
                 let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, dateOfBirth: dateOfBirth.dateValue(), location: userLocation)
+                
                 self.user = user
                 completion()
             } else {
