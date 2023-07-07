@@ -10,10 +10,10 @@ import SwiftUI
 struct FeedView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @EnvironmentObject var addressViewModel: AddressViewModel
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
 
-    // add this line
     @State private var showingAddressView = false
     
     var body: some View {
@@ -25,7 +25,7 @@ struct FeedView: View {
                         .resizable()
                         .frame(width: 30 ,height: 30)
                     
-                    Text("O-")
+                    Text(initialLogViewModel.currentUser?.bloodtype ?? "")
                         .font(.custom("Nunito-Regular", size: 16))
                         .multilineTextAlignment(.center)
                     
@@ -213,5 +213,6 @@ struct FeedView_Previews: PreviewProvider {
         FeedView(navigationBarViewModel: NavigationBarViewModel())
             .environmentObject(FeedViewModel())
             .environmentObject(AddressViewModel())
+            .environmentObject(InitialLogViewModel())
     }
 }

@@ -41,6 +41,8 @@ class AddressViewModel: ObservableObject {
     let geocoder = CLGeocoder()
     
     init() {
+        addCurrentLocation()
+        
         $typedSearchAddress
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { [unowned self] in
