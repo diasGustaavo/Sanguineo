@@ -21,6 +21,7 @@ struct NavigationBarView: View {
     let descriptionHospital = "Precisamos urgente de sangue O+ para inúmeros pacientes"
     
     @ObservedObject var viewModel: NavigationBarViewModel
+    
     var body: some View {
         VStack {
             Spacer() // This will push the rest of the content to the bottom
@@ -29,7 +30,7 @@ struct NavigationBarView: View {
             case .home:
                 FeedView(navigationBarViewModel: viewModel)
             case .appointments:
-                AppointmentsView()
+                AppointmentsView(navigationBarViewModel: viewModel)
             case .profile:
                 ProfileView()
             case .request: // New case added

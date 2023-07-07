@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AppointmentsView: View {
+    @ObservedObject var navigationBarViewModel: NavigationBarViewModel
+    
+    @State private var showingDonationView = false
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -50,7 +54,7 @@ struct AppointmentsView: View {
                 .padding()
                 
                 Button {
-                    // some code
+                    showingDonationView.toggle()
                 } label: {
                     HStack {
                         Image(uiImage: UIImage(named: "3d_avatar_3")!)
@@ -76,9 +80,12 @@ struct AppointmentsView: View {
                     .padding(.top, 8)
                 }
                 .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                .sheet(isPresented: $showingDonationView) {
+                    DonateView(navigationBarViewModel: navigationBarViewModel)
+                }
                 
                 Button {
-                    // some code
+                    showingDonationView.toggle()
                 } label: {
                     HStack {
                         Image(uiImage: UIImage(named: "3d_avatar_7")!)
@@ -104,6 +111,9 @@ struct AppointmentsView: View {
                     .padding(.top, 8)
                 }
                 .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                .sheet(isPresented: $showingDonationView) {
+                    DonateView(navigationBarViewModel: navigationBarViewModel)
+                }
                 
                 Spacer()
             }
@@ -113,6 +123,6 @@ struct AppointmentsView: View {
 
 struct AppointmentsView_Previews: PreviewProvider {
     static var previews: some View {
-        AppointmentsView()
+        AppointmentsView(navigationBarViewModel: NavigationBarViewModel())
     }
 }
