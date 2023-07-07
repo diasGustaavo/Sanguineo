@@ -14,12 +14,6 @@ enum NavigationTab: String {
     case request = "Solicitação" // New tab
 }
 
-enum AppointmentsScreens: String {
-    case home = "Início"
-    case newAppointment = "NovoCompromisso"
-}
-
 class NavigationBarViewModel: ObservableObject {
     @Published var selectedTab: NavigationTab = .home
-    @Published var selectedScreenAppointments: AppointmentsScreens = .home
 }

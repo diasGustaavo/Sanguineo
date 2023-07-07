@@ -15,6 +15,7 @@ struct FeedView: View {
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
 
     @State private var showingAddressView = false
+    @State private var showingDonationView = false
     
     var body: some View {
         NavigationView {
@@ -137,8 +138,11 @@ struct FeedView: View {
                         HStack(spacing: 15) {
                             ForEach(feedViewModel.individuals, id: \.self) { individual in
                                 ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
-                                    navigationBarViewModel.selectedTab = .appointments
-                                    navigationBarViewModel.selectedScreenAppointments = .newAppointment
+//                                    navigationBarViewModel.selectedTab = .appointments
+                                    showingDonationView = true
+                                }
+                                .sheet(isPresented: $showingDonationView) {
+                                    DonateView(navigationBarViewModel: navigationBarViewModel)
                                 }
                             }
                         }
@@ -184,7 +188,7 @@ struct FeedView: View {
                             ForEach(feedViewModel.hospitals, id: \.self) { hospital in
                                 ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
                                     navigationBarViewModel.selectedTab = .appointments
-                                    navigationBarViewModel.selectedScreenAppointments = .newAppointment
+//                                    navigationBarViewModel.selectedScreenAppointments = .newAppointment
                                 }
                             }
                         }

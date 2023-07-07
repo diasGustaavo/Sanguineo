@@ -29,19 +29,7 @@ struct NavigationBarView: View {
             case .home:
                 FeedView(navigationBarViewModel: viewModel)
             case .appointments:
-                switch viewModel.selectedScreenAppointments {
-                case .home:
-                    AppointmentsView()
-                case .newAppointment:
-                    if viewModel.selectedScreenAppointments == .newAppointment {
-                        withAnimation {
-                            DonateView(image: image, name: name, bloodtype: bloodtype, description: description, nationality: nationality, navigationBarViewModel: viewModel) {
-                                // some action
-                            }
-                            .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
-                        }
-                    }
-                }
+                AppointmentsView()
             case .profile:
                 ProfileView()
             case .request: // New case added

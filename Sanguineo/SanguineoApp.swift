@@ -30,6 +30,7 @@ struct SanguineoApp: App {
                 .environmentObject(SettingsViewModel())
                 .environmentObject(ProfileViewModel())
                 .environmentObject(FeedViewModel())
+                .environmentObject(AppointmentsViewModel())
         }
     }
 }

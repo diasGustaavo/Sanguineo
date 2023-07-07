@@ -77,6 +77,8 @@
 		B4CCA2112A5598AC0000E768 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CCA2102A5598AC0000E768 /* FeedViewModel.swift */; };
 		B4CCA2132A55B7B70000E768 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CCA2122A55B7B70000E768 /* Spinner.swift */; };
 		B4D070862A30D4E0003FE151 /* ResponsiveCustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */; };
+		B4D7FAB22A5837A6009C3D98 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7FAB12A5837A6009C3D98 /* AppointmentsViewModel.swift */; };
+		B4D7FAB42A583959009C3D98 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7FAB32A583959009C3D98 /* Appointment.swift */; };
 		B4DA24222A165173009C6DA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24212A165173009C6DA0 /* LoginView.swift */; };
 		B4DA24252A16531A009C6DA0 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA24242A16531A009C6DA0 /* UIScreen.swift */; };
 		B4DA512D2A3B55BB006C12ED /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */; };
@@ -170,6 +172,8 @@
 		B4CCA2102A5598AC0000E768 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		B4CCA2122A55B7B70000E768 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		B4D070852A30D4E0003FE151 /* ResponsiveCustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveCustomPicker.swift; sourceTree = "<group>"; };
+		B4D7FAB12A5837A6009C3D98 /* AppointmentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewModel.swift; sourceTree = "<group>"; };
+		B4D7FAB32A583959009C3D98 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		B4DA24212A165173009C6DA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4DA24242A16531A009C6DA0 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4DA512C2A3B55BB006C12ED /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
@@ -471,6 +475,7 @@
 		B483BF3D2A262DB90005746D /* Appointments */ = {
 			isa = PBXGroup;
 			children = (
+				B4D7FAB02A583798009C3D98 /* ViewModel */,
 				B483BF412A262DDA0005746D /* View */,
 			);
 			path = Appointments;
@@ -524,6 +529,7 @@
 				B4CB03DE2A1F8A7E00DC04E2 /* User.swift */,
 				B4C8BBDB2A4B156C00CFD598 /* Request.swift */,
 				B4AD4F842A52FE6B00320F2F /* Address.swift */,
+				B4D7FAB32A583959009C3D98 /* Appointment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -540,6 +546,14 @@
 			isa = PBXGroup;
 			children = (
 				B4CCA2102A5598AC0000E768 /* FeedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B4D7FAB02A583798009C3D98 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4D7FAB12A5837A6009C3D98 /* AppointmentsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -725,6 +739,7 @@
 				B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */,
 				B418FFBA2A05499800C05261 /* InitialLogView.swift in Sources */,
 				B483BF372A262B400005746D /* NavigationBarView.swift in Sources */,
+				B4D7FAB42A583959009C3D98 /* Appointment.swift in Sources */,
 				B4E4BAEE2A165E9F00F108C1 /* ResponsiveCustomTextField.swift in Sources */,
 				B418FFBC2A054A5900C05261 /* HomeViewModel.swift in Sources */,
 				B4AD4F802A52EEBC00320F2F /* EditProfileInfoView.swift in Sources */,
@@ -754,6 +769,7 @@
 				B4C8BBDC2A4B156C00CFD598 /* Request.swift in Sources */,
 				B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */,
 				B4F09C462A38A5BC0056BD48 /* RewardsView.swift in Sources */,
+				B4D7FAB22A5837A6009C3D98 /* AppointmentsViewModel.swift in Sources */,
 				B43454632A277D69000BC1EF /* ReusablePersonCellView.swift in Sources */,
 				B446510B2A3C8834005D2BB9 /* AboutThisVersionView.swift in Sources */,
 				B4F09C482A38B7970056BD48 /* RewardsDetailedView.swift in Sources */,

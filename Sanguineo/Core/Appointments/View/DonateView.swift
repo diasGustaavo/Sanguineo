@@ -8,30 +8,18 @@
 import SwiftUI
 
 struct DonateView: View {
-    let image: UIImage
-    let name: String
-    let bloodtype: String
-    let age: Int?
-    let description: String
-    let nationality: String
-    let onButtonPress: () -> Void
-    
     @State var selectedDate: Date = Date()
     @State private var selectedTime = Date()
     
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
+    @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
     
     let earliestTime: Date
     let latestTime: Date
     
-    init(image: UIImage, name: String, bloodtype: String, description: String, age: Int? = nil, nationality: String, navigationBarViewModel: NavigationBarViewModel, onButtonPress: @escaping () -> Void) {
-        self.image = image
-        self.name = name
-        self.bloodtype = bloodtype
-        self.description = description
-        self.onButtonPress = onButtonPress
-        self.age = age
-        self.nationality = nationality
+    init(navigationBarViewModel: NavigationBarViewModel) {
         self.navigationBarViewModel = navigationBarViewModel
         
         var calendar = Calendar.current
@@ -54,7 +42,7 @@ struct DonateView: View {
                 HStack {
                     Button {
                         withAnimation {
-                            navigationBarViewModel.selectedScreenAppointments = .home
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                     } label: {
                         Image(systemName: "chevron.left")
@@ -75,15 +63,16 @@ struct DonateView: View {
                     Spacer().frame(width: 30)
                 }
                 .padding(.horizontal, 16)
+                .padding(.top)
                 
                 HStack {
-                    Image(uiImage: image)
+                    Image(uiImage: appointmentsViewModel.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80, height: 80)
                     
                     VStack(alignment: .leading) {
-                        Text(name)
+                        Text(appointmentsViewModel.name)
                             .lineLimit(1)
                             .font(.custom("Nunito-SemiBold", size: 20))
                     }
@@ -99,11 +88,11 @@ struct DonateView: View {
                             .lineLimit(1)
                             .font(.custom("Nunito-Light", size: 17))
                         
-                        Text("Nacionalidade: \(nationality) / Sangue: \(bloodtype)")
+                        Text("Nacionalidade: \(appointmentsViewModel.nationality) / Sangue: \(appointmentsViewModel.bloodtype)")
                             .lineLimit(1)
                             .font(.custom("Nunito-Light", size: 15))
                         
-                        Text("\(description)")
+                        Text("\(appointmentsViewModel.description)")
                             .lineLimit(1)
                             .font(.custom("Nunito-Light", size: 15))
                     }
@@ -151,7 +140,7 @@ struct DonateView: View {
                     .padding(.horizontal)
                 
                 Button {
-                    navigationBarViewModel.selectedScreenAppointments = .home
+                    self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Confirmar Agendamento")
                         .font(.custom("Nunito-Regular", size: 22))
@@ -176,8 +165,6 @@ struct DonateView_Previews: PreviewProvider {
     static let description = "Tratamento medico / Cirurgia"
     
     static var previews: some View {
-        DonateView(image: image, name: name, bloodtype: bloodtype, description: description, nationality: "Brasileira", navigationBarViewModel: NavigationBarViewModel()) {
-            print("button pressed!")
-        }
+        DonateView(navigationBarViewModel: NavigationBarViewModel())
     }
 }
