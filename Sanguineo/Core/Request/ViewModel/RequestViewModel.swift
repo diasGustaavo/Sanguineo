@@ -17,6 +17,8 @@ class RequestViewModel: ObservableObject {
     @Published var hemocentro: String = ""
     @Published var requests = [Request]()
     
+    @Published var isLoading = true
+    
     func saveRequest(authorUID: String, reqUID: String = "") {
         let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID)
         
@@ -64,6 +66,7 @@ class RequestViewModel: ObservableObject {
     }
 
     func fetchRequests(for authorUID: String) {
+        isLoading = true
         let db = Firestore.firestore()
         db.collection("requests").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
             if let error = error {
@@ -72,6 +75,7 @@ class RequestViewModel: ObservableObject {
                 self.requests = querySnapshot.documents.compactMap { document -> Request? in
                     var request = try? document.data(as: Request.self)
                     request?.id = document.documentID
+                    self.isLoading = false
                     return request
                 }
             }
@@ -79,6 +83,8 @@ class RequestViewModel: ObservableObject {
     }
     
     func fetchRequest(withId id: String) {
+        isLoading = true
+        
         let db = Firestore.firestore()
 
         db.collection("requests").document(id).getDocument { document, error in
@@ -93,6 +99,7 @@ class RequestViewModel: ObservableObject {
                 self.outro = request.outro
                 self.additionalInfo = request.additionalInfo
                 self.hemocentro = request.hemocentro
+                self.isLoading = false
             } else {
                 print("DEBUG: Document does not exist")
             }

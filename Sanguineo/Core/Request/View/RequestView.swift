@@ -60,32 +60,44 @@ struct RequestView: View {
                     }
                     .padding()
                     
-                    ForEach(viewModel.requests, id: \.self) { req in
-                        NavigationLink(destination: MakeRequestView(requestID: req.id ?? "", viewModel: viewModel).navigationBarBackButtonHidden()) {
-                            HStack {
-                                Image(uiImage: UIImage(named: "3davatar2")!)
-                                    .resizable()
-                                    .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
-                                
-                                Spacer()
-                                
-                                Text("Principais informações do agendamento")
-                                    .font(.custom("Nunito-Light", size: 16))
-                                    .multilineTextAlignment(.leading)
-                                
-                                Spacer()
-                                
-                                Image(systemName: "pencil")
+                    if !viewModel.isLoading {
+                        ForEach(viewModel.requests, id: \.self) { req in
+                            NavigationLink(destination: MakeRequestView(requestID: req.id ?? "", viewModel: viewModel).navigationBarBackButtonHidden()) {
+                                HStack {
+                                    Image(uiImage: UIImage(named: "3davatar2")!)
+                                        .resizable()
+                                        .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Principais informações do agendamento")
+                                        .font(.custom("Nunito-Light", size: 16))
+                                        .multilineTextAlignment(.leading)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "pencil")
+                                }
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.accentColor, lineWidth: 0.8)
+                                )
+                                .padding(.horizontal)
+                                .padding(.top, 8)
                             }
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.accentColor, lineWidth: 0.8)
-                            )
-                            .padding(.horizontal)
-                            .padding(.top, 8)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                         }
-                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                    } else {
+                        VStack {
+                            Spacer()
+                                .frame(height: 40)
+                            
+                            Spinner(lineWidth: 5, height: 32, width: 32)
+                            
+                            Spacer()
+                                .frame(height: 20)
+                        }
                     }
                     
                     NavigationLink {

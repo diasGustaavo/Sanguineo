@@ -244,6 +244,7 @@ struct MakeRequestView: View {
                     Button {
                         if let currentUserUID = initialLogViewModel.currentUser?.uid {
                             viewModel.saveRequest(authorUID: currentUserUID, reqUID: requestID)
+                            viewModel.fetchRequests(for: currentUserUID)
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     } label: {
