@@ -18,6 +18,7 @@ class RequestViewModel: ObservableObject {
     @Published var requests = [Request]()
     
     @Published var isLoading = true
+    @Published var isPublicationLoading = true
     
     func saveRequest(authorUID: String, reqUID: String = "") {
         let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID)
@@ -80,6 +81,7 @@ class RequestViewModel: ObservableObject {
                 }
             }
         }
+        self.isLoading = false
     }
     
     func fetchRequest(withId id: String) {
@@ -100,6 +102,30 @@ class RequestViewModel: ObservableObject {
                 self.additionalInfo = request.additionalInfo
                 self.hemocentro = request.hemocentro
                 self.isLoading = false
+            } else {
+                print("DEBUG: Document does not exist")
+            }
+        }
+    }
+    
+    func fetchRequestPublication(withId id: String) {
+        isPublicationLoading = true
+        
+        let db = Firestore.firestore()
+
+        db.collection("requests").document(id).getDocument { document, error in
+            if let error = error {
+                print("DEBUG: Error getting request: \(error)")
+            } else if let document = document, document.exists, let request = try? document.data(as: Request.self) {
+                // Update the fields with the fetched request data
+                self.cirurgia = request.cirurgia
+                self.acidente = request.acidente
+                self.doenca = request.doenca
+                self.tratamento = request.tratamento
+                self.outro = request.outro
+                self.additionalInfo = request.additionalInfo
+                self.hemocentro = request.hemocentro
+                self.isPublicationLoading = false
             } else {
                 print("DEBUG: Document does not exist")
             }

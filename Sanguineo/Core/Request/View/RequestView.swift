@@ -62,7 +62,10 @@ struct RequestView: View {
                     
                     if !viewModel.isLoading {
                         ForEach(viewModel.requests, id: \.self) { req in
-                            NavigationLink(destination: MakeRequestView(requestID: req.id ?? "", viewModel: viewModel).navigationBarBackButtonHidden()) {
+                            NavigationLink {
+                                MakeRequestView(requestID: req.id ?? "", viewModel: viewModel)
+                                    .navigationBarBackButtonHidden()
+                            } label: {
                                 HStack {
                                     Image(uiImage: UIImage(named: "3davatar2")!)
                                         .resizable()
@@ -118,7 +121,6 @@ struct RequestView: View {
                         .padding()
                     }
                     
-                    
                     Spacer()
                 }
             }
@@ -134,5 +136,7 @@ struct RequestView: View {
 struct RequestView_Previews: PreviewProvider {
     static var previews: some View {
         RequestView()
+            .environmentObject(InitialLogViewModel())
+            .environmentObject(ProfileViewModel())
     }
 }
