@@ -24,17 +24,17 @@ class ProfileViewModel: ObservableObject {
     @Published var bloodtype: String = ""
     
     let genderOptions = ["Masculino", "Feminino", "Outros"]
-
+    
     var cancellables = Set<AnyCancellable>()
-
+    
     init() {
         self.image = Image(uiImage: UIImage(named: "3d_avatar_28")!)
-
+        
         UserService.shared.$user
             .sink { [weak self] in self?.updateUser($0) }
             .store(in: &cancellables)
     }
-
+    
     func updateUser(_ user: User?) {
         self.name = user?.fullname ?? ""
         self.fakeName = user?.fakename ?? ""
@@ -49,10 +49,6 @@ class ProfileViewModel: ObservableObject {
         self.genderName = user?.gender ?? ""
         
         self.gender = Int(user?.gender ?? "0") ?? 0
-        if let index = genderOptions.firstIndex(where: { $0 == user?.gender }) {
-            self.gender = index
-        } else {
-            self.gender = 0
-        }
+        self.genderName = genderOptions[self.gender]
     }
 }

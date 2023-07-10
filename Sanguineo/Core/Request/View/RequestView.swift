@@ -44,7 +44,7 @@ struct RequestView: View {
                     .padding(.horizontal)
                     
                     HStack {
-                        Text("Nacionalidade: Brasileiro(a) / Sangue: \(profile.bloodtype) / Gênero: \(profile.genderName) / Número: \(profile.phone)")
+                        Text("Nome: \(profile.name) / Sangue: \(profile.bloodtype) / Gênero: \(profile.genderName) / Número: \(profile.phone)")
                             .font(.custom("Nunito-Light", size: 16))
                         
                         Spacer()

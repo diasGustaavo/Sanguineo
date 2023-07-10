@@ -9,8 +9,11 @@ import SwiftUI
 
 struct MakeRequestView: View {
     let requestID: String
+    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @EnvironmentObject var profile: ProfileViewModel
+    
     @ObservedObject var viewModel: RequestViewModel
     
     var body: some View {
@@ -69,7 +72,7 @@ struct MakeRequestView: View {
                         .padding(0)
                         
                         HStack {
-                            Text("Nome: João da Silva / CPF: xxx.xxx.xxx-xx / Solteiro(a) Nacionalidade: Brasileiro(a) / Sangue: O- ")
+                            Text("Nome: \(profile.name) / Sangue: \(profile.bloodtype) / Gênero: \(profile.genderName) / Número: \(profile.phone)")
                                 .font(
                                     Font.custom("Nunito", size: 13)
                                         .weight(.light)
