@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AppointmentsView: View {
+    @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
     
     @State private var showingDonationView = false
@@ -53,69 +56,60 @@ struct AppointmentsView: View {
                 }
                 .padding()
                 
-                Button {
-                    showingDonationView.toggle()
-                } label: {
-                    HStack {
-                        Image(uiImage: UIImage(named: "3d_avatar_3")!)
-                            .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
-                        
-                        Spacer()
-                        
-                        Text("Principais informações do agendamento")
-                            .font(.custom("Nunito-Light", size: 16))
-                            .multilineTextAlignment(.leading)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
+                if !appointmentsViewModel.isLoading {
+                    ForEach(appointmentsViewModel.appointments, id: \.self) { appointment in
+                        Button {
+                            if let appointmentId = appointment.id {
+                                navigationBarViewModel.reqUID = appointmentId
+                                showingDonationView.toggle()
+                            }
+                        } label: {
+                            HStack {
+                                Image(uiImage: UIImage(named: "3d_avatar_7")!)
+                                    .resizable()
+                                    .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                
+                                Spacer()
+                                
+                                Text("Principais informações do agendamento")
+                                    .font(.custom("Nunito-Light", size: 16))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                            }
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.accentColor, lineWidth: 0.8)
+                            )
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                        }
+                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                        .sheet(isPresented: $showingDonationView) {
+                            DonateView(navigationBarViewModel: navigationBarViewModel)
+                        }
                     }
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.accentColor, lineWidth: 0.8)
-                    )
-                    .padding(.horizontal)
-                    .padding(.top, 8)
-                }
-                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                .sheet(isPresented: $showingDonationView) {
-                    DonateView(navigationBarViewModel: navigationBarViewModel)
-                }
-                
-                Button {
-                    showingDonationView.toggle()
-                } label: {
-                    HStack {
-                        Image(uiImage: UIImage(named: "3d_avatar_7")!)
-                            .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                } else {
+                    VStack {
+                        Spacer()
+                            .frame(height: 40)
+                        
+                        Spinner(lineWidth: 5, height: 32, width: 32)
                         
                         Spacer()
-                        
-                        Text("Principais informações do agendamento")
-                            .font(.custom("Nunito-Light", size: 16))
-                            .multilineTextAlignment(.leading)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
+                            .frame(height: 20)
                     }
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.accentColor, lineWidth: 0.8)
-                    )
-                    .padding(.horizontal)
-                    .padding(.top, 8)
-                }
-                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                .sheet(isPresented: $showingDonationView) {
-                    DonateView(navigationBarViewModel: navigationBarViewModel)
                 }
                 
                 Spacer()
+            }
+        }
+        .onAppear {
+            if let currentUserUID = initialLogViewModel.currentUserUID {
+                appointmentsViewModel.fetchAppointments(for: currentUserUID)
             }
         }
     }

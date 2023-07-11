@@ -8,7 +8,7 @@
 import FirebaseFirestoreSwift
 import Firebase
 
-struct Appointment: Identifiable, Codable {
+struct Appointment: Identifiable, Codable, Hashable {
     @DocumentID var id: String?  // Document ID
     var appointmentDate: Date    // Appointment Date
     var requestId: String        // ID of the request related to the appointment
