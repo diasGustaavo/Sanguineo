@@ -17,4 +17,5 @@ struct Request: Codable, Hashable {
     var additionalInfo: String
     var hemocentro: String
     var authorUID: String
+    var date: Date
 }

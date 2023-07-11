@@ -18,10 +18,10 @@ class RequestViewModel: ObservableObject {
     @Published var requests = [Request]()
     
     @Published var isLoading = true
-    @Published var isPublicationLoading = true
+    @Published var isPublicationLoading = false
     
     func saveRequest(authorUID: String, reqUID: String = "") {
-        let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID)
+        let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID, date: Date())
         
         do {
             var requestDocument = try Firestore.Encoder().encode(request)
@@ -125,10 +125,10 @@ class RequestViewModel: ObservableObject {
                 self.outro = request.outro
                 self.additionalInfo = request.additionalInfo
                 self.hemocentro = request.hemocentro
-                self.isPublicationLoading = false
             } else {
                 print("DEBUG: Document does not exist")
             }
         }
+        self.isPublicationLoading = false
     }
 }
