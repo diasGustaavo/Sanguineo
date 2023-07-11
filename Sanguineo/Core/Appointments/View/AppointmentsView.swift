@@ -88,7 +88,9 @@ struct AppointmentsView: View {
                             .padding(.top, 8)
                         }
                         .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                        .sheet(isPresented: $showingDonationView) {
+                        .sheet(isPresented: $showingDonationView, onDismiss: {
+                            self.navigationBarViewModel.reqUID = ""
+                        }) {
                             DonateView(navigationBarViewModel: navigationBarViewModel)
                         }
                     }

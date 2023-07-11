@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct DonateView: View {
-    @State var selectedDate: Date = Date()
-    @State private var selectedTime = Date()
-    
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
     @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
@@ -33,7 +30,7 @@ struct DonateView: View {
         components.hour = 18
         latestTime = calendar.date(from: components)!
         
-        _selectedTime = State(initialValue: earliestTime)
+//        appointmentsViewModel.selectedDate = earliestTime
     }
     
     var body: some View {
@@ -44,6 +41,7 @@ struct DonateView: View {
                     Button {
                         withAnimation {
                             self.presentationMode.wrappedValue.dismiss()
+                            self.navigationBarViewModel.reqUID = ""
                         }
                     } label: {
                         Image(systemName: "chevron.left")
@@ -122,18 +120,18 @@ struct DonateView: View {
                 }
                 .padding(.horizontal)
                 
-                DatePicker("Selecionar Data", selection: $selectedDate, displayedComponents: [.date])
+                DatePicker("Selecionar Data", selection: $appointmentsViewModel.selectedDate, displayedComponents: [.date])
                     .datePickerStyle(.graphical)
                     .padding(.horizontal, 8)
                 
-                DatePicker("Selecionar Hora", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                    .onChange(of: selectedTime) { newDate in
+                DatePicker("Selecionar Hora", selection: $appointmentsViewModel.selectedTime, displayedComponents: .hourAndMinute)
+                    .onChange(of: appointmentsViewModel.selectedTime) { newDate in
                         let calendar = Calendar.current
                         let hour = calendar.component(.hour, from: newDate)
                         if hour < 8 {
-                            selectedTime = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: newDate) ?? newDate
+                            appointmentsViewModel.selectedTime = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: newDate) ?? newDate
                         } else if hour > 18 {
-                            selectedTime = calendar.date(bySettingHour: 18, minute: 0, second: 0, of: newDate) ?? newDate
+                            appointmentsViewModel.selectedTime = calendar.date(bySettingHour: 18, minute: 0, second: 0, of: newDate) ?? newDate
                         }
                     }
                     .datePickerStyle(CompactDatePickerStyle())
@@ -142,8 +140,9 @@ struct DonateView: View {
                 
                 Button {
                     if let currentUserUID = initialLogViewModel.currentUser?.uid {
-                        appointmentsViewModel.saveAppointment(authorUID: currentUserUID, requestUID: navigationBarViewModel.reqUID)
+                        appointmentsViewModel.saveAppointment(authorUID: currentUserUID, requestUID: navigationBarViewModel.reqUID, appointmentUID: navigationBarViewModel.reqUID)
                         self.presentationMode.wrappedValue.dismiss()
+                        self.navigationBarViewModel.reqUID = ""
                     }
                 } label: {
                     Text("Confirmar Agendamento")
@@ -158,6 +157,11 @@ struct DonateView: View {
             }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            if !navigationBarViewModel.reqUID.isEmpty {
+                appointmentsViewModel.fetchAppointment(with: navigationBarViewModel.reqUID)
+            }
+        }
     }
 }
 
