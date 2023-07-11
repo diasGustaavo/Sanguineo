@@ -31,8 +31,8 @@ class AppointmentsViewModel: ObservableObject {
         self.isLoading = true
     }
     
-    func saveAppointment(authorUID: String, requestUID: String = "") {
-        let appointment = Appointment(id: nil, appointmentDate: appointmentDate, requestId: requestUID, authorUID: authorUID)
+    func saveAppointment(authorUID: String, requestUID: String = "", appointmentUID: String = "") {
+        let appointment = Appointment(appointmentDate: appointmentDate, requestId: requestUID, authorUID: authorUID)
         
         do {
             var appointmentDocument = try Firestore.Encoder().encode(appointment)
@@ -41,7 +41,7 @@ class AppointmentsViewModel: ObservableObject {
             
             let db = Firestore.firestore()
             
-            if requestUID.isEmpty {
+            if appointmentUID.isEmpty {
                 // If appUID is empty, add a new document
                 db.collection("appointments").addDocument(data: appointmentDocument) { error in
                     if let error = error {
@@ -53,7 +53,7 @@ class AppointmentsViewModel: ObservableObject {
                 }
             } else {
                 // If appUID is not empty, update the existing document with the appUID
-                db.collection("appointments").document(requestUID).setData(appointmentDocument) { error in
+                db.collection("appointments").document(appointmentUID).setData(appointmentDocument) { error in
                     if let error = error {
                         print("DEBUG: Error updating appointment: \(error)")
                     } else {

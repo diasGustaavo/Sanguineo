@@ -15,5 +15,6 @@ enum NavigationTab: String {
 }
 
 class NavigationBarViewModel: ObservableObject {
+    @Published var reqUID: String = ""
     @Published var selectedTab: NavigationTab = .home
 }

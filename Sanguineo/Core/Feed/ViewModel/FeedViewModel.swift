@@ -17,6 +17,7 @@ protocol RequesterInfo {
 }
 
 struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
+    let authorId: String
     let id: String
     let name: String
     let bloodtype: String
@@ -25,6 +26,7 @@ struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
 }
 
 struct Hospital: Identifiable, Hashable, Codable, RequesterInfo {
+    let authorId: String
     let id: String
     let name: String
     let bloodtype: String
@@ -75,6 +77,8 @@ class FeedViewModel: ObservableObject {
         var processedDocuments = 0
         
         querySnapshot?.documents.forEach { document in
+            let documentName = document.documentID
+            
             if let authorUID = document.data()["authorUID"] as? String,
                let additionalInfo = document.data()["additionalInfo"] as? String {
                 
@@ -84,7 +88,7 @@ class FeedViewModel: ObservableObject {
                         guard let fakename = document.data()?["fakename"] as? String else { return }
                         
                         if forHospitals {
-                            let newHospital = Hospital(id: authorUID, name: fakename, bloodtype: bloodtype, description: additionalInfo)
+                            let newHospital = Hospital(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, description: additionalInfo)
                             self.hospitals.append(newHospital)
                         } else {
                             guard let dateOfBirthTimestamp = document.data()?["dateOfBirth"] as? Timestamp else { return }
@@ -94,7 +98,7 @@ class FeedViewModel: ObservableObject {
                             let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
                             guard let age = ageComponents.year else { return }
                             
-                            let newIndividual = Individual(id: authorUID, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo)
+                            let newIndividual = Individual(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo)
                             self.individuals.append(newIndividual)
                         }
                     }

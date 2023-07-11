@@ -13,6 +13,7 @@ struct DonateView: View {
     
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
     @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -140,7 +141,10 @@ struct DonateView: View {
                     .padding(.horizontal)
                 
                 Button {
-                    self.presentationMode.wrappedValue.dismiss()
+                    if let currentUserUID = initialLogViewModel.currentUser?.uid {
+                        appointmentsViewModel.saveAppointment(authorUID: currentUserUID, requestUID: navigationBarViewModel.reqUID)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 } label: {
                     Text("Confirmar Agendamento")
                         .font(.custom("Nunito-Regular", size: 22))
