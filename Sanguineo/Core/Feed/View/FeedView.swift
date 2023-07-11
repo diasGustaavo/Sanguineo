@@ -57,7 +57,7 @@ struct FeedView: View {
                 // FILTERS
                 HStack {
                     Button(action: {
-                        // some action
+                        // req
                     }) {
                         HStack {
                             Image(systemName: "line.horizontal.3.decrease")

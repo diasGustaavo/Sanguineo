@@ -20,8 +20,8 @@ class RequestViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var isPublicationLoading = false
     
-    func saveRequest(authorUID: String, reqUID: String = "") {
-        let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID, date: Date())
+    func saveRequest(authorUID: String, reqUID: String = "", xCoordinate: Double, yCoordinate: Double) {
+        let request = Request(id: nil, cirurgia: cirurgia, acidente: acidente, doenca: doenca, tratamento: tratamento, outro: outro, additionalInfo: additionalInfo, hemocentro: hemocentro, authorUID: authorUID, madeByHospital: false, date: Date(), coordinateX: xCoordinate, coordinateY: yCoordinate)
         
         do {
             var requestDocument = try Firestore.Encoder().encode(request)

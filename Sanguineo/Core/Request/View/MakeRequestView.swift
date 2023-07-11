@@ -13,6 +13,7 @@ struct MakeRequestView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @EnvironmentObject var profile: ProfileViewModel
+    @EnvironmentObject var addressViewModel: AddressViewModel
     
     @ObservedObject var viewModel: RequestViewModel
     
@@ -249,7 +250,7 @@ struct MakeRequestView: View {
                         Button {
                             if let currentUserUID = initialLogViewModel.currentUser?.uid {
                                 print("DEBUG: CLOSING2")
-                                viewModel.saveRequest(authorUID: currentUserUID, reqUID: requestID)
+                                viewModel.saveRequest(authorUID: currentUserUID, reqUID: requestID, xCoordinate: addressViewModel.selectedAddress?.coordinateX ?? 0.0, yCoordinate: addressViewModel.selectedAddress?.coordinateY ?? 0.0)
                                 viewModel.fetchRequests(for: currentUserUID)
                                 self.presentationMode.wrappedValue.dismiss()
                             }
