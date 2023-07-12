@@ -17,6 +17,9 @@ struct FeedView: View {
     @State private var showingAddressView = false
     @State private var showingDonationView = false
     
+    @State private var isOrderedByProximity = false
+    @State private var isOrderedByUrgency = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -56,30 +59,32 @@ struct FeedView: View {
                 
                 // FILTERS
                 HStack {
-                    Button(action: {
-                        // req
-                    }) {
-                        HStack {
-                            Image(systemName: "line.horizontal.3.decrease")
-                                .padding(.leading)
-                            
-                            Text("Filtros")
-                                .font(.custom("Nunito-Regular", size: 14))
-                                .frame(height: 40)
-                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                                .padding(.trailing)
-                        }
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 7)
-                                .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
-                        )
+                    HStack {
+                        Image(systemName: "line.horizontal.3.decrease")
+                            .padding(.leading)
+                        
+                        Text("Filtros")
+                            .font(.custom("Nunito-Regular", size: 14))
+                            .frame(height: 40)
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                            .padding(.trailing)
                     }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 7)
+                            .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
+                    )
                     
                     Spacer()
                     
                     Button(action: {
                         if let selectedAddress = addressViewModel.selectedAddress {
-                            feedViewModel.orderByProximity(coordinateX: selectedAddress.coordinateX, coordinateY: selectedAddress.coordinateY)
+                            isOrderedByProximity.toggle()
+                            
+                            if isOrderedByProximity {
+                                feedViewModel.orderByProximity(coordinateX: selectedAddress.coordinateX, coordinateY: selectedAddress.coordinateY)
+                            } else {
+                                feedViewModel.restoreOriginalOrder()
+                            }
                         } else {
                             print("DEBUG: No selected addresss")
                         }
@@ -88,29 +93,39 @@ struct FeedView: View {
                             .font(.custom("Nunito-Regular", size: 14))
                             .multilineTextAlignment(.center)
                             .frame(height: 40)
-                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
                             .padding(.horizontal)
+                            .foregroundColor(Color(uiColor: UIColor(named: isOrderedByProximity ? "backColor" : "frontColor")!))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
                                     .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
                             )
+                            .background(isOrderedByProximity ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .cornerRadius(7)
                     }
                     
                     Spacer()
                     
                     Button(action: {
-                        feedViewModel.orderByTrueBooleans()
+                        isOrderedByUrgency.toggle()
+                        
+                        if isOrderedByUrgency {
+                            feedViewModel.orderByTrueBooleans()
+                        } else {
+                            feedViewModel.restoreOriginalOrder()
+                        }
                     }) {
                         Text("Urgência")
                             .font(.custom("Nunito-Regular", size: 14))
                             .multilineTextAlignment(.center)
                             .frame(height: 40)
                             .padding(.horizontal)
-                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                            .foregroundColor(Color(uiColor: UIColor(named: isOrderedByUrgency ? "backColor" : "frontColor")!))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 7)
                                     .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
                             )
+                            .background(isOrderedByUrgency ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                            .cornerRadius(7)
                     }
                 }
                 .padding(.horizontal, 22)

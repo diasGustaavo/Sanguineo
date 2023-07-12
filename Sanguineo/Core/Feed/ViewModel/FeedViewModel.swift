@@ -76,6 +76,7 @@ class FeedViewModel: ObservableObject {
     func fetchIndividualData() {
         individualsLoading = true
         
+        individuals = [Individual]()
         db.collection("requests").whereField("madeByHospital", isEqualTo: false).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -88,6 +89,7 @@ class FeedViewModel: ObservableObject {
     func fetchHospitalData() {
         hospitalsLoading = true
         
+        hospitals = [Hospital]()
         db.collection("requests").whereField("madeByHospital", isEqualTo: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -175,5 +177,10 @@ class FeedViewModel: ObservableObject {
                 $0.countTrueBooleans() > $1.countTrueBooleans()
             }
         }
+    }
+    
+    func restoreOriginalOrder() {
+        fetchIndividualData()
+        fetchHospitalData()
     }
 }
