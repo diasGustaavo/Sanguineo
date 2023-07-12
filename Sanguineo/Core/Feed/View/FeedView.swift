@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct FeedView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
@@ -13,7 +14,7 @@ struct FeedView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     
     @ObservedObject var navigationBarViewModel: NavigationBarViewModel
-
+    
     @State private var showingAddressView = false
     @State private var showingDonationView = false
     
@@ -22,210 +23,217 @@ struct FeedView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                // HEADER
-                HStack {
-                    Image(uiImage: UIImage(named: "bloodtype")!)
-                        .resizable()
-                        .frame(width: 30 ,height: 30)
-                    
-                    Text(initialLogViewModel.currentUser?.bloodtype ?? "")
-                        .font(.custom("Nunito-Regular", size: 16))
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                    
-                    Text((addressViewModel.selectedAddress?.street.map { String($0.prefix(22)) + ($0.count > 25 ? "..." : "") } ?? "Sem endereço selecionado"))
-                        .font(.custom("Nunito-Light", size: 16))
-                        .multilineTextAlignment(.center)
-                        .onTapGesture {
-                            showingAddressView = true
-                        }
-                        .sheet(isPresented: $showingAddressView) {
-                            AddressView()
-                        }
-                    
-                    Image(systemName: "chevron.down")
-                        .font(.custom("Nunito-Light", size: 14))
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "bell")
-                        .font(.custom("Nunito-Semibold", size: 20))
-                        .multilineTextAlignment(.center)
+            RefreshableScrollView(onRefresh: { done in
+                feedViewModel.restoreOriginalOrder()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    done()
                 }
-                .padding(.horizontal, 16)
-                
-                // FILTERS
-                HStack {
+            }) {
+                VStack {
+                    // HEADER
                     HStack {
-                        Image(systemName: "line.horizontal.3.decrease")
-                            .padding(.leading)
+                        Image(uiImage: UIImage(named: "bloodtype")!)
+                            .resizable()
+                            .frame(width: 30 ,height: 30)
                         
-                        Text("Filtros")
-                            .font(.custom("Nunito-Regular", size: 14))
-                            .frame(height: 40)
-                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                            .padding(.trailing)
+                        Text(initialLogViewModel.currentUser?.bloodtype ?? "")
+                            .font(.custom("Nunito-Regular", size: 16))
+                            .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        
+                        Text((addressViewModel.selectedAddress?.street.map { String($0.prefix(22)) + ($0.count > 25 ? "..." : "") } ?? "Sem endereço selecionado"))
+                            .font(.custom("Nunito-Light", size: 16))
+                            .multilineTextAlignment(.center)
+                            .onTapGesture {
+                                showingAddressView = true
+                            }
+                            .sheet(isPresented: $showingAddressView) {
+                                AddressView()
+                            }
+                        
+                        Image(systemName: "chevron.down")
+                            .font(.custom("Nunito-Light", size: 14))
+                            .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "bell")
+                            .font(.custom("Nunito-Semibold", size: 20))
+                            .multilineTextAlignment(.center)
                     }
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 7)
-                            .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
-                    )
+                    .padding(.horizontal, 16)
                     
-                    Spacer()
-                    
-                    Button(action: {
-                        if let selectedAddress = addressViewModel.selectedAddress {
-                            isOrderedByProximity.toggle()
+                    // FILTERS
+                    HStack {
+                        HStack {
+                            Image(systemName: "line.horizontal.3.decrease")
+                                .padding(.leading)
                             
-                            if isOrderedByProximity {
-                                feedViewModel.orderByProximity(coordinateX: selectedAddress.coordinateX, coordinateY: selectedAddress.coordinateY)
+                            Text("Filtros")
+                                .font(.custom("Nunito-Regular", size: 14))
+                                .frame(height: 40)
+                                .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                                .padding(.trailing)
+                        }
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
+                        )
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            if let selectedAddress = addressViewModel.selectedAddress {
+                                isOrderedByProximity.toggle()
+                                
+                                if isOrderedByProximity {
+                                    feedViewModel.orderByProximity(coordinateX: selectedAddress.coordinateX, coordinateY: selectedAddress.coordinateY)
+                                } else {
+                                    feedViewModel.restoreOriginalOrder()
+                                }
+                            } else {
+                                print("DEBUG: No selected addresss")
+                            }
+                        }) {
+                            Text("Mais Próximos")
+                                .font(.custom("Nunito-Regular", size: 14))
+                                .multilineTextAlignment(.center)
+                                .frame(height: 40)
+                                .padding(.horizontal)
+                                .foregroundColor(Color(uiColor: UIColor(named: isOrderedByProximity ? "backColor" : "frontColor")!))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
+                                )
+                                .background(isOrderedByProximity ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                                .cornerRadius(7)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isOrderedByUrgency.toggle()
+                            
+                            if isOrderedByUrgency {
+                                feedViewModel.orderByTrueBooleans()
                             } else {
                                 feedViewModel.restoreOriginalOrder()
                             }
-                        } else {
-                            print("DEBUG: No selected addresss")
+                        }) {
+                            Text("Urgência")
+                                .font(.custom("Nunito-Regular", size: 14))
+                                .multilineTextAlignment(.center)
+                                .frame(height: 40)
+                                .padding(.horizontal)
+                                .foregroundColor(Color(uiColor: UIColor(named: isOrderedByUrgency ? "backColor" : "frontColor")!))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
+                                )
+                                .background(isOrderedByUrgency ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
+                                .cornerRadius(7)
                         }
-                    }) {
-                        Text("Mais Próximos")
-                            .font(.custom("Nunito-Regular", size: 14))
-                            .multilineTextAlignment(.center)
-                            .frame(height: 40)
-                            .padding(.horizontal)
-                            .foregroundColor(Color(uiColor: UIColor(named: isOrderedByProximity ? "backColor" : "frontColor")!))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
-                            )
-                            .background(isOrderedByProximity ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
-                            .cornerRadius(7)
                     }
+                    .padding(.horizontal, 22)
                     
-                    Spacer()
-                    
-                    Button(action: {
-                        isOrderedByUrgency.toggle()
+                    HStack {
+                        Text("Essas pessoas precisam de sua ajuda")
+                            .font(.custom("Nunito-Bold", size: 18))
+                            .multilineTextAlignment(.leading)
                         
-                        if isOrderedByUrgency {
-                            feedViewModel.orderByTrueBooleans()
-                        } else {
-                            feedViewModel.restoreOriginalOrder()
+                        Spacer().frame(width: 100)
+                        
+                        NavigationLink {
+                            DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda", requesters: feedViewModel.individuals) {
+                                // some action
+                            }
+                        } label: {
+                            Text("Expandir")
+                                .font(.custom("Nunito-Regular", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.accentColor)
                         }
-                    }) {
-                        Text("Urgência")
-                            .font(.custom("Nunito-Regular", size: 14))
-                            .multilineTextAlignment(.center)
-                            .frame(height: 40)
-                            .padding(.horizontal)
-                            .foregroundColor(Color(uiColor: UIColor(named: isOrderedByUrgency ? "backColor" : "frontColor")!))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color(UIColor(named: "AccentColor")!), lineWidth: 1)
-                            )
-                            .background(isOrderedByUrgency ? Color(UIColor(named: "AccentColor")!) : Color(UIColor(named: "backColor")!))
-                            .cornerRadius(7)
                     }
-                }
-                .padding(.horizontal, 22)
-                
-                HStack {
-                    Text("Essas pessoas precisam de sua ajuda")
-                        .font(.custom("Nunito-Bold", size: 18))
-                        .multilineTextAlignment(.leading)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 20)
                     
-                    Spacer().frame(width: 100)
                     
-                    NavigationLink {
-                        DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda", requesters: feedViewModel.individuals) {
-                            // some action
-                        }
-                    } label: {
-                        Text("Expandir")
-                            .font(.custom("Nunito-Regular", size: 16))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.accentColor)
-                    }
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
-                
-                
-                if !feedViewModel.individualsLoading {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 15) {
-                            ForEach(feedViewModel.individuals, id: \.self) { individual in
-                                ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
-                                    showingDonationView = true
-                                    navigationBarViewModel.reqUID = individual.id
-                                }
-                                .sheet(isPresented: $showingDonationView) {
-                                    DonateView(navigationBarViewModel: navigationBarViewModel)
+                    if !feedViewModel.individualsLoading {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                ForEach(feedViewModel.individuals, id: \.self) { individual in
+                                    ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
+                                        showingDonationView = true
+                                        navigationBarViewModel.reqUID = individual.id
+                                    }
+                                    .sheet(isPresented: $showingDonationView) {
+                                        DonateView(navigationBarViewModel: navigationBarViewModel)
+                                    }
                                 }
                             }
+                            .padding(.vertical)
                         }
-                        .padding(.vertical)
-                    }
-                    .padding(.leading, 16)
-                } else {
-                    VStack {
-                        Spacer()
-                            .frame(height: 40)
-                        
-                        Spinner(lineWidth: 5, height: 32, width: 32)
-                        
-                        Spacer()
-                            .frame(height: 20)
-                    }
-                }
-                
-                HStack {
-                    Text("Campanhas de doações")
-                        .font(.custom("Nunito-Bold", size: 18))
-                        .multilineTextAlignment(.leading)
-                    
-                    Spacer().frame(width: 80)
-                    
-                    NavigationLink {
-                        DetailedFeedCategoryView(sectionDescription: "Campanhas de doações", requesters: feedViewModel.hospitals) {
-                            // some action
+                        .padding(.leading, 16)
+                    } else {
+                        VStack {
+                            Spacer()
+                                .frame(height: 40)
+                            
+                            Spinner(lineWidth: 5, height: 32, width: 32)
+                            
+                            Spacer()
+                                .frame(height: 20)
                         }
-                    } label: {
-                        Text("Expandir")
-                            .font(.custom("Nunito-Regular", size: 16))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.accentColor)
                     }
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
-                
-                if !feedViewModel.hospitalsLoading {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 15) {
-                            ForEach(feedViewModel.hospitals, id: \.self) { hospital in
-                                ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
-                                    showingDonationView = true
-                                    navigationBarViewModel.reqUID = hospital.id
-                                }
-                                .sheet(isPresented: $showingDonationView) {
-                                    DonateView(navigationBarViewModel: navigationBarViewModel)
+                    
+                    HStack {
+                        Text("Campanhas de doações")
+                            .font(.custom("Nunito-Bold", size: 18))
+                            .multilineTextAlignment(.leading)
+                        
+                        Spacer().frame(width: 80)
+                        
+                        NavigationLink {
+                            DetailedFeedCategoryView(sectionDescription: "Campanhas de doações", requesters: feedViewModel.hospitals) {
+                                // some action
+                            }
+                        } label: {
+                            Text("Expandir")
+                                .font(.custom("Nunito-Regular", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.accentColor)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 20)
+                    
+                    if !feedViewModel.hospitalsLoading {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                ForEach(feedViewModel.hospitals, id: \.self) { hospital in
+                                    ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
+                                        showingDonationView = true
+                                        navigationBarViewModel.reqUID = hospital.id
+                                    }
+                                    .sheet(isPresented: $showingDonationView) {
+                                        DonateView(navigationBarViewModel: navigationBarViewModel)
+                                    }
                                 }
                             }
+                            .padding(.vertical)
                         }
-                        .padding(.vertical)
-                    }
-                    .padding(.leading, 16)
-                } else {
-                    VStack {
-                        Spacer()
-                            .frame(height: 40)
-                        
-                        Spinner(lineWidth: 5, height: 32, width: 32)
-                        
-                        Spacer()
-                            .frame(height: 20)
+                        .padding(.leading, 16)
+                    } else {
+                        VStack {
+                            Spacer()
+                                .frame(height: 40)
+                            
+                            Spinner(lineWidth: 5, height: 32, width: 32)
+                            
+                            Spacer()
+                                .frame(height: 20)
+                        }
                     }
                 }
             }

@@ -60,6 +60,7 @@
 		B49830B22A49C26900F966EE /* MakeRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49830B12A49C26900F966EE /* MakeRequestView.swift */; };
 		B49830B42A49DD2D00F966EE /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49830B32A49DD2D00F966EE /* RequestViewModel.swift */; };
 		B49ED1612A2E2D54006A7EA4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49ED1602A2E2D54006A7EA4 /* CustomCell.swift */; };
+		B4A29CA02A5EEA4F00A461AD /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = B4A29C9F2A5EEA4F00A461AD /* SwiftUIPullToRefresh */; };
 		B4A407372A2A0EAA00F54357 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A407362A2A0EAA00F54357 /* DonateView.swift */; };
 		B4AD4F5D2A52EDB700320F2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AD4F5C2A52EDB700320F2F /* GoogleService-Info.plist */; };
 		B4AD4F5F2A52EDF500320F2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AD4F5E2A52EDF500320F2F /* UserService.swift */; };
@@ -204,6 +205,7 @@
 			files = (
 				B4FC5E712A1B99DC00CC2BBC /* Introspect in Frameworks */,
 				B48452C82A1D0CD4004097B7 /* FirebaseAuth in Frameworks */,
+				B4A29CA02A5EEA4F00A461AD /* SwiftUIPullToRefresh in Frameworks */,
 				B48452CA2A1D0CD4004097B7 /* FirebaseFirestore in Frameworks */,
 				B48452CE2A1D0CD4004097B7 /* FirebaseStorage in Frameworks */,
 				B48452CC2A1D0CD4004097B7 /* FirebaseFirestoreSwift in Frameworks */,
@@ -644,6 +646,7 @@
 				B48452C92A1D0CD4004097B7 /* FirebaseFirestore */,
 				B48452CB2A1D0CD4004097B7 /* FirebaseFirestoreSwift */,
 				B48452CD2A1D0CD4004097B7 /* FirebaseStorage */,
+				B4A29C9F2A5EEA4F00A461AD /* SwiftUIPullToRefresh */,
 			);
 			productName = Sanguineo;
 			productReference = B418FF782A05293C00C05261 /* Sanguineo.app */;
@@ -676,6 +679,7 @@
 			packageReferences = (
 				B4FC5E6F2A1B99DC00CC2BBC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				B48452C62A1D0CD4004097B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B4A29C9E2A5EEA4F00A461AD /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */,
 			);
 			productRefGroup = B418FF792A05293C00C05261 /* Products */;
 			projectDirPath = "";
@@ -1006,6 +1010,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		B4A29C9E2A5EEA4F00A461AD /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-pull-to-refresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		B4FC5E6F2A1B99DC00CC2BBC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -1036,6 +1048,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B48452C62A1D0CD4004097B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		B4A29C9F2A5EEA4F00A461AD /* SwiftUIPullToRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4A29C9E2A5EEA4F00A461AD /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */;
+			productName = SwiftUIPullToRefresh;
 		};
 		B4FC5E702A1B99DC00CC2BBC /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
