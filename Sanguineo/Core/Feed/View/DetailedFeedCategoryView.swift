@@ -96,8 +96,13 @@ struct DetailedFeedCategoryView_Previews: PreviewProvider {
     static let bloodtype = "O-"
     static let age: Int? = 22
     static let description = "Sofri um acidente e nao tenho doadores que possam me ajudar onde eu moro."
-    static let individual = Individual(authorId: UUID().uuidString, id: UUID().uuidString, name: name, bloodtype: bloodtype, age: age!, description: description, coordinateX: 0.0, coordinateY: 0.0)
-    static let hospital = Hospital(authorId: UUID().uuidString, id: UUID().uuidString, name: name, bloodtype: bloodtype, description: description, coordinateX: 0.0, coordinateY: 0.0)
+    static let acidente = true
+    static let cirurgia = false
+    static let doenca = true
+    static let outro = false
+    static let tratamento = false
+    static let individual = Individual(authorId: UUID().uuidString, id: UUID().uuidString, name: name, bloodtype: bloodtype, age: age!, description: description, coordinateX: 0.0, coordinateY: 0.0, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
+    static let hospital = Hospital(authorId: UUID().uuidString, id: UUID().uuidString, name: name, bloodtype: bloodtype, description: description, coordinateX: 0.0, coordinateY: 0.0, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
 
     static var previews: some View {
         DetailedFeedCategoryView(sectionDescription: "Essas pessoas precisam de sua ajuda:", requesters: [individual, hospital]) {

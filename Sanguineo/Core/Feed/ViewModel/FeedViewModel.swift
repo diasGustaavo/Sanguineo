@@ -16,6 +16,18 @@ protocol RequesterInfo {
     var description: String { get }
     var coordinateX: Double { get }
     var coordinateY: Double { get }
+    var acidente: Bool { get }
+    var cirurgia: Bool { get }
+    var doenca: Bool { get }
+    var outro: Bool { get }
+    var tratamento: Bool { get }
+    func countTrueBooleans() -> Int
+}
+
+extension RequesterInfo {
+    func countTrueBooleans() -> Int {
+        return [acidente, cirurgia, doenca, outro, tratamento].filter { $0 }.count
+    }
 }
 
 struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
@@ -27,6 +39,11 @@ struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
     let description: String
     let coordinateX: Double
     let coordinateY: Double
+    let acidente: Bool
+    let cirurgia: Bool
+    let doenca: Bool
+    let outro: Bool
+    let tratamento: Bool
 }
 
 struct Hospital: Identifiable, Hashable, Codable, RequesterInfo {
@@ -37,6 +54,11 @@ struct Hospital: Identifiable, Hashable, Codable, RequesterInfo {
     let description: String
     let coordinateX: Double
     let coordinateY: Double
+    let acidente: Bool
+    let cirurgia: Bool
+    let doenca: Bool
+    let outro: Bool
+    let tratamento: Bool
 }
 
 class FeedViewModel: ObservableObject {
@@ -83,6 +105,11 @@ class FeedViewModel: ObservableObject {
             let documentName = document.documentID
             guard let coordinateX = document.data()["coordinateX"] as? Double else { return }
             guard let coordinateY = document.data()["coordinateY"] as? Double else { return }
+            guard let acidente = document.data()["acidente"] as? Bool else { return }
+            guard let cirurgia = document.data()["cirurgia"] as? Bool else { return }
+            guard let doenca = document.data()["doenca"] as? Bool else { return }
+            guard let outro = document.data()["outro"] as? Bool else { return }
+            guard let tratamento = document.data()["tratamento"] as? Bool else { return }
             
             if let authorUID = document.data()["authorUID"] as? String,
                let additionalInfo = document.data()["additionalInfo"] as? String {
@@ -93,7 +120,7 @@ class FeedViewModel: ObservableObject {
                         guard let fakename = document.data()?["fakename"] as? String else { return }
                         
                         if forHospitals {
-                            let newHospital = Hospital(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY)
+                            let newHospital = Hospital(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
                             self.hospitals.append(newHospital)
                         } else {
                             guard let dateOfBirthTimestamp = document.data()?["dateOfBirth"] as? Timestamp else { return }
@@ -103,7 +130,7 @@ class FeedViewModel: ObservableObject {
                             let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
                             guard let age = ageComponents.year else { return }
                             
-                            let newIndividual = Individual(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY)
+                            let newIndividual = Individual(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
                             self.individuals.append(newIndividual)
                         }
                         
@@ -135,6 +162,17 @@ class FeedViewModel: ObservableObject {
                 let distance1 = pow($0.coordinateX - coordinateX, 2) + pow($0.coordinateY - coordinateY, 2)
                 let distance2 = pow($1.coordinateX - coordinateX, 2) + pow($1.coordinateY - coordinateY, 2)
                 return distance1 < distance2
+            }
+        }
+    }
+    
+    func orderByTrueBooleans() {
+        withAnimation {
+            self.individuals.sort {
+                $0.countTrueBooleans() > $1.countTrueBooleans()
+            }
+            self.hospitals.sort {
+                $0.countTrueBooleans() > $1.countTrueBooleans()
             }
         }
     }

@@ -99,7 +99,7 @@ struct FeedView: View {
                     Spacer()
                     
                     Button(action: {
-                        // some action
+                        feedViewModel.orderByTrueBooleans()
                     }) {
                         Text("Urgência")
                             .font(.custom("Nunito-Regular", size: 14))
