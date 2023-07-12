@@ -89,11 +89,12 @@ class AppointmentsViewModel: ObservableObject {
         db.collection("appointments").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
             if let error = error {
                 print("DEBUG: Error getting appointments: \(error)")
+                self.isLoading = false
             } else if let querySnapshot = querySnapshot {
+                self.isLoading = false
                 self.appointments = querySnapshot.documents.compactMap { document -> Appointment? in
                     var appointment = try? document.data(as: Appointment.self)
                     appointment?.id = document.documentID
-                    self.isLoading = false
                     return appointment
                 }
             }
@@ -107,6 +108,8 @@ class AppointmentsViewModel: ObservableObject {
         db.collection("appointments").document(appointmentUID).getDocument { document, error in
             if let error = error {
                 print("DEBUG: Error getting appointment: \(error)")
+                
+                self.isSingleDonationLoading = false
             } else if let document = document, document.exists, let appointment = try? document.data(as: Appointment.self) {
                 self.appointment = appointment
                 self.selectedDate = appointment.appointmentDate
@@ -115,6 +118,8 @@ class AppointmentsViewModel: ObservableObject {
                 self.isSingleDonationLoading = false
             } else {
                 print("DEBUG: Appointment does not exist")
+                
+                self.isSingleDonationLoading = false
             }
         }
     }

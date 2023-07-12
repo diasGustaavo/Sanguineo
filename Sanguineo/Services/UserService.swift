@@ -26,7 +26,6 @@ class UserService: ObservableObject {
             
             guard let data = snapshot.data() else { return }
             
-            print("arrived here")
             if let uid = data["uid"] as? String,
                let fullname = data["fullname"] as? String,
                let fakename = data["fakename"] as? String,
@@ -49,7 +48,6 @@ class UserService: ObservableObject {
                 let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, dateOfBirth: dateOfBirth.dateValue(), location: userLocation)
                 
                 self.user = user
-                print("DEBUG: Setting user now! USER SERVICE")
             } else {
                 print("DEBUG: Error parsing user data to Swift properties fetchUser")
             }

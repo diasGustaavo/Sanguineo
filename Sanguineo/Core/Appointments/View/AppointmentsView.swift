@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct AppointmentsView: View {
     @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
@@ -16,7 +17,22 @@ struct AppointmentsView: View {
     @State private var showingDonationView = false
     
     var body: some View {
-        ScrollView {
+        RefreshableScrollView(onRefresh: { done in
+            if let currentUserUID = initialLogViewModel.currentUserUID {
+                appointmentsViewModel.fetchAppointments(for: currentUserUID)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                done()
+            }
+        },
+                              progress: { state in
+            if state == .waiting {
+                // empty view
+            } else {
+                Spinner(lineWidth: 5, height: 32, width: 32)
+            }
+        }) {
             VStack {
                 HStack {
                     Text("Última doação e tempo para doar novamente")
@@ -57,41 +73,63 @@ struct AppointmentsView: View {
                 .padding()
                 
                 if !appointmentsViewModel.isLoading {
-                    ForEach(appointmentsViewModel.appointments, id: \.self) { appointment in
-                        Button {
-                            if let appointmentId = appointment.id {
-                                navigationBarViewModel.reqUID = appointmentId
-                                showingDonationView.toggle()
-                            }
-                        } label: {
-                            HStack {
-                                Image(uiImage: UIImage(named: "3d_avatar_7")!)
-                                    .resizable()
-                                    .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
-                                
-                                Spacer()
-                                
-                                Text("Principais informações do agendamento")
+                    if appointmentsViewModel.appointments.isEmpty {
+                        HStack(content: {
+                            VStack(alignment: .leading) {
+                                Text("Você não tem nenhuma agendamento.")
                                     .font(.custom("Nunito-Light", size: 16))
                                     .multilineTextAlignment(.leading)
                                 
-                                Spacer()
-                                
-                                Image(systemName: "chevron.right")
+                                Text("Efetue um agendamento na aba início.")
+                                    .font(.custom("Nunito-SemiBold", size: 16))
+                                    .multilineTextAlignment(.leading)
                             }
                             .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.accentColor, lineWidth: 0.8)
-                            )
-                            .padding(.horizontal)
-                            .padding(.top, 8)
-                        }
-                        .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
-                        .sheet(isPresented: $showingDonationView, onDismiss: {
-                            self.navigationBarViewModel.reqUID = ""
-                        }) {
-                            DonateView(navigationBarViewModel: navigationBarViewModel)
+                            
+                            Spacer()
+                        })
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.accentColor, lineWidth: 0.8)
+                        )
+                        .padding(.horizontal)
+                    } else {
+                        ForEach(appointmentsViewModel.appointments, id: \.self) { appointment in
+                            Button {
+                                if let appointmentId = appointment.id {
+                                    navigationBarViewModel.reqUID = appointmentId
+                                    showingDonationView.toggle()
+                                }
+                            } label: {
+                                HStack {
+                                    Image(uiImage: UIImage(named: "3d_avatar_7")!)
+                                        .resizable()
+                                        .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Principais informações do agendamento")
+                                        .font(.custom("Nunito-Light", size: 16))
+                                        .multilineTextAlignment(.leading)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "chevron.right")
+                                }
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.accentColor, lineWidth: 0.8)
+                                )
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            }
+                            .foregroundColor(Color(uiColor: UIColor(named: "frontColor")!))
+                            .sheet(isPresented: $showingDonationView, onDismiss: {
+                                self.navigationBarViewModel.reqUID = ""
+                            }) {
+                                DonateView(navigationBarViewModel: navigationBarViewModel)
+                            }
                         }
                     }
                 } else {
@@ -120,5 +158,7 @@ struct AppointmentsView: View {
 struct AppointmentsView_Previews: PreviewProvider {
     static var previews: some View {
         AppointmentsView(navigationBarViewModel: NavigationBarViewModel())
+            .environmentObject(InitialLogViewModel())
+            .environmentObject(AppointmentsViewModel())
     }
 }

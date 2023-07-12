@@ -25,8 +25,15 @@ struct FeedView: View {
         NavigationView {
             RefreshableScrollView(onRefresh: { done in
                 feedViewModel.restoreOriginalOrder()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     done()
+                }
+            },
+                                  progress: { state in
+                if state == .waiting {
+                    // empty view
+                } else {
+                    Spinner(lineWidth: 5, height: 32, width: 32)
                 }
             }) {
                 VStack {
