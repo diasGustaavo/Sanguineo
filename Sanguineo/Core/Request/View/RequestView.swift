@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct RequestView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
@@ -17,7 +18,22 @@ struct RequestView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            RefreshableScrollView(onRefresh: { done in
+                if let currentUserUID = initialLogViewModel.currentUser?.uid {
+                    viewModel.fetchRequestsAndDo(for: currentUserUID) {
+                        done()
+                    }
+                } else {
+                    done()
+                }
+            },
+                                  progress: { state in
+                if state == .waiting {
+                    // empty view
+                } else {
+                    Spinner(lineWidth: 5, height: 32, width: 32)
+                }
+            }) {
                 VStack {
                     HStack {
                         Image(uiImage: UIImage(named: "3davatar2")!)

@@ -18,11 +18,11 @@ struct AppointmentsView: View {
     
     var body: some View {
         RefreshableScrollView(onRefresh: { done in
-            if let currentUserUID = initialLogViewModel.currentUserUID {
-                appointmentsViewModel.fetchAppointments(for: currentUserUID)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if let currentUserUID = initialLogViewModel.currentUser?.uid {
+                appointmentsViewModel.fetchAppointmentsAndDo(for: currentUserUID) {
+                    done()
+                }
+            } else {
                 done()
             }
         },

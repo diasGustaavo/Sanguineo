@@ -84,6 +84,26 @@ class RequestViewModel: ObservableObject {
         self.isLoading = false
     }
     
+    func fetchRequestsAndDo(for authorUID: String, completion: @escaping () -> Void) {
+        isLoading = true
+        let db = Firestore.firestore()
+        db.collection("requests").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("DEBUG: Error getting requests: \(error)")
+                self.isLoading = false
+                completion()
+            } else if let querySnapshot = querySnapshot {
+                self.requests = querySnapshot.documents.compactMap { document -> Request? in
+                    var request = try? document.data(as: Request.self)
+                    request?.id = document.documentID
+                    return request
+                }
+                self.isLoading = false
+                completion()
+            }
+        }
+    }
+    
     func fetchRequest(withId id: String) {
         isLoading = true
         

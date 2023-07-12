@@ -24,8 +24,8 @@ struct FeedView: View {
     var body: some View {
         NavigationView {
             RefreshableScrollView(onRefresh: { done in
-                feedViewModel.restoreOriginalOrder()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                feedViewModel.fetchDataAndDo {
+                    feedViewModel.restoreOriginalOrder()
                     done()
                 }
             },

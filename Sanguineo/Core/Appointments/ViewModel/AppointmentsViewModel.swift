@@ -101,6 +101,26 @@ class AppointmentsViewModel: ObservableObject {
         }
     }
     
+    func fetchAppointmentsAndDo(for authorUID: String, completion: @escaping () -> Void) {
+        isLoading = true
+        let db = Firestore.firestore()
+        db.collection("appointments").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("DEBUG: Error getting appointments: \(error)")
+                self.isLoading = false
+                completion()
+            } else if let querySnapshot = querySnapshot {
+                self.isLoading = false
+                self.appointments = querySnapshot.documents.compactMap { document -> Appointment? in
+                    var appointment = try? document.data(as: Appointment.self)
+                    appointment?.id = document.documentID
+                    return appointment
+                }
+                completion()
+            }
+        }
+    }
+    
     func fetchAppointment(with appointmentUID: String) {
         isSingleDonationLoading = true
         let db = Firestore.firestore()

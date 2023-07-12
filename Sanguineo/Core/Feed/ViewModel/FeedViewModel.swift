@@ -73,6 +73,56 @@ class FeedViewModel: ObservableObject {
         fetchHospitalData()
     }
     
+    func fetchDataAndDo(completion: @escaping () -> Void) {
+        let group = DispatchGroup()
+        
+        group.enter()
+        fetchIndividualDataAndDo() {
+            group.leave()
+        }
+        
+        group.enter()
+        fetchHospitalDataAndDo() {
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            completion()
+        }
+    }
+    
+    func fetchIndividualDataAndDo(completion: @escaping () -> Void = {}) {
+        individualsLoading = true
+        
+        individuals = [Individual]()
+        db.collection("requests").whereField("madeByHospital", isEqualTo: false).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion()
+            } else {
+                self.handleDocumentSnapshot(querySnapshot: querySnapshot, forHospitals: false)
+                self.individualsLoading = false
+                completion()
+            }
+        }
+    }
+
+    func fetchHospitalDataAndDo(completion: @escaping () -> Void = {}) {
+        hospitalsLoading = true
+        
+        hospitals = [Hospital]()
+        db.collection("requests").whereField("madeByHospital", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion()
+            } else {
+                self.handleDocumentSnapshot(querySnapshot: querySnapshot, forHospitals: true)
+                self.hospitalsLoading = false
+                completion()
+            }
+        }
+    }
+    
     func fetchIndividualData() {
         individualsLoading = true
         
