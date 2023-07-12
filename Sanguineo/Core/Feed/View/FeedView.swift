@@ -78,7 +78,11 @@ struct FeedView: View {
                     Spacer()
                     
                     Button(action: {
-                        // some action
+                        if let selectedAddress = addressViewModel.selectedAddress {
+                            feedViewModel.orderByProximity(coordinateX: selectedAddress.coordinateX, coordinateY: selectedAddress.coordinateY)
+                        } else {
+                            print("DEBUG: No selected addresss")
+                        }
                     }) {
                         Text("Mais Próximos")
                             .font(.custom("Nunito-Regular", size: 14))
