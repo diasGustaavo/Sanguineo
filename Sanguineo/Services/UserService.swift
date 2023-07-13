@@ -54,6 +54,43 @@ class UserService: ObservableObject {
         }
     }
     
+    func fetchUserAndDo(completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            
+            guard let data = snapshot.data() else { return }
+            
+            if let uid = data["uid"] as? String,
+               let fullname = data["fullname"] as? String,
+               let fakename = data["fakename"] as? String,
+               let email = data["email"] as? String,
+               let password = data["password"] as? String,
+               let addressCEP = data["addressCEP"] as? String,
+               let addressSt = data["addressSt"] as? String,
+               let addressNumber = data["addressNumber"] as? String,
+               let complement = data["complement"] as? String,
+               let phonenum = data["phonenum"] as? String,
+               let bloodtype = data["bloodtype"] as? String,
+               let identityID = data["identityID"] as? String,
+               let age = data["age"] as? String,
+               let gender = data["gender"] as? String,
+               let dateOfBirth = data["dateOfBirth"] as? Timestamp {
+                
+                let location = data["location"] as? GeoPoint ?? GeoPoint(latitude: 0, longitude: 0)
+                let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
+                
+                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, dateOfBirth: dateOfBirth.dateValue(), location: userLocation)
+                
+                self.user = user
+                completion()
+            } else {
+                print("DEBUG: Error parsing user data to Swift properties fetchUserAndDo")
+            }
+        }
+    }
+    
     func updateUser(location: User.Location? = nil,
                     fullname: String? = nil,
                     fakename: String? = nil,
@@ -96,43 +133,6 @@ class UserService: ObservableObject {
                 if let err = err {
                     print("DEBUG: Error updating document: \(err)")
                 }
-            }
-        }
-    }
-    
-    func fetchUserAndDo(completion: @escaping () -> Void) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
-            guard let snapshot = snapshot else { return }
-            
-            guard let data = snapshot.data() else { return }
-            
-            if let uid = data["uid"] as? String,
-               let fullname = data["fullname"] as? String,
-               let fakename = data["fakename"] as? String,
-               let email = data["email"] as? String,
-               let password = data["password"] as? String,
-               let addressCEP = data["addressCEP"] as? String,
-               let addressSt = data["addressSt"] as? String,
-               let addressNumber = data["addressNumber"] as? String,
-               let complement = data["complement"] as? String,
-               let phonenum = data["phonenum"] as? String,
-               let bloodtype = data["bloodtype"] as? String,
-               let identityID = data["identityID"] as? String,
-               let age = data["age"] as? String,
-               let gender = data["gender"] as? String,
-               let dateOfBirth = data["dateOfBirth"] as? Timestamp {
-                
-                let location = data["location"] as? GeoPoint ?? GeoPoint(latitude: 0, longitude: 0)
-                let userLocation = User.Location(latitude: location.latitude, longitude: location.longitude)
-                
-                let user = User(uid: uid, fullname: fullname, fakename: fakename, email: email, password: password, addressCEP: addressCEP, addressSt: addressSt, addressNumber: addressNumber, complement: complement, phonenum: phonenum, bloodtype: bloodtype, identityID: identityID, age: age, gender: gender, dateOfBirth: dateOfBirth.dateValue(), location: userLocation)
-                
-                self.user = user
-                completion()
-            } else {
-                print("DEBUG: Error parsing user data to Swift properties fetchUserAndDo")
             }
         }
     }

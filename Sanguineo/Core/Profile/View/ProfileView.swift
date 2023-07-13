@@ -25,7 +25,7 @@ struct ProfileView: View {
                         matching: .images,
                         photoLibrary: .shared()) {
                             ZStack(alignment: .topTrailing) {
-                                profile.image
+                                Image(uiImage: profile.image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 80, height: 80)
@@ -141,7 +141,10 @@ struct ProfileView: View {
                 // Retrive selected asset in the form of Data
                 if let data = try? await newItem?.loadTransferable(type: Data.self) {
                     if let uiImage = UIImage(data: data) {
-                        profile.image = Image(uiImage: uiImage)
+                        if let currentUserUID = initialLogViewModel.currentUserUID {
+                            profile.image = uiImage
+                            profile.updateImage(userID: currentUserUID)
+                        }
                     }
                 }
             }

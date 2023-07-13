@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Combine
+import FirebaseStorage
 
 class ProfileViewModel: ObservableObject {
-    @Published var image: Image
+    @Published var image: UIImage
     @Published var name: String = ""
     @Published var fakeName: String = ""
     @Published var email: String = ""
@@ -25,10 +26,11 @@ class ProfileViewModel: ObservableObject {
     
     let genderOptions = ["Masculino", "Feminino", "Outros"]
     
+    private let storage = Storage.storage()
     var cancellables = Set<AnyCancellable>()
     
     init() {
-        self.image = Image(uiImage: UIImage(named: "3d_avatar_28")!)
+        self.image = UIImage(named: "3d_avatar_28")!
         
         UserService.shared.$user
             .sink { [weak self] in self?.updateUser($0) }
@@ -50,5 +52,22 @@ class ProfileViewModel: ObservableObject {
         
         self.gender = Int(user?.gender ?? "0") ?? 0
         self.genderName = genderOptions[self.gender]
+    }
+    
+    func updateImage(userID: String) {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
+        
+        let imageRef = Storage.storage().reference().child("profileImages/\(userID).jpg")
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        imageRef.putData(imageData, metadata: metadata) { metadata, error in
+            if let error = error {
+                print("Error uploading image: \(error)")
+            } else {
+                print("Successfully uploaded image.")
+            }
+        }
     }
 }
