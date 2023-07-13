@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
-    @EnvironmentObject var profile: ProfileViewModel
+    @State private var selectedItem: PhotosPickerItem? = nil
     @State private var isShowingImagePicker = false
+    
+    @EnvironmentObject var profile: ProfileViewModel
 
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
 
@@ -17,29 +20,31 @@ struct ProfileView: View {
         NavigationView {
             VStack {
                 HStack {
-                    ZStack(alignment: .topTrailing) {
-                        profile.image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-
-                        Button(action: {
-                            isShowingImagePicker = true
-                        }) {
-                            Image(systemName: "pencil.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20, height: 20)
-                                .padding(4)
-                                .foregroundColor(.white)
+                    PhotosPicker(
+                        selection: $selectedItem,
+                        matching: .images,
+                        photoLibrary: .shared()) {
+                            ZStack(alignment: .topTrailing) {
+                                profile.image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle()) // Add this line
+                                
+                                Image(systemName: "pencil.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                                    .padding(4)
+                                    .foregroundColor(.white)
+                                    .background(Color.black.opacity(0.5))
+                                    .clipShape(Circle())
+                                    .padding(4)
+                                    .offset(x: 8, y: 50)
+                                    .opacity(isShowingImagePicker ? 0 : 1)
+                            }
+                            .padding(.trailing)
                         }
-                        .background(Color.black.opacity(0.5))
-                        .clipShape(Circle())
-                        .padding(4)
-                        .offset(x: 8, y: 50)
-                        .opacity(isShowingImagePicker ? 0 : 1)
-                    }
-                    .padding(.trailing)
 
                     VStack(alignment: .leading) {
                         Text(profile.name)
@@ -131,6 +136,16 @@ struct ProfileView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .onChange(of: selectedItem) { newItem in
+            Task {
+                // Retrive selected asset in the form of Data
+                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                    if let uiImage = UIImage(data: data) {
+                        profile.image = Image(uiImage: uiImage)
+                    }
+                }
+            }
+        }
     }
 }
 
