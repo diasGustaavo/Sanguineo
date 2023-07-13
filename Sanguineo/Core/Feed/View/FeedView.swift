@@ -170,7 +170,7 @@ struct FeedView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
                                 ForEach(feedViewModel.individuals, id: \.self) { individual in
-                                    ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
+                                    ReusablePersonCellView(image: individual.image, name: individual.name, bloodtype: individual.bloodtype, age: individual.age, description: individual.description) {
                                         showingDonationView = true
                                         navigationBarViewModel.reqUID = individual.id
                                     }
@@ -219,7 +219,7 @@ struct FeedView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
                                 ForEach(feedViewModel.hospitals, id: \.self) { hospital in
-                                    ReusablePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
+                                    ReusablePersonCellView(image: hospital.image, name: hospital.name, bloodtype: hospital.bloodtype, age: nil, description: hospital.description) {
                                         showingDonationView = true
                                         navigationBarViewModel.reqUID = hospital.id
                                     }

@@ -21,8 +21,10 @@ struct ReusablePersonCellView: View {
                 HStack {
                     Image(uiImage: image)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 80, height: 80)
+                        .cornerRadius(90)
+                    
                     VStack(alignment: .leading) {
                         Text(name)
                             .lineLimit(1)
@@ -80,7 +82,7 @@ struct ReusablePersonCellView: View {
 }
 
 struct ReusablePersonCellView_Previews: PreviewProvider {
-    static let image = UIImage(named: "3d_avatar_28")!
+    static let image = UIImage(named: "carteiraIdentidade")!
     static let name = "Luciano Araujo"
     static let bloodtype = "O-"
     static let age: Int? = 22

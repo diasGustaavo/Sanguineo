@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 protocol RequesterInfo {
     var name: String { get }
@@ -30,7 +31,7 @@ extension RequesterInfo {
     }
 }
 
-struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
+struct Individual: Identifiable, Hashable, RequesterInfo {
     let authorId: String
     let id: String
     let name: String
@@ -44,9 +45,10 @@ struct Individual: Identifiable, Hashable, Codable, RequesterInfo {
     let doenca: Bool
     let outro: Bool
     let tratamento: Bool
+    var image: UIImage
 }
 
-struct Hospital: Identifiable, Hashable, Codable, RequesterInfo {
+struct Hospital: Identifiable, Hashable, RequesterInfo {
     let authorId: String
     let id: String
     let name: String
@@ -59,6 +61,7 @@ struct Hospital: Identifiable, Hashable, Codable, RequesterInfo {
     let doenca: Bool
     let outro: Bool
     let tratamento: Bool
+    var image: UIImage
 }
 
 class FeedViewModel: ObservableObject {
@@ -165,35 +168,36 @@ class FeedViewModel: ObservableObject {
             
             if let authorUID = document.data()["authorUID"] as? String,
                let additionalInfo = document.data()["additionalInfo"] as? String {
-                
                 self.db.collection("users").document(authorUID).getDocument { (document, error) in
                     if let document = document, document.exists {
                         guard let bloodtype = document.data()?["bloodtype"] as? String else { return }
                         guard let fakename = document.data()?["fakename"] as? String else { return }
-                        
-                        if forHospitals {
-                            let newHospital = Hospital(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
-                            self.hospitals.append(newHospital)
-                        } else {
-                            guard let dateOfBirthTimestamp = document.data()?["dateOfBirth"] as? Timestamp else { return }
-                            let dateOfBirth = dateOfBirthTimestamp.dateValue()
-                            let calendar = Calendar.current
+
+                        self.downloadProfileImage(for: authorUID) { image in
+                            if forHospitals {
+                                let newHospital = Hospital(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento, image: image)
+                                self.hospitals.append(newHospital)
+                            } else {
+                                guard let dateOfBirthTimestamp = document.data()?["dateOfBirth"] as? Timestamp else { return }
+                                let dateOfBirth = dateOfBirthTimestamp.dateValue()
+                                let calendar = Calendar.current
+                                
+                                let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
+                                guard let age = ageComponents.year else { return }
+                                
+                                let newIndividual = Individual(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento, image: image)
+                                self.individuals.append(newIndividual)
+                            }
                             
-                            let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
-                            guard let age = ageComponents.year else { return }
+                            processedDocuments += 1
                             
-                            let newIndividual = Individual(authorId: authorUID, id: documentName, name: fakename, bloodtype: bloodtype, age: age, description: additionalInfo, coordinateX: coordinateX, coordinateY: coordinateY, acidente: acidente, cirurgia: cirurgia, doenca: doenca, outro: outro, tratamento: tratamento)
-                            self.individuals.append(newIndividual)
-                        }
-                        
-                        processedDocuments += 1
-                        
-                        if processedDocuments == totalDocuments {
-                            withAnimation {
-                                if forHospitals {
-                                    self.hospitalsLoading = false
-                                } else {
-                                    self.individualsLoading = false
+                            if processedDocuments == totalDocuments {
+                                withAnimation {
+                                    if forHospitals {
+                                        self.hospitalsLoading = false
+                                    } else {
+                                        self.individualsLoading = false
+                                    }
                                 }
                             }
                         }
@@ -202,6 +206,24 @@ class FeedViewModel: ObservableObject {
             }
         }
     }
+
+    func downloadProfileImage(for userUID: String, completion: @escaping (UIImage) -> Void) {
+        let storage = Storage.storage()
+        let profileImageRef = storage.reference().child("profileImages/\(userUID).jpg")
+
+        profileImageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if error != nil {
+                completion(UIImage(named: "3d_avatar_28")!)
+            } else if let data = data {
+                if let image = UIImage(data: data) {
+                    completion(image)
+                } else {
+                    completion(UIImage(named: "3d_avatar_28")!)
+                }
+            }
+        }
+    }
+
     
     func orderByProximity(coordinateX: Double, coordinateY: Double) {
         withAnimation {

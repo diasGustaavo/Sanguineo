@@ -55,7 +55,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func updateImage(userID: String) {
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
         
         let imageRef = Storage.storage().reference().child("profileImages/\(userID).jpg")
         
