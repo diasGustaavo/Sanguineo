@@ -24,6 +24,8 @@ class ProfileViewModel: ObservableObject {
     @Published var genderName: String = ""
     @Published var bloodtype: String = ""
     
+    @Published var isLoading = false
+    
     let genderOptions = ["Masculino", "Feminino", "Outros"]
     
     private let storage = Storage.storage()
@@ -33,11 +35,17 @@ class ProfileViewModel: ObservableObject {
         self.image = UIImage(named: "3d_avatar_28")!
         
         UserService.shared.$user
-            .sink { [weak self] in self?.updateUser($0) }
+            .sink { [weak self] in
+                self?.updateUser($0)
+                if let userID = $0?.uid {
+                    self?.fetchImage(for: userID)
+                }
+            }
             .store(in: &cancellables)
     }
     
     func updateUser(_ user: User?) {
+        isLoading = true
         self.name = user?.fullname ?? ""
         self.fakeName = user?.fakename ?? ""
         self.email = user?.email ?? ""
@@ -67,6 +75,22 @@ class ProfileViewModel: ObservableObject {
                 print("Error uploading image: \(error)")
             } else {
                 print("Successfully uploaded image.")
+            }
+        }
+    }
+    
+    func fetchImage(for userID: String) {
+        let imagePath = "profileImages/\(userID).jpg"
+        let storageReference = storage.reference()
+        
+        storageReference.child(imagePath).getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print("Error fetching profile image: \(error)")
+            } else if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.image = image
+                    self.isLoading = false
+                }
             }
         }
     }

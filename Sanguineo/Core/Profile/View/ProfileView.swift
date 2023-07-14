@@ -20,31 +20,36 @@ struct ProfileView: View {
         NavigationView {
             VStack {
                 HStack {
-                    PhotosPicker(
-                        selection: $selectedItem,
-                        matching: .images,
-                        photoLibrary: .shared()) {
-                            ZStack(alignment: .topTrailing) {
-                                Image(uiImage: profile.image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle()) // Add this line
-                                
-                                Image(systemName: "pencil.circle.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
-                                    .padding(4)
-                                    .foregroundColor(.white)
-                                    .background(Color.black.opacity(0.5))
-                                    .clipShape(Circle())
-                                    .padding(4)
-                                    .offset(x: 8, y: 50)
-                                    .opacity(isShowingImagePicker ? 0 : 1)
+                    if !profile.isLoading {
+                        PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()) {
+                                ZStack(alignment: .topTrailing) {
+                                    Image(uiImage: profile.image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
+                                    
+                                    Image(systemName: "pencil.circle.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 20, height: 20)
+                                        .padding(4)
+                                        .foregroundColor(.white)
+                                        .background(Color.black.opacity(0.5))
+                                        .clipShape(Circle())
+                                        .padding(4)
+                                        .offset(x: 8, y: 50)
+                                        .opacity(isShowingImagePicker ? 0 : 1)
+                                }
+                                .padding(.trailing)
                             }
-                            .padding(.trailing)
-                        }
+                    } else {
+                        Spinner(lineWidth: 5, height: 32, width: 32)
+                            .frame(width: 80, height: 80)
+                    }
 
                     VStack(alignment: .leading) {
                         Text(profile.name)
