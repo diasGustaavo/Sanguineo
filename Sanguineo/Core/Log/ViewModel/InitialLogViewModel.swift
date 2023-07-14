@@ -18,6 +18,7 @@ class InitialLogViewModel: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var publishedCurrentUserUID: String?
     @Published var isLoggedIn: Bool = false
 
     private var handle: AuthStateDidChangeListenerHandle?
@@ -167,6 +168,7 @@ class InitialLogViewModel: ObservableObject {
         service.$user
             .sink { user in
                 self.currentUser = user
+                self.publishedCurrentUserUID = user?.uid
             }
             .store(in: &cancellables)
 

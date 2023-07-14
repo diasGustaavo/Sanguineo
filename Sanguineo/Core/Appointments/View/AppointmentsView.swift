@@ -148,11 +148,6 @@ struct AppointmentsView: View {
                 Spacer()
             }
         }
-        .onAppear {
-            if let currentUserUID = initialLogViewModel.currentUserUID {
-                appointmentsViewModel.fetchAppointments(for: currentUserUID)
-            }
-        }
     }
 }
 

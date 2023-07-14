@@ -41,7 +41,6 @@ class RequestViewModel: ObservableObject {
                     if let error = error {
                         print("DEBUG: Error adding request: \(error)")
                     } else {
-                        print("DEBUG: Request successfully added!")
                         self.resetFields()
                     }
                 }
@@ -51,7 +50,6 @@ class RequestViewModel: ObservableObject {
                     if let error = error {
                         print("DEBUG: Error updating request: \(error)")
                     } else {
-                        print("DEBUG: Request successfully updated!")
                         self.resetFields()
                     }
                 }

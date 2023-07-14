@@ -11,6 +11,9 @@ struct HomeView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @EnvironmentObject var settingsViewModel: SettingsViewModel
+    @EnvironmentObject var requestViewModel: RequestViewModel
+    @EnvironmentObject var appointmentsViewModel: AppointmentsViewModel
+    
     @StateObject var navigationBarViewModel = NavigationBarViewModel()
     
     var body: some View {
@@ -24,6 +27,12 @@ struct HomeView: View {
             NavigationBarView(viewModel: navigationBarViewModel)
                 .onAppear {
                     settingsViewModel.applyTheme(theme: settingsViewModel.theme)
+                }
+                .onReceive(initialLogViewModel.$publishedCurrentUserUID) { currentUserUID in
+                    if let uid = currentUserUID {
+                        requestViewModel.fetchRequests(for: uid)
+                        appointmentsViewModel.fetchAppointments(for: uid)
+                    }
                 }
         }
 //

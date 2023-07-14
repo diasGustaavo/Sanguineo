@@ -49,8 +49,6 @@ class AppointmentsViewModel: ObservableObject {
 
         let combinedComponents = DateComponents(year: dateComponents.year, month: dateComponents.month, day: dateComponents.day, hour: timeComponents.hour, minute: timeComponents.minute, second: timeComponents.second)
         
-        print("SAVING WITH \(combinedComponents)")
-        
         if let combinedDate = calendar.date(from: combinedComponents) {
             let appointment = Appointment(appointmentDate: combinedDate, requestId: requestUID, authorUID: authorUID)
             
@@ -66,8 +64,6 @@ class AppointmentsViewModel: ObservableObject {
                     db.collection("appointments").addDocument(data: appointmentDocument) { error in
                         if let error = error {
                             print("DEBUG: Error adding appointment: \(error)")
-                        } else {
-                            print("DEBUG: Appointment successfully added!")
                         }
                     }
                 } else {
@@ -75,8 +71,6 @@ class AppointmentsViewModel: ObservableObject {
                     db.collection("appointments").document(appointmentUID).setData(appointmentDocument) { error in
                         if let error = error {
                             print("DEBUG: Error updating appointment: \(error)")
-                        } else {
-                            print("DEBUG: Appointment successfully updated!")
                         }
                     }
                 }
@@ -92,8 +86,6 @@ class AppointmentsViewModel: ObservableObject {
         for authorUID in authorUIDs {
             dispatchGroup.enter()
             
-            print("Fetching image for authorUID: \(authorUID)")
-            
             let imageName = authorUID + ".jpg"
             let imagePath = "profileImages/\(imageName)"
             let storage = Storage.storage().reference()
@@ -103,7 +95,6 @@ class AppointmentsViewModel: ObservableObject {
                 } else if let data = data, let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.profileImages[authorUID] = image
-                        print("Successfully fetched image for authorUID: \(authorUID)")
                     }
                 }
                 dispatchGroup.leave()
@@ -112,13 +103,11 @@ class AppointmentsViewModel: ObservableObject {
         
         dispatchGroup.notify(queue: .main) {
             self.isLoading = false
-            print("All images have been fetched, isLoading is now set to false.")
         }
     }
 
     func fetchAppointments(for authorUID: String) {
         isLoading = true
-        print("Fetching appointments for authorUID: \(authorUID)")
         
         let db = Firestore.firestore()
         db.collection("appointments").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
@@ -131,8 +120,6 @@ class AppointmentsViewModel: ObservableObject {
                     appointment?.id = document.documentID
                     return appointment
                 }
-                
-                print("Successfully fetched appointments for authorUID: \(authorUID), there are \(self.appointments.count) appointments.")
                 
                 // Get the author UIDs
                 let authorUIDs = self.appointments.map { $0.authorUID }

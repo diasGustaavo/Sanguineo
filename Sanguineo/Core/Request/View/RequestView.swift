@@ -12,7 +12,7 @@ struct RequestView: View {
     @EnvironmentObject var initialLogViewModel: InitialLogViewModel
     @EnvironmentObject var profile: ProfileViewModel
     
-    @StateObject var viewModel: RequestViewModel = RequestViewModel()
+    @EnvironmentObject var viewModel: RequestViewModel
     
     let genderOptions = ["Masculino", "Feminino", "Outros"]
     
@@ -153,11 +153,6 @@ struct RequestView: View {
                     
                     Spacer()
                 }
-            }
-        }
-        .onAppear {
-            if let currentUserUID = initialLogViewModel.currentUser?.uid {
-                viewModel.fetchRequests(for: currentUserUID)
             }
         }
     }

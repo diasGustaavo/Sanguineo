@@ -255,5 +255,6 @@ struct FeedView_Previews: PreviewProvider {
             .environmentObject(FeedViewModel())
             .environmentObject(AddressViewModel())
             .environmentObject(InitialLogViewModel())
+            .environmentObject(RequestViewModel())
     }
 }
