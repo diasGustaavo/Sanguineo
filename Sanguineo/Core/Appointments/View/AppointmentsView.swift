@@ -16,6 +16,15 @@ struct AppointmentsView: View {
     
     @State private var showingDonationView = false
     
+    private var formattedLastDonationDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        guard let lastDonationDate = appointmentsViewModel.closestPastAppointment?.appointmentDate else {
+            return "N/A"
+        }
+        return dateFormatter.string(from: lastDonationDate)
+    }
+    
     var body: some View {
         RefreshableScrollView(onRefresh: { done in
             if let currentUserUID = initialLogViewModel.currentUser?.uid {
@@ -45,11 +54,11 @@ struct AppointmentsView: View {
                 
                 HStack(content: {
                     VStack(alignment: .leading) {
-                        Text("Sua ultima doação foi no dia 24/07/2022.")
+                        Text("Sua ultima doação foi no dia \(formattedLastDonationDate).")
                             .font(.custom("Nunito-Light", size: 16))
                             .multilineTextAlignment(.leading)
                         
-                        Text("Você está apto para doar novamente!")
+                        Text(appointmentsViewModel.canDonateAgain ? "Você está apto para doar novamente!" : "Você precisa esperar para doar novamente.")
                             .font(.custom("Nunito-SemiBold", size: 16))
                             .multilineTextAlignment(.leading)
                     }

@@ -16,6 +16,19 @@ class AppointmentsViewModel: ObservableObject {
     @Published var appointments: [Appointment]
     @Published var appointment: Appointment
     
+    var closestPastAppointment: Appointment? {
+        let now = Date()
+        return appointments.filter { $0.appointmentDate < now }
+            .max(by: { $0.appointmentDate < $1.appointmentDate })
+    }
+    
+    var canDonateAgain: Bool {
+        guard let lastAppointment = closestPastAppointment else { return true }  // if no past appointment found, the user can donate
+        let now = Date()
+        let ninetyDaysAgo = Calendar.current.date(byAdding: .day, value: -90, to: now)!
+        return lastAppointment.appointmentDate <= ninetyDaysAgo  // user can donate again if the last appointment is more than 90 days ago
+    }
+    
     @Published var name: String = ""
     @Published var image = UIImage(named: "3davatar2")!
     @Published var nationality = "Brasileira"
