@@ -36,11 +36,18 @@ struct RequestView: View {
             }) {
                 VStack {
                     HStack {
-                        Image(uiImage: UIImage(named: "3davatar2")!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .padding(.leading)
+                        if viewModel.isLoading {
+                            Spinner(lineWidth: 5, height: 32, width: 32)
+                                .frame(width: 80, height: 80)
+                                .padding(.leading)
+                        } else {
+                            Image(uiImage: viewModel.profileImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .padding(.leading)
+                        }
                         
                         Text(profile.name)
                             .lineLimit(1)
@@ -83,9 +90,16 @@ struct RequestView: View {
                                     .navigationBarBackButtonHidden()
                             } label: {
                                 HStack {
-                                    Image(uiImage: UIImage(named: "3davatar2")!)
-                                        .resizable()
-                                        .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                    if let data = viewModel.profileImagesData[req.authorUID], let image = UIImage(data: data) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                            .cornerRadius(90)
+                                    } else {
+                                        Image(uiImage: UIImage(named: "3davatar2")!)
+                                            .resizable()
+                                            .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                    }
                                     
                                     Spacer()
                                     
@@ -124,7 +138,7 @@ struct RequestView: View {
                             .navigationBarBackButtonHidden()
                     } label: {
                         HStack {
-                            Text("Nova soliticação")
+                            Text("Nova solicitação")
                             
                             Image(systemName: "plus.circle")
                         }
