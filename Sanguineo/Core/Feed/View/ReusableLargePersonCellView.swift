@@ -21,8 +21,9 @@ struct ReusableLargePersonCellView: View {
                 HStack(spacing: 8) {
                     Image(uiImage: image)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 120, height: 120)
+                        .clipShape(Circle())
                     
                     VStack(alignment: .leading, spacing: 2) {
                         Text(name)

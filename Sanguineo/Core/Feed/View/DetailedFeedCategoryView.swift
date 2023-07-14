@@ -72,8 +72,8 @@ struct DetailedFeedCategoryView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
                 
-                ForEach(requesters, id: \.name) { requester in
-                    ReusableLargePersonCellView(image: UIImage(named: "3d_avatar_28")!, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
+                ForEach(requesters, id: \.id) { requester in
+                    ReusableLargePersonCellView(image: requester.image, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
                         print("Button pressed!")
                     }
                 }

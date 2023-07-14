@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 
 protocol RequesterInfo {
+    var id: String { get }
     var name: String { get }
     var bloodtype: String { get }
     var description: String { get }
@@ -22,6 +23,7 @@ protocol RequesterInfo {
     var doenca: Bool { get }
     var outro: Bool { get }
     var tratamento: Bool { get }
+    var image: UIImage { get }
     func countTrueBooleans() -> Int
 }
 
