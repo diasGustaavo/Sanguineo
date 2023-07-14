@@ -120,7 +120,7 @@ struct DonateView: View {
                 }
                 .padding(.horizontal)
                 
-                DatePicker("Selecionar Data", selection: $appointmentsViewModel.selectedDate, displayedComponents: [.date])
+                DatePicker("Selecionar Data", selection: $appointmentsViewModel.selectedDate, in: Date()..., displayedComponents: [.date])
                     .datePickerStyle(.graphical)
                     .padding(.horizontal, 8)
                 
