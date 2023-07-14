@@ -12,9 +12,14 @@ struct DetailedFeedCategoryView: View {
     let requesters: [RequesterInfo]
     let onButtonPress: () -> Void
     
+    @EnvironmentObject var addressViewModel: AddressViewModel
+    @EnvironmentObject var initialLogViewModel: InitialLogViewModel
+    @EnvironmentObject var feedViewModel: FeedViewModel
     @Environment(\.presentationMode) var presentationMode
+    
     @GestureState private var dragOffset = CGSize.zero
-
+    @State private var showingAddressView = false
+    
     init(sectionDescription: String, requesters: [RequesterInfo], onButtonPress: @escaping () -> Void) {
         self.sectionDescription = sectionDescription
         self.requesters = requesters
@@ -40,15 +45,21 @@ struct DetailedFeedCategoryView: View {
                         .resizable()
                         .frame(width: 30, height: 30)
                     
-                    Text("O-")
+                    Text(initialLogViewModel.currentUser?.bloodtype ?? "")
                         .font(.custom("Nunito-Regular", size: 16))
                         .multilineTextAlignment(.center)
                     
                     Spacer()
                     
-                    Text("Rua Empresario Manoel...")
+                    Text((addressViewModel.selectedAddress?.street.map { String($0.prefix(22)) + ($0.count > 25 ? "..." : "") } ?? "Sem endereço selecionado"))
                         .font(.custom("Nunito-Light", size: 16))
                         .multilineTextAlignment(.center)
+                        .onTapGesture {
+                            showingAddressView = true
+                        }
+                        .sheet(isPresented: $showingAddressView) {
+                            AddressView()
+                        }
                     
                     Image(systemName: "chevron.down")
                         .font(.custom("Nunito-Light", size: 14))
@@ -72,9 +83,21 @@ struct DetailedFeedCategoryView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
                 
-                ForEach(requesters, id: \.id) { requester in
-                    ReusableLargePersonCellView(image: requester.image, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
-                        print("Button pressed!")
+                if (!feedViewModel.individualsLoading) && (!feedViewModel.hospitalsLoading) {
+                    ForEach(requesters, id: \.id) { requester in
+                        ReusableLargePersonCellView(image: requester.image, name: requester.name, bloodtype: requester.bloodtype, age: (requester as? Individual)?.age, description: requester.description) {
+                            print("Button pressed!")
+                        }
+                    }
+                } else {
+                    VStack {
+                        Spacer()
+                            .frame(height: 40)
+                        
+                        Spinner(lineWidth: 5, height: 32, width: 32)
+                        
+                        Spacer()
+                            .frame(height: 20)
                     }
                 }
             }
