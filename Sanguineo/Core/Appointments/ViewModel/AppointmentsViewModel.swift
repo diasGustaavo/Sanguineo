@@ -7,6 +7,7 @@
 
 import FirebaseFirestore
 import UIKit
+import FirebaseStorage
 
 class AppointmentsViewModel: ObservableObject {
     @Published var appointmentDate: Date
@@ -20,6 +21,8 @@ class AppointmentsViewModel: ObservableObject {
     @Published var nationality = "Brasileira"
     @Published var bloodtype = "O+"
     @Published var description = "bla bla bla"
+    
+    @Published var profileImages: [String: UIImage] = [:]
     
     @Published var selectedDate: Date = Date()
     @Published var selectedTime: Date  = Date()
@@ -83,24 +86,63 @@ class AppointmentsViewModel: ObservableObject {
         }
     }
     
+    func fetchProfileImages(for authorUIDs: [String]) {
+        let dispatchGroup = DispatchGroup()
+        
+        for authorUID in authorUIDs {
+            dispatchGroup.enter()
+            
+            print("Fetching image for authorUID: \(authorUID)")
+            
+            let imageName = authorUID + ".jpg"
+            let imagePath = "profileImages/\(imageName)"
+            let storage = Storage.storage().reference()
+            storage.child(imagePath).getData(maxSize: 1 * 1024 * 1024) { data, error in
+                if let error = error {
+                    print("Error fetching profile image: \(error)")
+                } else if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.profileImages[authorUID] = image
+                        print("Successfully fetched image for authorUID: \(authorUID)")
+                    }
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.isLoading = false
+            print("All images have been fetched, isLoading is now set to false.")
+        }
+    }
+
     func fetchAppointments(for authorUID: String) {
         isLoading = true
+        print("Fetching appointments for authorUID: \(authorUID)")
+        
         let db = Firestore.firestore()
         db.collection("appointments").whereField("authorUID", isEqualTo: authorUID).getDocuments { querySnapshot, error in
             if let error = error {
                 print("DEBUG: Error getting appointments: \(error)")
                 self.isLoading = false
             } else if let querySnapshot = querySnapshot {
-                self.isLoading = false
                 self.appointments = querySnapshot.documents.compactMap { document -> Appointment? in
                     var appointment = try? document.data(as: Appointment.self)
                     appointment?.id = document.documentID
                     return appointment
                 }
+                
+                print("Successfully fetched appointments for authorUID: \(authorUID), there are \(self.appointments.count) appointments.")
+                
+                // Get the author UIDs
+                let authorUIDs = self.appointments.map { $0.authorUID }
+                
+                // Fetch the profile images for the authors
+                self.fetchProfileImages(for: authorUIDs)
             }
         }
     }
-    
+
     func fetchAppointmentsAndDo(for authorUID: String, completion: @escaping () -> Void) {
         isLoading = true
         let db = Firestore.firestore()

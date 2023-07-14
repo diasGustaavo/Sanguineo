@@ -102,9 +102,10 @@ struct AppointmentsView: View {
                                 }
                             } label: {
                                 HStack {
-                                    Image(uiImage: UIImage(named: "3d_avatar_7")!)
+                                    Image(uiImage: appointmentsViewModel.profileImages[appointment.authorUID] ?? UIImage(named: "3d_avatar_7")!)
                                         .resizable()
-                                        .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
                                     
                                     Spacer()
                                     
