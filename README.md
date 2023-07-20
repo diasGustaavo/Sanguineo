@@ -3,7 +3,7 @@
 What is Sanguineo?
 ------------------
 
-Sanguineo is an open source web application that connects those in need of blood donations with willing donors. It offers several key features such as searching for available donors nearby, displaying user information, allowing for donor requests, and setting up appointments.
+Sanguineo is an open source application that connects those in need of blood donations with willing donors. It offers several key features such as searching for available donors nearby, displaying user information, allowing for donor requests, and setting up appointments.
 
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-06-30 at 15 07 39](https://github.com/diasGustaavo/Sanguineo/assets/60455369/7610142b-f578-48e0-907c-2f1d0788d346)
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-06-30 at 15 02 16](https://github.com/diasGustaavo/Sanguineo/assets/60455369/5100a529-268d-4baf-ba1d-f4bf8a5a2147)
